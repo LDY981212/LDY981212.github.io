@@ -1,4 +1,8 @@
+"use client";
+
 import { NavProps } from "@/interfaces/NavInterface";
+import Image from "next/image";
+import { useState } from "react";
 
 export default function Nav({
   isScrolled,
@@ -6,6 +10,8 @@ export default function Nav({
   onClickAbout,
   onClickSkills,
 }: NavProps) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div
       className={`flex justify-between items-center px-[20rem] py-[1.5rem]  ${
@@ -14,27 +20,44 @@ export default function Nav({
           : "text-gray-400"
       }`}
     >
-      <button
-        className="text-[2.6rem] font-bold cursor-pointer hover:text-blue-500"
-        onClick={onClickLogo}
+      <div
+        className="flex gap-[1.5rem]"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
-        LDY&apos;s Portfolio
-      </button>
+        <Image
+          src={
+            isHovered ? "/images/home_logo.svg" : "/images/home_logo_light.svg"
+          }
+          alt="홈 로고 이미지"
+          width={50}
+          height={50}
+        />
+        <button
+          className={`text-[2.6rem] font-bold cursor-pointer ${
+            isHovered
+              ? "text-blue-500"
+              : isScrolled
+              ? "text-white"
+              : "text-gray-400"
+          }`}
+          onClick={onClickLogo}
+        >
+          LDY&apos;s Portfolio
+        </button>
+      </div>
       <div className="flex gap-[3.5rem] text-[1.8rem] font-bold ">
         <button
           onClick={onClickAbout}
           className="cursor-pointer hover:text-blue-500"
         >
-          About me
+          Profiles
         </button>
         <button
           onClick={onClickSkills}
           className="cursor-pointer hover:text-blue-500"
         >
           Skills
-        </button>
-        <button className="cursor-pointer hover:text-blue-500">
-          Archiving
         </button>
         <button className="cursor-pointer hover:text-blue-500">Projects</button>
         <button className="cursor-pointer hover:text-blue-500">Career</button>
