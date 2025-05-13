@@ -2,10 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import Nav from "../components/Nav";
+import AboutMe from "@/components/AboutMe";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const headerRef = useRef<HTMLDivElement | null>(null);
+  const aboutRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const handScroll = () => {
@@ -24,6 +26,9 @@ export default function Home() {
           onClickLogo={() => {
             headerRef.current?.scrollIntoView({ behavior: "smooth" });
           }}
+          onClickAbout={() => {
+            aboutRef.current?.scrollIntoView({ behavior: "smooth" });
+          }}
         />
       </header>
       <div
@@ -38,11 +43,17 @@ export default function Home() {
             <br />
             끊임없이 성장하는 프론트엔드 개발자 이도엽입니다.
           </h2>
-          <button className="mt-6 px-6 py-3 w-[18rem] h-[6rem] text-[1.8rem] hover:bg-blue-800 transition-colors duration-300 bg-blue-500 text-white rounded-full cursor-pointer">
+          <button
+            onClick={() => {
+              aboutRef.current?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="mt-6 px-6 py-3 w-[18rem] h-[6rem] text-[1.8rem] hover:bg-blue-800 transition-colors duration-300 bg-blue-500 text-white rounded-full cursor-pointer"
+          >
             더 알아보기 ↓
           </button>
         </div>
       </div>
+      <AboutMe aboutRef={aboutRef} />
     </div>
   );
 }

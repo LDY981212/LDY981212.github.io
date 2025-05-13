@@ -1,6 +1,10 @@
 import { NavProps } from "@/interfaces/NavInterface";
 
-export default function Nav({ isScrolled, onClickLogo }: NavProps) {
+export default function Nav({
+  isScrolled,
+  onClickLogo,
+  onClickAbout,
+}: NavProps) {
   return (
     <div
       className={`flex justify-between items-center px-[30rem] py-[2.5rem]  ${
@@ -16,7 +20,12 @@ export default function Nav({ isScrolled, onClickLogo }: NavProps) {
         LDY&apos;s Portfolio
       </button>
       <div className="flex gap-[3.5rem] text-[2.2rem] font-bold ">
-        <button className="cursor-pointer hover:text-blue-500">About me</button>
+        <button
+          onClick={onClickAbout}
+          className="cursor-pointer hover:text-blue-500"
+        >
+          About me
+        </button>
         <button className="cursor-pointer hover:text-blue-500">Skills</button>
         <button className="cursor-pointer hover:text-blue-500">
           Archiving
