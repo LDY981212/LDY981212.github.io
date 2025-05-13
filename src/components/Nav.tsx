@@ -8,14 +8,14 @@ export default function Nav({
 }: NavProps) {
   return (
     <div
-      className={`flex justify-between items-center px-[20rem] py-[2.5rem]  ${
+      className={`flex justify-between items-center px-[20rem] py-[1.5rem]  ${
         isScrolled
           ? "text-white bg-gray-400 border-b border-gray-400 shadow-lg"
           : "text-gray-400"
       }`}
     >
       <button
-        className="text-[3.2rem] font-bold cursor-pointer hover:text-blue-500"
+        className="text-[2.6rem] font-bold cursor-pointer hover:text-blue-500"
         onClick={onClickLogo}
       >
         LDY&apos;s Portfolio

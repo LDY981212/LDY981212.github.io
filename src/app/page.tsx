@@ -48,7 +48,7 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-black opacity-60"></div>
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
-          <h2 className="font-black text-center text-white text-[5rem]">
+          <h2 className="font-black text-center text-white text-[4rem]">
             안녕하세요.
             <br /> 더 나은 사용자 경험을 고민하고,
             <br />
@@ -56,7 +56,7 @@ export default function Home() {
           </h2>
           <button
             onClick={() => scrollToRefWidthOffset(aboutRef)}
-            className="mt-[4rem] px-[1rem] py-[1rem] w-[18rem] h-[6rem] text-[1.6rem] hover:bg-blue-800 transition-colors duration-300 bg-blue-500 text-white rounded-full cursor-pointer"
+            className="mt-[4rem] px-[1rem] py-[1rem] w-[16rem] h-[5rem] text-[1.6rem] hover:bg-blue-800 transition-colors duration-300 bg-blue-500 text-white rounded-full cursor-pointer"
           >
             더 알아보기 ↓
           </button>
