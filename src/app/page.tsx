@@ -3,11 +3,23 @@
 import { useEffect, useRef, useState } from "react";
 import Nav from "../components/Nav";
 import AboutMe from "@/components/AboutMe";
+import Skills from "@/components/Skills";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
   const headerRef = useRef<HTMLDivElement | null>(null);
   const aboutRef = useRef<HTMLDivElement | null>(null);
+  const skillsRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollToRefWidthOffset = (
+    ref: React.RefObject<HTMLElement | null>,
+    offset = 100
+  ) => {
+    if (ref.current) {
+      const top = ref.current.offsetTop - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
     const handScroll = () => {
@@ -19,16 +31,15 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="h-[1000rem]">
+    <div>
       <header className="fixed w-full z-20">
         <Nav
           isScrolled={isScrolled}
           onClickLogo={() => {
             headerRef.current?.scrollIntoView({ behavior: "smooth" });
           }}
-          onClickAbout={() => {
-            aboutRef.current?.scrollIntoView({ behavior: "smooth" });
-          }}
+          onClickAbout={() => scrollToRefWidthOffset(aboutRef)}
+          onClickSkills={() => scrollToRefWidthOffset(skillsRef)}
         />
       </header>
       <div
@@ -44,16 +55,15 @@ export default function Home() {
             끊임없이 성장하는 프론트엔드 개발자 이도엽입니다.
           </h2>
           <button
-            onClick={() => {
-              aboutRef.current?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="mt-6 px-6 py-3 w-[18rem] h-[6rem] text-[1.8rem] hover:bg-blue-800 transition-colors duration-300 bg-blue-500 text-white rounded-full cursor-pointer"
+            onClick={() => scrollToRefWidthOffset(aboutRef)}
+            className="mt-[6rem] px-6 py-3 w-[18rem] h-[6rem] text-[1.8rem] hover:bg-blue-800 transition-colors duration-300 bg-blue-500 text-white rounded-full cursor-pointer"
           >
             더 알아보기 ↓
           </button>
         </div>
       </div>
       <AboutMe aboutRef={aboutRef} />
+      <Skills skillRef={skillsRef} />
     </div>
   );
 }

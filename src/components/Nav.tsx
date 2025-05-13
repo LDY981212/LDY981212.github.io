@@ -4,6 +4,7 @@ export default function Nav({
   isScrolled,
   onClickLogo,
   onClickAbout,
+  onClickSkills,
 }: NavProps) {
   return (
     <div
@@ -26,7 +27,12 @@ export default function Nav({
         >
           About me
         </button>
-        <button className="cursor-pointer hover:text-blue-500">Skills</button>
+        <button
+          onClick={onClickSkills}
+          className="cursor-pointer hover:text-blue-500"
+        >
+          Skills
+        </button>
         <button className="cursor-pointer hover:text-blue-500">
           Archiving
         </button>
