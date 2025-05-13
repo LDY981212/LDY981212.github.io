@@ -7,7 +7,7 @@ export default function Skills({ skillRef }: SkillsProps) {
       ref={skillRef}
       className="flex flex-col items-center py-[9rem] bg-blue-300"
     >
-      <h1 className="font-black text-[7rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-300">
+      <h1 className="font-black text-[5rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-300">
         SKILLS
       </h1>
       <div className="flex flex-col bg-blue-100 rounded-[2rem] py-[2rem] px-[3rem] gap-[3rem] shadow-2xl">

@@ -44,11 +44,11 @@ export default function Home() {
       </header>
       <div
         ref={headerRef}
-        className="relative w-full h-[80em] bg-cover bg-center bg-no-repeat bg-[url('/images/keyboard-933568_1280.jpg')]"
+        className="relative w-full h-[50em] bg-cover bg-center bg-no-repeat bg-[url('/images/keyboard-933568_1280.jpg')]"
       >
         <div className="absolute inset-0 bg-black opacity-60"></div>
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
-          <h2 className="font-black text-center text-white text-[6rem]">
+          <h2 className="font-black text-center text-white text-[5rem]">
             안녕하세요.
             <br /> 더 나은 사용자 경험을 고민하고,
             <br />
@@ -56,7 +56,7 @@ export default function Home() {
           </h2>
           <button
             onClick={() => scrollToRefWidthOffset(aboutRef)}
-            className="mt-[6rem] px-6 py-3 w-[18rem] h-[6rem] text-[1.8rem] hover:bg-blue-800 transition-colors duration-300 bg-blue-500 text-white rounded-full cursor-pointer"
+            className="mt-[4rem] px-[1rem] py-[1rem] w-[18rem] h-[6rem] text-[1.6rem] hover:bg-blue-800 transition-colors duration-300 bg-blue-500 text-white rounded-full cursor-pointer"
           >
             더 알아보기 ↓
           </button>

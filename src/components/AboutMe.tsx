@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function AboutMe({ aboutRef }: AboutMeProps) {
   return (
     <div ref={aboutRef} className="flex flex-col items-center py-[9rem]">
-      <h1 className="font-black text-[7rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-300">
+      <h1 className="font-black text-[5rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-300">
         ABOUT ME
       </h1>
       <div className="grid grid-cols-3 grid-rows-2 gap-x-[20rem] gap-y-[5rem]">
