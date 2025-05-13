@@ -13,7 +13,7 @@ export default function Home() {
 
   const scrollToRefWidthOffset = (
     ref: React.RefObject<HTMLElement | null>,
-    offset = 100
+    offset = 70
   ) => {
     if (ref.current) {
       const top = ref.current.offsetTop - offset;
@@ -50,9 +50,12 @@ export default function Home() {
         <div className="relative z-10 flex flex-col items-center justify-center h-full text-white">
           <h2 className="font-black text-center text-white text-[4rem]">
             안녕하세요.
-            <br /> 더 나은 사용자 경험을 고민하고,
+            <br /> 더 나은 <span className="text-blue-300">사용자 경험</span>
+            을 고민하고,
+            <br /> 끊임없이 <span className="text-blue-300">성장</span>하는
             <br />
-            끊임없이 성장하는 프론트엔드 개발자 이도엽입니다.
+            프론트엔드 개발자 <span className="text-blue-300">이도엽</span>
+            입니다.
           </h2>
           <button
             onClick={() => scrollToRefWidthOffset(aboutRef)}

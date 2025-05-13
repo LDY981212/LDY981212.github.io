@@ -7,7 +7,7 @@ export default function AboutMe({ aboutRef }: AboutMeProps) {
       <h1 className="font-black text-[5rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-300">
         ABOUT ME
       </h1>
-      <div className="grid grid-cols-3 grid-rows-2 gap-x-[20rem] gap-y-[5rem]">
+      <div className="grid grid-cols-3 grid-rows-2 gap-x-[8rem] gap-y-[3rem]">
         <div className="flex items-center gap-[2rem]">
           <Image
             src="/images/avatar.svg"
