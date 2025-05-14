@@ -1,14 +1,44 @@
 import { AboutMeProps } from "@/interfaces/AboutMeInterface";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function AboutMe({ aboutRef }: AboutMeProps) {
+  const containerVariants = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemsVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <div ref={aboutRef} className="flex flex-col items-center py-[9rem]">
       <h1 className="font-black text-[5rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-300">
         PROFILES
       </h1>
-      <div className="grid grid-cols-4 grid-rows-2  gap-y-[3rem] px-[8rem]">
-        <div className="flex items-center gap-[2rem]">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        className="grid grid-cols-4 grid-rows-2  gap-y-[3rem] px-[8rem]"
+      >
+        <motion.div
+          variants={itemsVariants}
+          className="flex items-center gap-[2rem]"
+        >
           <Image
             src="/images/avatar.svg"
             alt="아바타 이미지"
@@ -23,8 +53,11 @@ export default function AboutMe({ aboutRef }: AboutMeProps) {
               이도엽
             </span>
           </div>
-        </div>
-        <div className="flex items-center gap-[2rem]">
+        </motion.div>
+        <motion.div
+          variants={itemsVariants}
+          className="flex items-center gap-[2rem]"
+        >
           <Image
             src="/images/birthday.svg"
             alt="생일 이미지"
@@ -39,8 +72,11 @@ export default function AboutMe({ aboutRef }: AboutMeProps) {
               98.12.12
             </span>
           </div>
-        </div>
-        <div className="flex items-center gap-[2rem]">
+        </motion.div>
+        <motion.div
+          variants={itemsVariants}
+          className="flex items-center gap-[2rem]"
+        >
           <Image
             src="/images/location.svg"
             alt="위치 이미지"
@@ -55,8 +91,11 @@ export default function AboutMe({ aboutRef }: AboutMeProps) {
               경기도 부천시
             </span>
           </div>
-        </div>
-        <div className="flex items-center gap-[2rem]">
+        </motion.div>
+        <motion.div
+          variants={itemsVariants}
+          className="flex items-center gap-[2rem]"
+        >
           <Image
             src="/images/call.svg"
             alt="전화 이미지"
@@ -71,8 +110,11 @@ export default function AboutMe({ aboutRef }: AboutMeProps) {
               010-4465-8427
             </span>
           </div>
-        </div>
-        <div className="flex items-center gap-[2rem]">
+        </motion.div>
+        <motion.div
+          variants={itemsVariants}
+          className="flex items-center gap-[2rem]"
+        >
           <Image
             src="/images/email.svg"
             alt="이메일 이미지"
@@ -87,8 +129,11 @@ export default function AboutMe({ aboutRef }: AboutMeProps) {
               wjflrkwlak@gmail.com
             </span>
           </div>
-        </div>
-        <div className="flex items-center gap-[2rem]">
+        </motion.div>
+        <motion.div
+          variants={itemsVariants}
+          className="flex items-center gap-[2rem]"
+        >
           <Image
             src="/images/school.svg"
             alt="학교 이미지"
@@ -103,8 +148,11 @@ export default function AboutMe({ aboutRef }: AboutMeProps) {
               한양대학교 생체공학과
             </span>
           </div>
-        </div>
-        <div className="flex items-center gap-[2rem]">
+        </motion.div>
+        <motion.div
+          variants={itemsVariants}
+          className="flex items-center gap-[2rem]"
+        >
           <Image
             src="/images/github.svg"
             alt="깃헙 이미지"
@@ -122,8 +170,8 @@ export default function AboutMe({ aboutRef }: AboutMeProps) {
               https://github.com/LDY981212
             </a>
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   );
 }

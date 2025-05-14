@@ -1,5 +1,6 @@
 import { SkillsProps } from "@/interfaces/SkillsInterface";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Skills({ skillRef }: SkillsProps) {
   return (
@@ -10,7 +11,15 @@ export default function Skills({ skillRef }: SkillsProps) {
       <h1 className="font-black text-[5rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-300">
         SKILLS
       </h1>
-      <div className="flex flex-col bg-blue-100 rounded-[2rem] py-[2rem] px-[3rem] gap-[3rem] shadow-2xl">
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          transition: { delay: 0.3, duration: 0.5 },
+        }}
+        className="flex flex-col bg-blue-100 rounded-[2rem] py-[2rem] px-[3rem] gap-[3rem] shadow-2xl"
+      >
         <div className="flex items-center gap-[5rem]">
           <div className="flex gap-[1.2rem] items-center">
             <Image
@@ -80,7 +89,7 @@ export default function Skills({ skillRef }: SkillsProps) {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
