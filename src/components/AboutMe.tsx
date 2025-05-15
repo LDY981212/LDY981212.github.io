@@ -1,29 +1,9 @@
 import { AboutMeProps } from "@/interfaces/AboutMeInterface";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { containerVariants, itemsVariants } from "@/utils/FramerVariants";
 
 export default function AboutMe({ aboutRef }: AboutMeProps) {
-  const containerVariants = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemsVariants = {
-    hidden: { opacity: 0, y: 30 },
-    show: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.4,
-        ease: "easeOut",
-      },
-    },
-  };
-
   return (
     <div ref={aboutRef} className="flex flex-col items-center py-[9rem]">
       <h1 className="font-black text-[5rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-300">
