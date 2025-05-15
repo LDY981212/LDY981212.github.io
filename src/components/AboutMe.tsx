@@ -69,7 +69,7 @@ export default function AboutMe({ aboutRef }: AboutMeProps) {
               생년월일
             </span>
             <span className="block font-medium text-[1.6rem] text-gray-700">
-              98.12.12
+              1998.12.12
             </span>
           </div>
         </motion.div>

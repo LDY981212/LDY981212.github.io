@@ -5,6 +5,7 @@ import Nav from "../components/Nav";
 import AboutMe from "@/components/AboutMe";
 import Skills from "@/components/Skills";
 import { motion } from "framer-motion";
+import Project from "@/components/Project";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -79,6 +80,7 @@ export default function Home() {
       </div>
       <AboutMe aboutRef={aboutRef} />
       <Skills skillRef={skillsRef} />
+      <Project />
     </div>
   );
 }
