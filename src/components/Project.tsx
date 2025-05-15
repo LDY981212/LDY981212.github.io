@@ -17,9 +17,19 @@ export default function Project({ projectRef }: ProjectProps) {
   const [colorMap, setColorMap] = useState<{ [key: string]: string }>({});
 
   useEffect(() => {
+    const shuffleArray = (array: string[]) => {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    };
+
+    const shuffledColors = shuffleArray(bgColors);
     const newMap: { [key: string]: string } = {};
-    projectItems.forEach((item) => {
-      newMap[item.id] = bgColors[Math.floor(Math.random() * bgColors.length)];
+    projectItems.forEach((item, index) => {
+      newMap[item.id] = shuffledColors[index % shuffledColors.length];
     });
     setColorMap(newMap);
   }, []);
@@ -69,7 +79,9 @@ export default function Project({ projectRef }: ProjectProps) {
                   ))}
                 </ul>
                 <a
-                  href="www.moving.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={projectItem.link}
                   className="text-[1.5rem] text-blue-700 border-l-[0.4rem] pl-[1rem] border-blue-800"
                 >
                   {projectItem.link}
