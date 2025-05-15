@@ -10,6 +10,7 @@ export default function Nav({
   onClickAbout,
   onClickSkills,
   onClickProjects,
+  onClickCareer,
 }: NavProps) {
   const [isHovered, setIsHovered] = useState(false);
 
@@ -66,7 +67,12 @@ export default function Nav({
         >
           Projects
         </button>
-        <button className="cursor-pointer hover:text-blue-500">Career</button>
+        <button
+          onClick={onClickCareer}
+          className="cursor-pointer hover:text-blue-500"
+        >
+          Career
+        </button>
       </div>
     </div>
   );

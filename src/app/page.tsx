@@ -6,6 +6,7 @@ import AboutMe from "@/components/AboutMe";
 import Skills from "@/components/Skills";
 import { motion } from "framer-motion";
 import Project from "@/components/Project";
+import Career from "@/components/Career";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -13,6 +14,7 @@ export default function Home() {
   const aboutRef = useRef<HTMLDivElement | null>(null);
   const skillsRef = useRef<HTMLDivElement | null>(null);
   const projectRef = useRef<HTMLDivElement | null>(null);
+  const careerRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToRefWidthOffset = (
     ref: React.RefObject<HTMLElement | null>,
@@ -44,6 +46,7 @@ export default function Home() {
           onClickAbout={() => scrollToRefWidthOffset(aboutRef)}
           onClickSkills={() => scrollToRefWidthOffset(skillsRef)}
           onClickProjects={() => scrollToRefWidthOffset(projectRef)}
+          onClickCareer={() => scrollToRefWidthOffset(careerRef)}
         />
       </header>
       <div
@@ -83,6 +86,7 @@ export default function Home() {
       <AboutMe aboutRef={aboutRef} />
       <Skills skillRef={skillsRef} />
       <Project projectRef={projectRef} />
+      <Career careerRef={careerRef} />
     </div>
   );
 }
