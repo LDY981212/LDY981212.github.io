@@ -7,3 +7,7 @@ export interface ProjectItems {
   stack: string[];
   link: string;
 }
+
+export interface ProjectProps {
+  projectRef: React.RefObject<HTMLDivElement | null>;
+}

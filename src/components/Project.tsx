@@ -4,8 +4,9 @@ import projectItems from "@/constants/projectItems";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { containerVariants, itemsVariants } from "@/utils/FramerVariants";
+import { ProjectProps } from "@/interfaces/ProjectInterface";
 
-export default function Project() {
+export default function Project({ projectRef }: ProjectProps) {
   const bgColors = [
     "bg-blue-800",
     "bg-green-700",
@@ -24,7 +25,10 @@ export default function Project() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center py-[9rem] bg-gray-100">
+    <div
+      className="flex flex-col items-center py-[9rem] bg-gray-100"
+      ref={projectRef}
+    >
       <h1 className="font-black text-[5rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-400">
         PROJECTS
       </h1>

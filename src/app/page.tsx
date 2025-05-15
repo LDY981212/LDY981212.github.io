@@ -12,6 +12,7 @@ export default function Home() {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const aboutRef = useRef<HTMLDivElement | null>(null);
   const skillsRef = useRef<HTMLDivElement | null>(null);
+  const projectRef = useRef<HTMLDivElement | null>(null);
 
   const scrollToRefWidthOffset = (
     ref: React.RefObject<HTMLElement | null>,
@@ -42,6 +43,7 @@ export default function Home() {
           }}
           onClickAbout={() => scrollToRefWidthOffset(aboutRef)}
           onClickSkills={() => scrollToRefWidthOffset(skillsRef)}
+          onClickProjects={() => scrollToRefWidthOffset(projectRef)}
         />
       </header>
       <div
@@ -80,7 +82,7 @@ export default function Home() {
       </div>
       <AboutMe aboutRef={aboutRef} />
       <Skills skillRef={skillsRef} />
-      <Project />
+      <Project projectRef={projectRef} />
     </div>
   );
 }

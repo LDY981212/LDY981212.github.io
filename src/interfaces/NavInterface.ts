@@ -3,4 +3,5 @@ export interface NavProps {
   onClickLogo: () => void;
   onClickAbout: () => void;
   onClickSkills: () => void;
+  onClickProjects: () => void;
 }
