@@ -8,10 +8,10 @@ export default function Career({ careerRef }: CareerProps) {
   return (
     <div
       ref={careerRef}
-      className="flex flex-col items-center py-[9rem] bg-gray-200 pb-[16rem]"
+      className="flex flex-col items-center py-[9rem] bg-gray-200 pb-[21rem]"
     >
       <h1 className="font-black text-[5rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-400">
-        Career
+        CAREER
       </h1>
       <motion.div
         variants={containerVariants}
