@@ -4,7 +4,7 @@ const projectItems: ProjectItems[] = [
   {
     id: "1",
     title: "개인 포트폴리오 웹",
-    created: "2025.06 (1人 개인 프로젝트)",
+    created: "2025.05 (1人 개인 프로젝트)",
     subTitle: "개인 포트폴리오 웹",
     content: [
       "Next.js의 SSR을 통해 SEO 최적화",

@@ -8,6 +8,7 @@ export interface CareerItems {
   created: string;
   content: CareerContent[];
   stack: string[];
+  imageUrl: string;
 }
 
 export interface CareerContent {
