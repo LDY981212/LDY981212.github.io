@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { containerVariants, itemsVariants } from "@/utils/FramerVariants";
 import { ProjectProps } from "@/interfaces/ProjectInterface";
+import { useRouter } from "next/navigation";
 
 export default function Project({ projectRef }: ProjectProps) {
   const bgColors = [
@@ -15,6 +16,7 @@ export default function Project({ projectRef }: ProjectProps) {
     "bg-yellow-700",
   ];
   const [colorMap, setColorMap] = useState<{ [key: string]: string }>({});
+  const router = useRouter();
 
   useEffect(() => {
     const shuffleArray = (array: string[]) => {
@@ -91,7 +93,10 @@ export default function Project({ projectRef }: ProjectProps) {
                 <div className="w-fit p-[1.2rem] rounded-[1rem] border border-blue-400 bg-blue-100 text-[1.4rem]">
                   {projectItem.stack.join(", ")}
                 </div>
-                <button className="w-fit px-[1rem] py-[0.5rem] cursor-pointer rounded-[0.8rem] border border-gray-400 font-bold text-[1.2rem] text-black">
+                <button
+                  onClick={() => router.push(`/project/${projectItem.router}`)}
+                  className="hover:bg-black hover:text-white w-fit px-[1rem] py-[0.5rem] cursor-pointer rounded-[0.8rem] border border-gray-400 font-bold text-[1.2rem] text-black"
+                >
                   자세히 알아보기
                 </button>
               </div>

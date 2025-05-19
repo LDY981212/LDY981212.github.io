@@ -8,7 +8,7 @@ export default function Career({ careerRef }: CareerProps) {
   return (
     <div
       ref={careerRef}
-      className="flex flex-col items-center py-[9rem] bg-gray-200"
+      className="flex flex-col items-center py-[9rem] bg-gray-200 pb-[16rem]"
     >
       <h1 className="font-black text-[5rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-400">
         Career

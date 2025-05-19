@@ -12,6 +12,7 @@ const projectItems: ProjectItems[] = [
     ],
     stack: ["Typescript", "Next.js", "Tailwind CSS"],
     link: "https://ldy981212.github.io",
+    router: "individual",
   },
   {
     id: "2",
@@ -35,6 +36,7 @@ const projectItems: ProjectItems[] = [
       "Tanstack Query",
     ],
     link: "https://moving.com",
+    router: "moving",
   },
   {
     id: "3",
@@ -55,6 +57,7 @@ const projectItems: ProjectItems[] = [
       "Tanstack Query",
     ],
     link: "https://hancook.com",
+    router: "hancook",
   },
   {
     id: "4",
@@ -69,6 +72,7 @@ const projectItems: ProjectItems[] = [
     ],
     stack: ["Javascript", "React", "Express.js", "PostgreSQL"],
     link: "https://viewMyStartup.com",
+    router: "startup",
   },
 ];
 

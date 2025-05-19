@@ -6,6 +6,7 @@ export interface ProjectItems {
   content: string[];
   stack: string[];
   link: string;
+  router: string;
 }
 
 export interface ProjectProps {
