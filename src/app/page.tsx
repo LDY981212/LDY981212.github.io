@@ -7,6 +7,7 @@ import Skills from "@/components/Skills";
 import { motion } from "framer-motion";
 import Project from "@/components/Project";
 import Career from "@/components/Career";
+import ProjectModal from "@/components/ProjectModal";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,6 +16,8 @@ export default function Home() {
   const skillsRef = useRef<HTMLDivElement | null>(null);
   const projectRef = useRef<HTMLDivElement | null>(null);
   const careerRef = useRef<HTMLDivElement | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [projectName, setProjectName] = useState("");
 
   const scrollToRefWidthOffset = (
     ref: React.RefObject<HTMLElement | null>,
@@ -85,8 +88,13 @@ export default function Home() {
       </div>
       <AboutMe aboutRef={aboutRef} />
       <Skills skillRef={skillsRef} />
-      <Project projectRef={projectRef} />
+      <Project
+        projectRef={projectRef}
+        setIsOpen={setIsOpen}
+        setProjectName={setProjectName}
+      />
       <Career careerRef={careerRef} />
+      {isOpen && <ProjectModal project={projectName} setIsOpen={setIsOpen} />}
     </div>
   );
 }

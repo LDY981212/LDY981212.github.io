@@ -5,9 +5,12 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { containerVariants, itemsVariants } from "@/utils/FramerVariants";
 import { ProjectProps } from "@/interfaces/ProjectInterface";
-import { useRouter } from "next/navigation";
 
-export default function Project({ projectRef }: ProjectProps) {
+export default function Project({
+  projectRef,
+  setProjectName,
+  setIsOpen,
+}: ProjectProps) {
   const bgColors = [
     "bg-blue-800",
     "bg-green-700",
@@ -16,7 +19,6 @@ export default function Project({ projectRef }: ProjectProps) {
     "bg-yellow-700",
   ];
   const [colorMap, setColorMap] = useState<{ [key: string]: string }>({});
-  const router = useRouter();
 
   useEffect(() => {
     const shuffleArray = (array: string[]) => {
@@ -90,11 +92,22 @@ export default function Project({ projectRef }: ProjectProps) {
                 </a>
               </div>
               <div className="flex flex-col gap-[1.6rem]">
-                <div className="w-fit p-[1.2rem] rounded-[1rem] border border-blue-400 bg-blue-100 text-[1.4rem]">
-                  {projectItem.stack.join(", ")}
+                <div className="flex flex-wrap gap-[1rem]">
+                  {projectItem.stack.map((teck, index) => (
+                    <div
+                      key={index}
+                      className="flex w-fit p-[1rem] rounded-[1rem] border border-blue-400 bg-blue-100 text-[1.4rem]"
+                    >
+                      {teck.name}
+                    </div>
+                  ))}
                 </div>
+
                 <button
-                  onClick={() => router.push(`/project/${projectItem.router}`)}
+                  onClick={() => {
+                    setIsOpen(true);
+                    setProjectName(projectItem.router);
+                  }}
                   className="hover:bg-black hover:text-white w-fit px-[1rem] py-[0.5rem] cursor-pointer rounded-[0.8rem] border border-gray-400 font-bold text-[1.2rem] text-black"
                 >
                   자세히 알아보기
