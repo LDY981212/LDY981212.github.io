@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { containerVariants, itemsVariants } from "@/utils/FramerVariants";
 import { ProjectProps } from "@/interfaces/ProjectInterface";
+import ConditionalLink from "./ConditionalLink";
 
 export default function Project({
   projectRef,
@@ -82,14 +83,9 @@ export default function Project({
                     </li>
                   ))}
                 </ul>
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={projectItem.link}
-                  className="text-[1.5rem] text-blue-700 border-l-[0.4rem] pl-[1rem] border-blue-800"
-                >
+                <ConditionalLink href={projectItem.link}>
                   {projectItem.link}
-                </a>
+                </ConditionalLink>
               </div>
               <div className="flex flex-col gap-[1.6rem]">
                 <div className="flex flex-wrap gap-[1rem]">
