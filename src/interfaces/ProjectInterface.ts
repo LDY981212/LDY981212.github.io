@@ -12,6 +12,7 @@ export interface ProjectItems {
   intro: string;
   contribution: Contribution[];
   solution: Solution[];
+  videos?: string;
 }
 
 interface Solution {

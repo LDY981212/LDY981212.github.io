@@ -158,6 +158,7 @@ const projectItems: ProjectItems[] = [
           "소켓으로 서버에 이미지를 보낼 땐 postImage http요청의 response 값으로 받은 값을 보냈고 react-query 채팅 내역을 보여주는 캐시에는 직접적인 url이 아닌 previewUrl 즉 임시로 만든 URL.createObjectURL(file)의 string을 보여줘서 서버에서 s3 bucket url을 받기 전 채팅 내역에 미리보기 형식으로 이미지를 보여줬습니다.",
       },
     ],
+    videos: "https://www.youtube.com/embed/HBW6C_YK2gY",
   },
   {
     id: "3",
@@ -275,6 +276,7 @@ const projectItems: ProjectItems[] = [
           "handler 함수에서 mutate를 실행하는 부분에 async await을 사용해 비동기적 처리를 다 기다리고 다음 코드로 넘어가도록 설정했습니다.",
       },
     ],
+    videos: "https://www.youtube.com/embed/OPhg9NHXJT8",
   },
   {
     id: "4",
@@ -288,10 +290,26 @@ const projectItems: ProjectItems[] = [
       "기업 관련 create & read api 제작",
     ],
     stack: [
-      { name: "Javascript", detail: "" },
-      { name: "React", detail: "" },
-      { name: "Express.js", detail: "" },
-      { name: "PostgreSQL", detail: "" },
+      {
+        name: "Javascript",
+        detail:
+          "프론트/백 구분 없이 한 언어로 협업할 수 있어 초기 개발 속도를 빠르게 가져갈 수 있었습니다.",
+      },
+      {
+        name: "React",
+        detail:
+          "SPA 환경에서 빠른 사용자 경험과 유지보수가 필요한 UI 구성에 React가 가장 적합했습니다. ",
+      },
+      {
+        name: "Express.js",
+        detail:
+          "프로젝트 초기에는 복잡한 백엔드보다는 빠르게 API를 설계하고 프론트와 연결하는 것이 중요했기 때문에 Express를 선택했습니다",
+      },
+      {
+        name: "PostgreSQL",
+        detail:
+          "프로젝트에서 사용자, 게시글, 댓글 등의 명확한 관계형 데이터 구조가 필요했고, PostgreSQL은 신뢰성과 성능 면에서 가장 적합한 선택이었습니다.",
+      },
     ],
     link: "종료된 서비스 입니다.",
     router: "startup",
@@ -300,11 +318,17 @@ const projectItems: ProjectItems[] = [
     contribution: [
       {
         head: "기업 비교 모달 & 결과 UI 제작",
-        detail: ["페이지에 해당하는 컴포넌트 및 반응형 구현"],
+        detail: [
+          "페이지에 해당하는 컴포넌트 및 반응형 구현",
+          "비교할 기업 선택 페이지에서 비교하기 버튼을 누르면 비교 결과 테이블과 나의 기업 순위 테이블을 보여주는 UI 구현",
+        ],
       },
       {
         head: "나의 기업 비교 선택 페이지 제작",
-        detail: ["페이지에 해당하는 컴포넌트 및 반응형 구현"],
+        detail: [
+          "페이지에 해당하는 컴포넌트 및 반응형 구현",
+          "내 기업 및 비교할 기업을 모달에서 선택 후 그 기업들을 보여주는 UI 구현",
+        ],
       },
       {
         head: "기업 관련 create & read api 제작",
@@ -315,7 +339,28 @@ const projectItems: ProjectItems[] = [
         ],
       },
     ],
-    solution: [{ head: "", situation: "", task: "", result: "", action: "" }],
+    solution: [
+      {
+        head: "비교 결과 페이지 session 기록에 대한 문제점",
+        situation:
+          "기업 비교 페이지에서 기업을 비교한 후 다른 페이지에 갔다가 다시 기업 비교 페이지에 돌아오면 비교 결과가 남아 있기를 원하지만, 페이지가 초기화 되는 것이 문제였습니다.",
+        task: "기업 비교 페이지에서 기업을 비교한 후 다른 페이지에 갔다가 다시 비교 페이지에 돌아와도 나의 sessionId가 할당되서 선택된 기업들로 비교한 결과가 페이지에 구현되도록 하는 것 입니다.",
+        result:
+          "기업 비교 후 다른 페이지를 갔다 와도 session으로 할당된 기업 리스트들이 UI로 렌더링되었습니다.",
+        action:
+          "결과 페이지가 아닌 전에 나의 sessionId가 할당된 선택한 기업 UI가 남아있는 비교할 기업 선택 페이지를 render하는 것으로 바꾸어서 해결하기 위해서 백엔드에서 sessionId를 where로 받아서 선택한 기업을 조회해주는 api를 설계하고, 프론트에서 useEffect 훅으로 sessionId를 디펜던시로 줘서 만약 sessionId가 있으면 선택한 기업을 조회해주는 기능을 설계했습니다. ",
+      },
+      {
+        head: "드롭다운 컴포넌트에서 데이터 오류의 문제점",
+        situation:
+          "비교결과 페이지에 드롭다운 컴포넌트를 적용할 때 UI는 잘 나왔지만, 데이터가 드롭다운 카테고리에 따라 데이터의 정렬이 되지 않았습니다.",
+        task: "비교 결과 페이지에서 드롭다운 기능이 잘 구현되도록 하는 것 입니다.",
+        result: "비교 결과 페이지에서 드롭다운 기능이 잘 작동되었습니다.",
+        action:
+          "드롭다운으로 정렬하는 데이터의 api 파일의 정렬에 대한 상태함수를 만들어 prop으로 넘겨주고, CompareDropdown 컴포넌트의 prop인 setSortOption을 사용하는 MySelection 컴포넌트에서 api파일의 prop을 드롭다운 컴포넌트의 prop으로 넘겨주었습니다.  ",
+      },
+    ],
+    videos: "https://www.youtube.com/embed/P6fil4h3X8Y",
   },
 ];
 

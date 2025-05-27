@@ -23,7 +23,7 @@ export default function ProjectModal({
   return (
     <div className="fixed inset-0 bg-black/70 bg-opacity-50 z-50 flex justify-center items-center">
       <div
-        className="bg-white flex flex-col items-center rounded-lg w-[80vw] max-h-[80vh] overflow-y-auto relative gap-[3rem]"
+        className="bg-white flex flex-col items-center rounded-lg w-[80vw] max-h-[80vh] overflow-y-auto relative gap-[3rem] pb-[10rem]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex flex-col items-center bg-blue-400 w-full py-[1.2rem]">
@@ -58,14 +58,16 @@ export default function ProjectModal({
               <div className="bg-gray-100 text-[2rem] font-semibold p-[0.5rem] flex items-center pl-[1rem]">
                 {contribution.head}
               </div>
-              {contribution.detail.map((detail, index) => (
-                <ul
-                  key={index}
-                  className="pl-[3rem] py-[0.6rem] text-[1.6rem] list-disc"
-                >
-                  <li>{detail}</li>
-                </ul>
-              ))}
+              {contribution.detail
+                .filter((detail) => detail.trim() !== "")
+                .map((detail, index) => (
+                  <ul
+                    key={index}
+                    className="pl-[3rem] py-[0.6rem] text-[1.6rem] list-disc"
+                  >
+                    <li>{detail}</li>
+                  </ul>
+                ))}
             </div>
           ))}
         </div>
@@ -99,19 +101,30 @@ export default function ProjectModal({
           ))}
         </div>
 
-        <div className="flex flex-col px-[24rem] gap-[1rem]">
-          <h1 className="text-[3rem] font-bold">📽️ DEMO VIDEO</h1>
-        </div>
+        {projectItem.videos && (
+          <div className="flex flex-col px-[24rem] gap-[1rem]">
+            <h1 className="text-[3rem] font-bold">📽️ DEMO VIDEO</h1>
+            <div>
+              <iframe
+                className="w-[80rem] h-[40rem]"
+                src={projectItem.videos}
+                title="Project Demo"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+        )}
       </div>
 
       <div className="flex flex-col ">
         <button
           onClick={() => setIsOpen(false)}
-          className="absolute top-[4rem] right-[8rem] text-white font-bold text-[1.8rem] bg-blue-400 rounded-full w-[3.6rem] h-[3.6rem] cursor-pointer"
+          className="absolute top-[8rem] right-[8rem] text-white font-bold text-[1.8rem] bg-blue-400 rounded-full w-[4rem] h-[4rem] cursor-pointer"
         >
           ✕
         </button>
-        <div className="bg-blue-100 rounded-full absolute top-[10rem] right-[8rem] w-[4rem] h-[4rem] flex justify-center items-center cursor-pointer">
+        <div className="bg-blue-100 rounded-full absolute top-[14rem] right-[8rem] w-[4rem] h-[4rem] flex justify-center items-center cursor-pointer">
           <Image
             src="/images/github.svg"
             alt="깃헙 이미지"
