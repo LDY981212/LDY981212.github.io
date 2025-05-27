@@ -13,6 +13,7 @@ export interface ProjectItems {
   contribution: Contribution[];
   solution: Solution[];
   videos?: string;
+  github?: string;
 }
 
 interface Solution {

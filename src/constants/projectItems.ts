@@ -24,6 +24,7 @@ const projectItems: ProjectItems[] = [
       "이사 서비스 시장은 기존에 오프라인 중심으로 운영되었으며, 고객들은 여러 업체에 일일이 연락하여 견적을 비교하는 불편함을 겪었습니다. Moving은 이러한 문제를 해결하기 위해 온라인에서 손쉽게 이사 견적을 비교하고, 신뢰할 수 있는 이사 업체를 찾을 수 있도록 지원하는 웹 서비스입니다. 이로 인해 디지털화된 이사 견적 시스템을 통해 고객들은 보다 효율적인 비용 비교와 업체 선택이 가능하며, 이사 업체들도 온라인을 통해 더 많은 고객을 만날 수 있는 기회를 얻게 됩니다.",
     contribution: [{ head: "", detail: [""] }],
     solution: [{ head: "", situation: "", task: "", result: "", action: "" }],
+    github: "https://github.com/LDY981212/LDY981212.github.io",
   },
   {
     id: "2",
@@ -159,6 +160,7 @@ const projectItems: ProjectItems[] = [
       },
     ],
     videos: "https://www.youtube.com/embed/HBW6C_YK2gY",
+    github: "https://github.com/FS2-Part4-Team3/2-Moving-3-FE",
   },
   {
     id: "3",
@@ -277,6 +279,7 @@ const projectItems: ProjectItems[] = [
       },
     ],
     videos: "https://www.youtube.com/embed/OPhg9NHXJT8",
+    github: "https://github.com/2-Docthru-team1/2-Docthru-team1-FE",
   },
   {
     id: "4",
@@ -360,7 +363,8 @@ const projectItems: ProjectItems[] = [
           "드롭다운으로 정렬하는 데이터의 api 파일의 정렬에 대한 상태함수를 만들어 prop으로 넘겨주고, CompareDropdown 컴포넌트의 prop인 setSortOption을 사용하는 MySelection 컴포넌트에서 api파일의 prop을 드롭다운 컴포넌트의 prop으로 넘겨주었습니다.  ",
       },
     ],
-    videos: "https://www.youtube.com/embed/P6fil4h3X8Y",
+    videos: "https://www.youtube.com/embed/wKgFSlF35l4",
+    github: "https://github.com/season2-3team/season2-View-My-Startup-3team-FE",
   },
 ];
 

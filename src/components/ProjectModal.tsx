@@ -125,12 +125,14 @@ export default function ProjectModal({
           ✕
         </button>
         <div className="bg-blue-100 rounded-full absolute top-[14rem] right-[8rem] w-[4rem] h-[4rem] flex justify-center items-center cursor-pointer">
-          <Image
-            src="/images/github.svg"
-            alt="깃헙 이미지"
-            width={36}
-            height={36}
-          />
+          <a href={projectItem.github} target="_blank">
+            <Image
+              src="/images/github.svg"
+              alt="깃헙 이미지"
+              width={36}
+              height={36}
+            />
+          </a>
         </div>
       </div>
     </div>
