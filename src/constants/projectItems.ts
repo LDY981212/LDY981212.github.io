@@ -9,21 +9,53 @@ const projectItems: ProjectItems[] = [
     content: [
       "Next.js의 SSR을 통해 SEO 최적화",
       "Framer-motion의 부드러운 효과로 사용자 경험 향상",
+      "샤용자 경험 향상을 위한 UI & UX 디자인",
     ],
     stack: [
       {
         name: "Typescript",
-        detail: "",
+        detail:
+          "코드 작성 중 타입 관련 오류를 컴파일 단계에서 미리 감지하여 런타임 오류를 줄일 수 있으며, 가독성 측면에서 변수나 함수의 의도를 쉽게 이해할 수 있기 때문에 JS 대신 TS를 선택했습니다.",
       },
-      { name: "Next.js", detail: "" },
-      { name: "Tailwind CSS", detail: "" },
+      {
+        name: "Next.js",
+        detail:
+          "파일 기반 라우팅으로 유지보수 하기가 쉽고, SSR 또는 SSG를 통해 SEO 최적화 향상에 도움이 되었습니다. ",
+      },
+      {
+        name: "Tailwind CSS",
+        detail:
+          "별도의 CSS 파일을 작성하지 않아도 되니 디렉토리 구조를 더욱 깔끔하게 관리할 수 있으며, 커스텀하기에도 편리하여 tailwind를 선택해 사용하였습니다.",
+      },
     ],
     link: "https://ldy981212.github.io",
     router: "individual",
-    intro:
-      "이사 서비스 시장은 기존에 오프라인 중심으로 운영되었으며, 고객들은 여러 업체에 일일이 연락하여 견적을 비교하는 불편함을 겪었습니다. Moving은 이러한 문제를 해결하기 위해 온라인에서 손쉽게 이사 견적을 비교하고, 신뢰할 수 있는 이사 업체를 찾을 수 있도록 지원하는 웹 서비스입니다. 이로 인해 디지털화된 이사 견적 시스템을 통해 고객들은 보다 효율적인 비용 비교와 업체 선택이 가능하며, 이사 업체들도 온라인을 통해 더 많은 고객을 만날 수 있는 기회를 얻게 됩니다.",
-    contribution: [{ head: "", detail: [""] }],
-    solution: [{ head: "", situation: "", task: "", result: "", action: "" }],
+    intro: "",
+    contribution: [
+      {
+        head: "Framer-motion의 부드러운 효과로 사용자 경험 향상",
+        detail: [
+          "Framer motion의 애니메이션 효과를 이용하여 웹 목적의 맞게 사용자의 흥미를 끌었습니다.",
+        ],
+      },
+      {
+        head: "샤용자 경험 향상을 위한 UI & UX 디자인",
+        detail: [
+          "사용자 입장에서 직접 디자인을 하였기 때문에 디자인적으로 불편한 부분을 수정하기 수월했으며, PC & mobile 사이즈에 따라 반응형 디자인을 적용함으로써 유연하게 웹을 이용 가능하게 할 수 있었습니다. ",
+        ],
+      },
+    ],
+    solution: [
+      {
+        head: "Tailwind CSS 4.0 에러",
+        situation:
+          "Tailwind CSS를 적용하는데 있어 커스텀 색상이나 크기가 적용되지 않는 문제점이 있습니다.",
+        task: "Tailwind CSS의 커스텀 설정 및 효과가 잘 적용되는 것입니다.",
+        result: "알맞게 설정을 한 후 tailwind css가 잘 적용되었습니다.",
+        action:
+          "tailwind.config.js로 설정하는 것이 아닌 Tailwind CSS의 버전이 4.0으로 업데이트 되면서 기본 설정 및 커스텀 속성 값들을 선언하는 부분이 달라졌기 때문에 공식 문서를 확인한 후 초기 설정과 커스텀 속성 설정 과정을 수정했습니다.",
+      },
+    ],
     github: "https://github.com/LDY981212/LDY981212.github.io",
   },
   {

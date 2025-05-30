@@ -3,13 +3,39 @@
 import projectItems from "@/constants/projectItems";
 import { ProjectModalProps } from "@/interfaces/ProjectInterface";
 import Image from "next/image";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ProjectModal({
   project,
   setIsOpen,
 }: ProjectModalProps) {
   const projectItem = projectItems.find((item) => project === item.router);
+  const [colorMap, setColorMap] = useState<{ [key: string]: string }>({});
+  const bgColors = [
+    "bg-blue-800",
+    "bg-green-700",
+    "bg-purple-700",
+    "bg-pink-700",
+    "bg-yellow-700",
+  ];
+
+  useEffect(() => {
+    const shuffleArray = (array: string[]) => {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    };
+
+    const shuffledColors = shuffleArray(bgColors);
+    const newMap: { [key: string]: string } = {};
+    projectItems.forEach((item, index) => {
+      newMap[item.id] = shuffledColors[index % shuffledColors.length];
+    });
+    setColorMap(newMap);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -26,7 +52,11 @@ export default function ProjectModal({
         className="bg-white flex flex-col items-center rounded-lg w-[80vw] max-h-[80vh] overflow-y-auto relative gap-[3rem] pb-[10rem]"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex flex-col items-center bg-blue-400 w-full py-[1.2rem]">
+        <div
+          className={`flex flex-col items-center bg-blue-400 w-full py-[1.2rem] ${
+            colorMap[projectItem.id]
+          }`}
+        >
           <h1 className="text-white text-[4rem] font-bold">
             {projectItem.title}
           </h1>
@@ -134,6 +164,9 @@ export default function ProjectModal({
             />
           </a>
         </div>
+        <span className="text-[1rem] text-blue-200 absolute top-[18.4rem] right-[8.2rem]">
+          GitHub
+        </span>
       </div>
     </div>
   );
