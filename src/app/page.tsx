@@ -66,7 +66,7 @@ export default function Home() {
           }}
           className="relative z-10 flex flex-col items-center justify-center h-full text-white"
         >
-          <h2 className="font-black text-center text-white text-[4rem]">
+          <h2 className="font-black text-center text-white lg:text-[4rem] md:text-[3rem] sm:text-[2.6rem]">
             안녕하세요.
             <br /> 더 나은 <span className="text-blue-300">사용자 경험</span>
             을 고민하고,
@@ -80,7 +80,7 @@ export default function Home() {
             whileInView={{ x: 0 }}
             transition={{ type: "spring", duration: 1.5 }}
             onClick={() => scrollToRefWidthOffset(aboutRef)}
-            className="mt-[4rem] px-[1rem] py-[1rem] w-[16rem] h-[5rem] text-[1.6rem] hover:bg-blue-800 transition-colors duration-300 bg-blue-500 text-white rounded-full cursor-pointer"
+            className="mt-[4rem] px-[1rem] py-[1rem] lg:w-[16rem] lg:h-[5rem] md:w-[12rem] md:h-[4rem] sm:w-[10rem] sm:h-[3.6rem] lg:text-[1.6rem] md:text-[1.4rem] sm:text-[1.2rem] hover:bg-blue-800 transition-colors duration-300 bg-blue-500 text-white rounded-full cursor-pointer"
           >
             더 알아보기 ↓
           </motion.button>

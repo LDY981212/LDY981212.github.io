@@ -49,7 +49,7 @@ export default function ProjectModal({
   return (
     <div className="fixed inset-0 bg-black/70 bg-opacity-50 z-50 flex justify-center items-center">
       <div
-        className="bg-white flex flex-col items-center rounded-lg w-[80vw] max-h-[80vh] overflow-y-auto relative gap-[3rem] pb-[10rem]"
+        className="bg-white flex flex-col items-center rounded-lg w-[80vw] max-h-[95vh] overflow-y-auto relative gap-[3rem] pb-[10rem]"
         onClick={(e) => e.stopPropagation()}
       >
         <div
@@ -63,11 +63,11 @@ export default function ProjectModal({
           <h3 className="text-gray-200 text-[1.6rem]">{projectItem.created}</h3>
         </div>
 
-        <span className="text-[1.6rem] px-[24rem] text-center border-b border-gray-300 pb-[3rem]">
+        <span className="text-[1.6rem] lg:px-[24rem] md:px-[2rem] sm:px-[2rem] text-center border-b border-gray-300 pb-[3rem]">
           {projectItem.intro}
         </span>
 
-        <div className="flex flex-col px-[24rem] gap-[1rem]">
+        <div className="flex flex-col lg:px-[24rem] md:px-[2rem] sm:px-[2rem] gap-[1rem]">
           <h1 className="text-[3rem] font-bold">🛠️ STACK</h1>
           {projectItem.stack.map((stack, index) => (
             <div key={index} className="flex flex-col ">
@@ -81,7 +81,7 @@ export default function ProjectModal({
           ))}
         </div>
 
-        <div className="flex flex-col px-[24rem] gap-[1rem]">
+        <div className="flex flex-col lg:px-[24rem] md:px-[2rem] sm:px-[2rem] gap-[1rem]">
           <h1 className="text-[3rem] font-bold">📊 CONTRIBUTION</h1>
           {projectItem.contribution.map((contribution, index) => (
             <div key={index} className="flex flex-col ">
@@ -102,7 +102,7 @@ export default function ProjectModal({
           ))}
         </div>
 
-        <div className="flex flex-col px-[24rem] gap-[1rem]">
+        <div className="flex flex-col lg:px-[24rem] md:px-[2rem] sm:px-[2rem] gap-[1rem]">
           <h1 className="text-[3rem] font-bold">🐞 TROUBLE SHOOTING</h1>
           {projectItem.solution.map((solution, index) => (
             <div key={index} className="flex flex-col">
@@ -132,11 +132,11 @@ export default function ProjectModal({
         </div>
 
         {projectItem.videos && (
-          <div className="flex flex-col px-[24rem] gap-[1rem]">
-            <h1 className="text-[3rem] font-bold">📽️ DEMO VIDEO</h1>
-            <div>
+          <div className="flex flex-col w-full lg:px-[24rem] md:px-[2rem] sm:px-[2rem] gap-[1rem]">
+            <h1 className="text-[3rem] font-bold ">📽️ DEMO VIDEO</h1>
+            <div className="w-full ">
               <iframe
-                className="w-[80rem] h-[40rem]"
+                className="w-full h-[40rem]"
                 src={projectItem.videos}
                 title="Project Demo"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -147,14 +147,14 @@ export default function ProjectModal({
         )}
       </div>
 
-      <div className="flex flex-col ">
+      <div className="flex flex-col">
         <button
           onClick={() => setIsOpen(false)}
-          className="absolute top-[8rem] right-[8rem] text-white font-bold text-[1.8rem] bg-blue-400 rounded-full w-[4rem] h-[4rem] cursor-pointer"
+          className="absolute lg:top-[8rem] lg:right-[8rem] md:top-[9rem] md:right-[4rem] sm:top-[15rem] sm:right-[2rem] text-white font-bold text-[1.8rem] bg-blue-400 rounded-full w-[4rem] h-[4rem] cursor-pointer"
         >
           ✕
         </button>
-        <div className="bg-blue-100 rounded-full absolute top-[14rem] right-[8rem] w-[4rem] h-[4rem] flex justify-center items-center cursor-pointer">
+        <div className="bg-blue-100 rounded-full absolute lg:top-[14rem] lg:right-[8rem] md:top-[14rem] md:right-[4rem] sm:top-[20rem] sm:right-[2rem]  w-[4rem] h-[4rem] flex justify-center items-center cursor-pointer">
           <a href={projectItem.github} target="_blank">
             <Image
               src="/images/github.svg"
@@ -164,7 +164,7 @@ export default function ProjectModal({
             />
           </a>
         </div>
-        <span className="text-[1rem] text-blue-200 absolute top-[18.4rem] right-[8.2rem]">
+        <span className="text-[1rem] text-blue-200 absolute lg:top-[18.4rem] lg:right-[8.2rem] md:top-[11.4rem] md:left-[14.3rem] sm:top-[24.5rem] sm:left-[18.5rem]">
           GitHub
         </span>
       </div>

@@ -22,7 +22,7 @@ export default function ConditionalLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-[1.5rem] text-blue-700 border-l-[0.4rem] pl-[1rem] border-blue-800"
+      className="text-[1.5rem] text-blue-700 border-l-[0.4rem] pl-[1rem] border-blue-800 w-full break-words overflow-hidden"
     >
       {children}
     </a>

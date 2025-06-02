@@ -6,9 +6,9 @@ export default function Skills({ skillRef }: SkillsProps) {
   return (
     <div
       ref={skillRef}
-      className="flex flex-col items-center py-[9rem] bg-blue-300"
+      className="flex flex-col items-center py-[9rem] md:px-[2rem] sm:px-[1rem] bg-blue-300"
     >
-      <h1 className="font-black text-[5rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-300">
+      <h1 className="font-black lg:text-[5rem] md:text-[4rem] sm:text-[3rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-300">
         SKILLS
       </h1>
       <motion.div
@@ -18,9 +18,9 @@ export default function Skills({ skillRef }: SkillsProps) {
           x: 0,
           transition: { delay: 0.3, duration: 0.5 },
         }}
-        className="flex flex-col bg-blue-100 rounded-[2rem] py-[2rem] px-[3rem] gap-[3rem] shadow-2xl"
+        className="flex flex-col w-full bg-blue-100 rounded-[2rem] py-[2rem] px-[3rem] gap-[3rem] shadow-2xl"
       >
-        <div className="flex items-center gap-[5rem]">
+        <div className="flex items-center lg:gap-[5rem] md:gap-[4rem] sm:gap-[2rem]">
           <div className="flex gap-[1.2rem] items-center">
             <Image
               src="/images/language.png"
@@ -30,7 +30,7 @@ export default function Skills({ skillRef }: SkillsProps) {
             />
             <span className="font-bold text-[2rem]">Language</span>
           </div>
-          <div className="flex gap-[1.5rem]">
+          <div className="flex gap-[1.5rem] text-nowrap md:flex-wrap sm:flex-wrap">
             <div className="p-[1rem] font-bold text-center rounded-[1.2rem] bg-blue-900 text-[1.6rem] text-white ">
               TypeScript
             </div>
@@ -39,7 +39,7 @@ export default function Skills({ skillRef }: SkillsProps) {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-[6rem]">
+        <div className="flex items-center lg:gap-[6rem] md:gap-[5rem] sm:gap-[8rem]">
           <div className="flex gap-[1.2rem] items-center">
             <Image
               src="/images/frontend.png"
@@ -49,7 +49,7 @@ export default function Skills({ skillRef }: SkillsProps) {
             />
             <span className="font-bold text-[2rem]">Frontend</span>
           </div>
-          <div className="flex gap-[1.5rem]">
+          <div className="flex gap-[1.5rem] text-nowrap md:flex-wrap sm:flex-wrap">
             <div className="p-[1rem] font-bold text-center rounded-[1.2rem] bg-black text-[1.6rem] text-white ">
               Next.js (React)
             </div>
@@ -70,7 +70,7 @@ export default function Skills({ skillRef }: SkillsProps) {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-[7rem]">
+        <div className="flex items-center lg:gap-[7rem] md:gap-[6rem] sm:gap-[2rem]">
           <div className="flex gap-[1.2rem] items-center">
             <Image
               src="/images/dev.png"

@@ -41,10 +41,10 @@ export default function Project({
 
   return (
     <div
-      className="flex flex-col items-center py-[9rem] bg-gray-100"
+      className="flex flex-col items-center py-[9rem] bg-gray-100 md:px-[2rem] sm:px-[2rem]"
       ref={projectRef}
     >
-      <h1 className="font-black text-[5rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-400">
+      <h1 className="font-black lg:text-[5rem] md:text-[4rem] sm:text-[3rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-400">
         PROJECTS
       </h1>
       <motion.div
