@@ -26,8 +26,8 @@ export default function Career({ careerRef }: CareerProps) {
               key={careerItem.id}
               className="flex lg:gap-[5rem] md:gap-[4rem] sm:gap-[2rem]"
             >
-              <div className="flex justify-center items-center lg:w-[22rem] lg:h-[22rem] md:w-[20rem] md:h-[20rem] sm:w-[18rem] sm:h-[18rem] bg-black rounded-full border-gray-400">
-                <div className="relative lg:w-[10rem] lg:h-[10rem] md:w-[8rem] md:h-[8rem] sm:w-[6rem] sm:h-[6rem] ">
+              <div className="flex justify-center items-center lg:w-[33rem] lg:h-[22rem] md:w-[30rem] md:h-[20rem] sm:w-[11rem] sm:h-[8rem] bg-black rounded-full border-gray-400">
+                <div className="relative lg:w-[10rem] lg:h-[10rem] md:w-[8rem] md:h-[8rem] sm:w-[4rem] sm:h-[4rem] ">
                   <Image src={careerItem.imageUrl} alt="cna 로고" fill />
                 </div>
               </div>
