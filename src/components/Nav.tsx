@@ -16,7 +16,7 @@ export default function Nav({
 
   return (
     <div
-      className={`w-full overflow-hidden flex justify-between items-center lg:px-[20rem] md:px-[8rem] sm:px-[6rem] py-[1.5rem]  ${
+      className={`w-full overflow-hidden flex justify-between items-center lg:px-[20rem] md:px-[8rem] sm:px-[4rem] py-[1.5rem]  ${
         isScrolled
           ? "text-white bg-gray-400 border-b border-gray-400 shadow-lg"
           : "text-gray-400"

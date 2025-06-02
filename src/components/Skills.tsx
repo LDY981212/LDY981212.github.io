@@ -20,7 +20,7 @@ export default function Skills({ skillRef }: SkillsProps) {
         }}
         className="flex flex-col w-full bg-blue-100 rounded-[2rem] py-[2rem] px-[3rem] gap-[3rem] shadow-2xl"
       >
-        <div className="flex items-center lg:gap-[5rem] md:gap-[4rem] sm:gap-[2rem]">
+        <div className="flex lg:flex-row md:flex-row sm:flex-col items-center lg:gap-[5rem] md:gap-[4rem] sm:gap-[2rem]">
           <div className="flex gap-[1.2rem] items-center">
             <Image
               src="/images/language.png"
@@ -39,7 +39,7 @@ export default function Skills({ skillRef }: SkillsProps) {
             </div>
           </div>
         </div>
-        <div className="flex items-center lg:gap-[6rem] md:gap-[5rem] sm:gap-[8rem]">
+        <div className="flex lg:flex-row md:flex-row sm:flex-col items-center lg:gap-[6rem] md:gap-[5rem] sm:gap-[2rem]">
           <div className="flex gap-[1.2rem] items-center">
             <Image
               src="/images/frontend.png"
@@ -49,7 +49,7 @@ export default function Skills({ skillRef }: SkillsProps) {
             />
             <span className="font-bold text-[2rem]">Frontend</span>
           </div>
-          <div className="flex gap-[1.5rem] text-nowrap md:flex-wrap sm:flex-wrap">
+          <div className="lg:flex md:grid gap-[1.5rem] text-nowrap lg:flex-row md:grid-cols-3 sm:grid sm:grid-cols-2">
             <div className="p-[1rem] font-bold text-center rounded-[1.2rem] bg-black text-[1.6rem] text-white ">
               Next.js (React)
             </div>
@@ -70,7 +70,7 @@ export default function Skills({ skillRef }: SkillsProps) {
             </div>
           </div>
         </div>
-        <div className="flex items-center lg:gap-[7rem] md:gap-[6rem] sm:gap-[2rem]">
+        <div className="flex lg:flex-row md:flex-row sm:flex-col items-center lg:gap-[7rem] md:gap-[6rem] sm:gap-[2rem]">
           <div className="flex gap-[1.2rem] items-center">
             <Image
               src="/images/dev.png"
