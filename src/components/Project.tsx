@@ -51,7 +51,7 @@ export default function Project({
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
-        className="grid grid-cols-2 gap-[4rem]  max-w-[120rem]"
+        className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 lg:gap-[4rem] md:gap-[4rem] sm:gap-[2rem] max-w-[120rem]"
       >
         {projectItems &&
           projectItems.map((projectItem) => (
