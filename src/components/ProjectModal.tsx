@@ -150,11 +150,11 @@ export default function ProjectModal({
       <div className="flex flex-col">
         <button
           onClick={() => setIsOpen(false)}
-          className="absolute lg:top-[8rem] lg:right-[8rem] md:top-[9rem] md:right-[4rem] sm:top-[15rem] sm:right-[2rem] text-white font-bold text-[1.8rem] bg-blue-400 rounded-full w-[4rem] h-[4rem] cursor-pointer"
+          className="absolute lg:top-[8rem] lg:right-[8rem] md:top-[9rem] md:right-[4rem] sm:top-[15rem] sm:right-[1rem] text-white font-bold text-[1.8rem] bg-blue-400 rounded-full w-[4rem] h-[4rem] cursor-pointer"
         >
           ✕
         </button>
-        <div className="bg-blue-100 rounded-full absolute lg:top-[14rem] lg:right-[8rem] md:top-[14rem] md:right-[4rem] sm:top-[20rem] sm:right-[2rem]  w-[4rem] h-[4rem] flex justify-center items-center cursor-pointer">
+        <div className="bg-blue-100 rounded-full absolute lg:top-[14rem] lg:right-[8rem] md:top-[14rem] md:right-[4rem] sm:top-[20rem] sm:right-[1rem]  w-[4rem] h-[4rem] flex justify-center items-center cursor-pointer">
           <a href={projectItem.github} target="_blank">
             <Image
               src="/images/github.svg"
@@ -164,7 +164,7 @@ export default function ProjectModal({
             />
           </a>
         </div>
-        <span className="text-[1rem] text-blue-200 absolute lg:top-[18.4rem] lg:right-[8.2rem] md:top-[11.4rem] md:left-[14.3rem] sm:top-[24.5rem] sm:left-[18.5rem]">
+        <span className="text-[1rem] text-blue-200 absolute lg:top-[18.4rem] lg:right-[8.3rem] md:top-[18.4rem] md:right-[4.4rem] sm:top-[24.5rem] sm: right-[1.4rem]">
           GitHub
         </span>
       </div>
