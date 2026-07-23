@@ -6,7 +6,7 @@ export interface SectionMeta {
   id: SectionId;
   nav: string;
   title: string;
-  eyebrow: string;
+  eyebrow?: string;
 }
 
 const sections: SectionMeta[] = [
@@ -14,13 +14,12 @@ const sections: SectionMeta[] = [
     id: "about",
     nav: "Profiles",
     title: "PROFILES",
-    eyebrow: "이도엽 · 한양대 생체공학",
   },
   {
     id: "skills",
     nav: "Skills",
     title: "SKILLS",
-    eyebrow: "TypeScript · Next.js 중심",
+    eyebrow: "주력 TypeScript · Next.js",
   },
   {
     id: "projects",
@@ -32,7 +31,6 @@ const sections: SectionMeta[] = [
     id: "career",
     nav: "Career",
     title: "CAREER",
-    eyebrow: "한양대 뇌영상분석 연구실 CNA",
   },
 ];
 

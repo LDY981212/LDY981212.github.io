@@ -41,16 +41,6 @@ export default function Hero() {
     >
       <HeroBackground />
 
-      <motion.span
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.05 }}
-        className="mono relative z-10 flex items-center gap-[0.8rem] text-[1.1rem] uppercase tracking-[0.22em] text-muted md:text-[1.3rem]"
-      >
-        <span aria-hidden className="h-[0.1rem] w-[2.4rem] bg-accent" />
-        Frontend · TypeScript / Next.js
-      </motion.span>
-
       {/* 문장을 화면 아래쪽에 앉혀 포스터처럼 읽히게 한다. 가운데 정렬은
           축이 하나뿐이라 배치를 결정한 흔적이 남지 않는다. */}
       <div className="relative z-10 mt-auto flex flex-col items-start">

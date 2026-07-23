@@ -15,7 +15,7 @@ export default function Career() {
       className="flex scroll-mt-[9rem] justify-center bg-paper px-[1.5rem] py-[9rem] md:px-[4rem] lg:px-[8rem]"
     >
       <div className="w-full max-w-[120rem]">
-        <SectionHeading title="CAREER" eyebrow="한양대 뇌영상분석 연구실 CNA" />
+        <SectionHeading title="CAREER" />
         <motion.div
           variants={containerVariants}
           initial="hidden"

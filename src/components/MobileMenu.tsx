@@ -107,9 +107,11 @@ export default function MobileMenu({ open, active, onClose }: MobileMenuProps) {
                   >
                     {section.nav}
                   </span>
-                  <span className="mono text-[1.1rem] text-muted">
-                    {section.eyebrow}
-                  </span>
+                  {section.eyebrow && (
+                    <span className="mono text-[1.1rem] text-muted">
+                      {section.eyebrow}
+                    </span>
+                  )}
                 </motion.a>
               ))}
             </nav>

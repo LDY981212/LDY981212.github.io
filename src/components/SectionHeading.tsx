@@ -5,7 +5,11 @@ import { ease } from "@/utils/FramerVariants";
 
 interface SectionHeadingProps {
   title: string;
-  eyebrow: string;
+  /**
+   * 오른쪽 끝에 붙는 메모. 아래 내용을 보면 바로 알 수 있는 것은 적지 않는다.
+   * 반복되는 장식이 되면 섹션 넷이 똑같아 보이고, 그게 "찍어낸 느낌"의 정체다.
+   */
+  eyebrow?: string;
 }
 
 /**
@@ -28,9 +32,11 @@ export default function SectionHeading({ title, eyebrow }: SectionHeadingProps) 
         {title}
       </h2>
       <span aria-hidden className="h-[0.1rem] min-w-[2rem] flex-1 bg-line" />
-      <span className="mono shrink-0 text-[1.1rem] tracking-[0.14em] text-muted md:text-[1.2rem]">
-        {eyebrow}
-      </span>
+      {eyebrow && (
+        <span className="mono shrink-0 text-[1.1rem] tracking-[0.14em] text-muted md:text-[1.2rem]">
+          {eyebrow}
+        </span>
+      )}
     </motion.header>
   );
 }
