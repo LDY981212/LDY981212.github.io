@@ -48,13 +48,12 @@ export default function Hero() {
           className="mono mb-[2.4rem] flex items-center gap-[0.8rem] text-[1.1rem] uppercase tracking-[0.22em] text-muted md:text-[1.3rem]"
         >
           <span aria-hidden className="h-[0.1rem] w-[2.4rem] bg-accent" />
-          Frontend Developer · Bucheon, KR
+          Frontend · TypeScript / Next.js
         </motion.span>
 
         <h1 className="display text-center text-[2.2rem] font-black leading-[1.45] text-ink md:text-[3.4rem] lg:text-[4.6rem]">
           <Line index={0}>안녕하세요.</Line>
           <Line index={1}>
-            더 나은{" "}
             <Marker>
               <AnimatePresence mode="wait" initial={false}>
                 <motion.span
@@ -70,10 +69,10 @@ export default function Hero() {
               </AnimatePresence>
               {objectParticle(word)}
             </Marker>{" "}
-            고민하고,
+            깊이 고민하고,
           </Line>
           <Line index={2}>
-            끊임없이 <span className="text-accent">성장</span>하는
+            끊임없이 <span className="text-accent">의심하는</span>
           </Line>
           <Line index={3}>
             프론트엔드 개발자 <span className="text-accent">이도엽</span>입니다.

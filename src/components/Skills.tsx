@@ -1,94 +1,103 @@
-import Image from "next/image";
+"use client";
+
 import { motion } from "framer-motion";
-import { ease, viewportOnce } from "@/utils/FramerVariants";
+import {
+  containerVariants,
+  itemsVariants,
+  viewportOnce,
+} from "@/utils/FramerVariants";
 import SectionHeading from "./SectionHeading";
+import Icon, { type IconName } from "./Icon";
+
+interface SkillGroup {
+  icon: IconName;
+  label: string;
+  items: { name: string; chip: string }[];
+}
+
+// 각 도구의 브랜드 색을 유지하되, 다크 카드에 묻히는 색만 다크에서 반전시킨다.
+const groups: SkillGroup[] = [
+  {
+    icon: "code",
+    label: "Language",
+    items: [
+      { name: "TypeScript", chip: "bg-blue-900 dark:bg-blue-500 text-white" },
+      { name: "JavaScript", chip: "bg-yellow-300 text-black" },
+    ],
+  },
+  {
+    icon: "layout",
+    label: "Frontend",
+    items: [
+      {
+        name: "Next.js (React)",
+        chip: "bg-black text-white dark:bg-white dark:text-black",
+      },
+      {
+        name: "Zustand",
+        chip: "bg-gray-600 text-white dark:bg-gray-300 dark:text-black",
+      },
+      { name: "React-Query", chip: "bg-red-400 text-white" },
+      { name: "Tailwind CSS", chip: "bg-sky-500 text-white" },
+      { name: "Redux Toolkit", chip: "bg-purple-500 text-white" },
+      { name: "Storybook", chip: "bg-pink-500 text-white" },
+    ],
+  },
+  {
+    icon: "cloud",
+    label: "DevOps",
+    items: [
+      { name: "AWS", chip: "bg-orange-400 text-white" },
+      {
+        name: "Vercel",
+        chip: "bg-black text-white dark:bg-white dark:text-black",
+      },
+    ],
+  },
+];
 
 export default function Skills() {
   return (
     <section
       id="skills"
-      className="flex scroll-mt-[9rem] flex-col items-center overflow-x-hidden py-[9rem] px-[1.5rem] md:px-[2rem] lg:px-[4rem] bg-surface-2"
+      className="flex scroll-mt-[9rem] flex-col items-center overflow-x-hidden bg-surface-2 px-[1.5rem] py-[9rem] md:px-[2rem] lg:px-[4rem]"
     >
       <SectionHeading title="SKILLS" eyebrow="TypeScript · Next.js 중심" />
+
       <motion.div
-        initial={{ opacity: 0, y: 32 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
         viewport={viewportOnce}
-        transition={{ duration: 0.6, ease }}
-        className="flex flex-col w-full max-w-[120rem] bg-surface border border-line rounded-[2rem] py-[2rem] px-[1.5rem] md:px-[3rem] gap-[3rem] shadow-[var(--shadow)]"
+        className="flex w-full max-w-[120rem] flex-col gap-[1rem]"
       >
-        <div className="flex flex-col md:flex-row items-center gap-[2rem] md:gap-[3rem]">
-          <div className="flex gap-[1.2rem] items-center w-full md:w-[18rem] md:shrink-0">
-            <Image
-              src="/images/language.png"
-              alt="언어 이미지"
-              width={60}
-              height={60}
-              className="shrink-0"
-            />
-            <span className="font-bold text-[2rem] text-ink">Language</span>
-          </div>
-          <div className="flex flex-wrap gap-[1.5rem] w-full min-w-0">
-            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-blue-900 dark:bg-blue-500 text-[1.6rem] text-white ">
-              TypeScript
+        {groups.map((group) => (
+          <motion.div
+            key={group.label}
+            variants={itemsVariants}
+            className="flex flex-col gap-[1.6rem] rounded-[1.4rem] border border-line bg-surface p-[2rem] md:flex-row md:items-center md:gap-[3rem] md:p-[2.4rem]"
+          >
+            <div className="flex shrink-0 items-center gap-[1.2rem] md:w-[18rem]">
+              <span className="flex h-[4rem] w-[4rem] items-center justify-center rounded-[1rem] bg-accent-soft text-[2rem] text-accent">
+                <Icon name={group.icon} />
+              </span>
+              <span className="text-[1.8rem] font-bold text-ink">
+                {group.label}
+              </span>
             </div>
-            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-yellow-300 text-[1.6rem] text-black ">
-              JavaScript
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col md:flex-row items-center gap-[2rem] md:gap-[3rem]">
-          <div className="flex gap-[1.2rem] items-center w-full md:w-[18rem] md:shrink-0">
-            <Image
-              src="/images/frontend.png"
-              alt="프론트엔드 언어 이미지"
-              width={60}
-              height={60}
-              className="shrink-0"
-            />
-            <span className="font-bold text-[2rem] text-ink">Frontend</span>
-          </div>
-          <div className="flex flex-wrap gap-[1.5rem] w-full min-w-0">
-            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-black text-white dark:bg-white dark:text-black text-[1.6rem] ">
-              Next.js (React)
-            </div>
-            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-gray-600 text-white dark:bg-gray-300 dark:text-black text-[1.6rem] ">
-              Zustand
-            </div>
-            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-red-400 text-[1.6rem] text-white ">
-              React-Query
-            </div>
-            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-sky-500 text-[1.6rem] text-white ">
-              Tailwind CSS
-            </div>
-            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-purple-500 text-[1.6rem] text-white ">
-              Redux Toolkit
-            </div>
-            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-pink-500 text-[1.6rem] text-white ">
-              Storybook
-            </div>
-          </div>
-        </div>
-        <div className="flex flex-col md:flex-row items-center gap-[2rem] md:gap-[3rem]">
-          <div className="flex gap-[1.2rem] items-center w-full md:w-[18rem] md:shrink-0">
-            <Image
-              src="/images/dev.png"
-              alt="데브옵스 언어 이미지"
-              width={60}
-              height={60}
-              className="shrink-0"
-            />
-            <span className="font-bold text-[2rem] text-ink">DevOps</span>
-          </div>
-          <div className="flex flex-wrap gap-[1.5rem] w-full min-w-0">
-            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-orange-400 text-[1.6rem] text-white ">
-              AWS
-            </div>
-            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-black text-white dark:bg-white dark:text-black text-[1.6rem] ">
-              Vercel
-            </div>
-          </div>
-        </div>
+
+            <ul className="flex min-w-0 flex-wrap gap-[1rem]">
+              {group.items.map((item) => (
+                <li
+                  key={item.name}
+                  className={`rounded-[0.9rem] px-[1.2rem] py-[0.8rem] text-center text-[1.4rem] font-bold whitespace-nowrap ${item.chip}`}
+                >
+                  {item.name}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        ))}
       </motion.div>
     </section>
   );
