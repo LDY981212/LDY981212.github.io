@@ -11,6 +11,7 @@ import ProjectModal from "@/components/ProjectModal";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const navRef = useRef<HTMLElement | null>(null);
   const headerRef = useRef<HTMLDivElement | null>(null);
   const aboutRef = useRef<HTMLDivElement | null>(null);
   const skillsRef = useRef<HTMLDivElement | null>(null);
@@ -21,10 +22,11 @@ export default function Home() {
 
   const scrollToRefWidthOffset = (
     ref: React.RefObject<HTMLElement | null>,
-    offset = 30
+    gap = 20
   ) => {
     if (ref.current) {
-      const top = ref.current.offsetTop - offset;
+      const offset = (navRef.current?.offsetHeight ?? 0) + gap;
+      const top = Math.max(ref.current.offsetTop - offset, 0);
       window.scrollTo({ top, behavior: "smooth" });
     }
   };
@@ -40,7 +42,7 @@ export default function Home() {
 
   return (
     <div>
-      <header className="fixed w-full z-20">
+      <header ref={navRef} className="fixed w-full z-20">
         <Nav
           isScrolled={isScrolled}
           onClickLogo={() => {
@@ -54,7 +56,7 @@ export default function Home() {
       </header>
       <div
         ref={headerRef}
-        className="relative w-full h-[50em] bg-cover bg-center bg-no-repeat bg-[url('/images/keyboard-933568_1280.jpg')]"
+        className="relative w-full h-[50em] overflow-hidden bg-cover bg-center bg-no-repeat bg-[url('/images/keyboard-933568_1280.jpg')]"
       >
         <div className="absolute inset-0 bg-black opacity-60"></div>
         <motion.div
@@ -64,9 +66,9 @@ export default function Home() {
             y: 0,
             transition: { delay: 0.3, duration: 1 },
           }}
-          className="relative z-10 flex flex-col items-center justify-center h-full text-white"
+          className="relative z-10 flex flex-col items-center justify-center h-full px-[1.5rem] text-white"
         >
-          <h2 className="font-black text-center text-white lg:text-[4rem] md:text-[3rem] sm:text-[2.6rem]">
+          <h2 className="font-black text-center break-keep text-white text-[2.2rem] md:text-[3rem] lg:text-[4rem]">
             안녕하세요.
             <br /> 더 나은 <span className="text-blue-300">사용자 경험</span>
             을 고민하고,
@@ -80,7 +82,7 @@ export default function Home() {
             whileInView={{ x: 0 }}
             transition={{ type: "spring", duration: 1.5 }}
             onClick={() => scrollToRefWidthOffset(aboutRef)}
-            className="mt-[4rem] px-[1rem] py-[1rem] lg:w-[16rem] lg:h-[5rem] md:w-[12rem] md:h-[4rem] sm:w-[10rem] sm:h-[3.6rem] lg:text-[1.6rem] md:text-[1.4rem] sm:text-[1.2rem] hover:bg-blue-800 transition-colors duration-300 bg-blue-500 text-white rounded-full cursor-pointer"
+            className="mt-[4rem] px-[1rem] py-[1rem] w-[10rem] h-[3.6rem] text-[1.2rem] md:w-[12rem] md:h-[4rem] md:text-[1.4rem] lg:w-[16rem] lg:h-[5rem] lg:text-[1.6rem] hover:bg-blue-800 transition-colors duration-300 bg-blue-500 text-white rounded-full cursor-pointer"
           >
             더 알아보기 ↓
           </motion.button>

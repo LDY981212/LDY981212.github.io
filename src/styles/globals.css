@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @theme {
-  --breakpoint-sm: 375px;
+  /* 모바일이 기본값(접두사 없음)이고 md/lg에서만 덮어쓴다.
+     375px짜리 sm 브레이크포인트는 375px 미만에서 모든 크기 지정이 사라지게 만들어 제거했다. */
   --breakpoint-md: 744px;
   --breakpoint-lg: 1200px;
 }

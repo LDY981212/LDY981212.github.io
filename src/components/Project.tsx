@@ -1,7 +1,7 @@
 "use client";
 
 import projectItems from "@/constants/projectItems";
-import { useEffect, useState } from "react";
+import projectColors from "@/constants/projectColors";
 import { motion } from "framer-motion";
 import { containerVariants, itemsVariants } from "@/utils/FramerVariants";
 import { ProjectProps } from "@/interfaces/ProjectInterface";
@@ -12,46 +12,19 @@ export default function Project({
   setProjectName,
   setIsOpen,
 }: ProjectProps) {
-  const bgColors = [
-    "bg-blue-800",
-    "bg-green-700",
-    "bg-purple-700",
-    "bg-pink-700",
-    "bg-yellow-700",
-  ];
-  const [colorMap, setColorMap] = useState<{ [key: string]: string }>({});
-
-  useEffect(() => {
-    const shuffleArray = (array: string[]) => {
-      const shuffled = [...array];
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-      }
-      return shuffled;
-    };
-
-    const shuffledColors = shuffleArray(bgColors);
-    const newMap: { [key: string]: string } = {};
-    projectItems.forEach((item, index) => {
-      newMap[item.id] = shuffledColors[index % shuffledColors.length];
-    });
-    setColorMap(newMap);
-  }, []);
-
   return (
     <div
-      className="flex flex-col items-center py-[9rem] bg-gray-100 md:px-[2rem] sm:px-[2rem]"
+      className="flex flex-col items-center py-[9rem] bg-gray-100 px-[1.5rem] md:px-[2rem]"
       ref={projectRef}
     >
-      <h1 className="font-black lg:text-[5rem] md:text-[4rem] sm:text-[3rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-400">
+      <h1 className="font-black text-[3rem] md:text-[4rem] lg:text-[5rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-400">
         PROJECTS
       </h1>
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
-        className="grid lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 lg:gap-[4rem] md:gap-[4rem] sm:gap-[2rem] max-w-[120rem]"
+        className="grid w-full grid-cols-1 gap-[2rem] md:grid-cols-2 md:gap-[4rem] max-w-[120rem]"
       >
         {projectItems &&
           projectItems.map((projectItem) => (
@@ -63,7 +36,7 @@ export default function Project({
               <div className="flex flex-col gap-[1rem]">
                 <div
                   className={`w-fit px-[1.5rem] py-[1rem] rounded-[1rem] text-white font-extrabold ${
-                    colorMap[projectItem.id]
+                    projectColors[projectItem.id]
                   } text-[1.5rem] text-center`}
                 >
                   {projectItem.title}

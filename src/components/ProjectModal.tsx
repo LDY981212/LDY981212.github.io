@@ -1,41 +1,16 @@
 "use client";
 
 import projectItems from "@/constants/projectItems";
+import projectColors from "@/constants/projectColors";
 import { ProjectModalProps } from "@/interfaces/ProjectInterface";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function ProjectModal({
   project,
   setIsOpen,
 }: ProjectModalProps) {
   const projectItem = projectItems.find((item) => project === item.router);
-  const [colorMap, setColorMap] = useState<{ [key: string]: string }>({});
-  const bgColors = [
-    "bg-blue-800",
-    "bg-green-700",
-    "bg-purple-700",
-    "bg-pink-700",
-    "bg-yellow-700",
-  ];
-
-  useEffect(() => {
-    const shuffleArray = (array: string[]) => {
-      const shuffled = [...array];
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-      }
-      return shuffled;
-    };
-
-    const shuffledColors = shuffleArray(bgColors);
-    const newMap: { [key: string]: string } = {};
-    projectItems.forEach((item, index) => {
-      newMap[item.id] = shuffledColors[index % shuffledColors.length];
-    });
-    setColorMap(newMap);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -44,129 +19,161 @@ export default function ProjectModal({
     };
   }, []);
 
-  if (!projectItem) return;
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [setIsOpen]);
+
+  if (!projectItem) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/70 bg-opacity-50 z-50 flex justify-center items-center">
+    <div
+      onClick={() => setIsOpen(false)}
+      className="fixed inset-0 bg-black/70 z-50 flex justify-center items-center p-[1.5rem] md:p-[3rem]"
+    >
       <div
-        className="bg-white flex flex-col items-center rounded-lg w-[80vw] max-h-[95vh] overflow-y-auto relative gap-[3rem] pb-[10rem]"
+        role="dialog"
+        aria-modal="true"
+        aria-label={projectItem.title}
         onClick={(e) => e.stopPropagation()}
+        className="relative flex flex-col bg-white rounded-lg overflow-hidden w-full max-w-[110rem] max-h-[95vh]"
       >
-        <div
-          className={`flex flex-col items-center bg-blue-400 w-full py-[1.2rem] ${
-            colorMap[projectItem.id]
-          }`}
-        >
-          <h1 className="text-white text-[4rem] font-bold">
-            {projectItem.title}
-          </h1>
-          <h3 className="text-gray-200 text-[1.6rem]">{projectItem.created}</h3>
-        </div>
-
-        <span className="text-[1.6rem] lg:px-[24rem] md:px-[2rem] sm:px-[2rem] text-center border-b border-gray-300 pb-[3rem]">
-          {projectItem.intro}
-        </span>
-
-        <div className="flex flex-col lg:px-[24rem] md:px-[2rem] sm:px-[2rem] gap-[1rem]">
-          <h1 className="text-[3rem] font-bold">🛠️ STACK</h1>
-          {projectItem.stack.map((stack, index) => (
-            <div key={index} className="flex flex-col ">
-              <div className="bg-gray-100 text-[2rem] font-semibold p-[0.5rem] flex items-center pl-[1rem]">
-                {stack.name}
-              </div>
-              <div className="pl-[1rem] py-[0.6rem] text-[1.6rem]">
-                {stack.detail}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex flex-col lg:px-[24rem] md:px-[2rem] sm:px-[2rem] gap-[1rem]">
-          <h1 className="text-[3rem] font-bold">📊 CONTRIBUTION</h1>
-          {projectItem.contribution.map((contribution, index) => (
-            <div key={index} className="flex flex-col ">
-              <div className="bg-gray-100 text-[2rem] font-semibold p-[0.5rem] flex items-center pl-[1rem]">
-                {contribution.head}
-              </div>
-              {contribution.detail
-                .filter((detail) => detail.trim() !== "")
-                .map((detail, index) => (
-                  <ul
-                    key={index}
-                    className="pl-[3rem] py-[0.6rem] text-[1.6rem] list-disc"
-                  >
-                    <li>{detail}</li>
-                  </ul>
-                ))}
-            </div>
-          ))}
-        </div>
-
-        <div className="flex flex-col lg:px-[24rem] md:px-[2rem] sm:px-[2rem] gap-[1rem]">
-          <h1 className="text-[3rem] font-bold">🐞 TROUBLE SHOOTING</h1>
-          {projectItem.solution.map((solution, index) => (
-            <div key={index} className="flex flex-col">
-              <div className="bg-gray-100 text-[2rem] font-semibold p-[0.5rem] flex items-center pl-[1rem]">
-                {solution.head}
-              </div>
-              <div className="pl-[1rem] py-[0.6rem] text-[1.6rem] flex flex-col gap-[1rem]">
-                <span>
-                  <span className="font-bold text-red-400">[상황]</span>{" "}
-                  {solution.situation}
-                </span>
-                <span>
-                  <span className="font-bold text-green-500">[과제]</span>{" "}
-                  {solution.task}
-                </span>
-                <span>
-                  <span className="font-bold text-blue-500">[행동]</span>{" "}
-                  {solution.action}
-                </span>
-                <span>
-                  <span className="font-bold text-blue-900">[결과]</span>{" "}
-                  {solution.result}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {projectItem.videos && (
-          <div className="flex flex-col w-full lg:px-[24rem] md:px-[2rem] sm:px-[2rem] gap-[1rem]">
-            <h1 className="text-[3rem] font-bold ">📽️ DEMO VIDEO</h1>
-            <div className="w-full ">
-              <iframe
-                className="w-full h-[40rem]"
-                src={projectItem.videos}
-                title="Project Demo"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
-          </div>
-        )}
-      </div>
-
-      <div className="flex flex-col">
-        <button
-          onClick={() => setIsOpen(false)}
-          className="absolute lg:top-[8rem] lg:right-[8rem] md:top-[9rem] md:right-[4rem] sm:top-[15rem] sm:right-[1rem] text-white font-bold text-[1.8rem] bg-blue-400 rounded-full w-[4rem] h-[4rem] cursor-pointer"
-        >
-          ✕
-        </button>
-        <div className="bg-blue-100 rounded-full absolute lg:top-[14rem] lg:right-[8rem] md:top-[14rem] md:right-[4rem] sm:top-[20rem] sm:right-[1rem]  w-[4rem] h-[4rem] flex justify-center items-center cursor-pointer">
-          <a href={projectItem.github} target="_blank">
+        <div className="absolute top-[1.2rem] right-[1.2rem] z-10 flex items-center gap-[0.8rem]">
+          <a
+            href={projectItem.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub 저장소 열기"
+            title="GitHub 저장소 열기"
+            className="flex w-[4rem] h-[4rem] items-center justify-center rounded-full bg-white/90 hover:bg-white transition-colors"
+          >
             <Image
               src="/images/github.svg"
-              alt="깃헙 이미지"
-              width={36}
-              height={36}
+              alt=""
+              width={24}
+              height={24}
+              className="w-[2.4rem] h-[2.4rem]"
             />
           </a>
+          <button
+            onClick={() => setIsOpen(false)}
+            aria-label="닫기"
+            title="닫기"
+            className="flex w-[4rem] h-[4rem] items-center justify-center rounded-full bg-white/90 hover:bg-white text-[1.8rem] font-bold text-black cursor-pointer transition-colors"
+          >
+            ✕
+          </button>
         </div>
-        <span className="text-[1rem] text-blue-200 absolute lg:top-[18.4rem] lg:right-[8.3rem] md:top-[18.4rem] md:right-[4.4rem] sm:top-[24.5rem] sm: right-[1.4rem]">
-          GitHub
-        </span>
+
+        <div className="flex flex-col items-center overflow-y-auto gap-[3rem] pb-[6rem]">
+          <div
+            className={`flex flex-col items-center w-full pb-[1.2rem] pt-[6rem] px-[2rem] md:pt-[1.2rem] md:px-[11rem] ${
+              projectColors[projectItem.id]
+            }`}
+          >
+            <h1 className="text-white text-[2.4rem] md:text-[4rem] font-bold text-center">
+              {projectItem.title}
+            </h1>
+            <h3 className="text-gray-200 text-[1.4rem] md:text-[1.6rem] text-center">
+              {projectItem.created}
+            </h3>
+          </div>
+
+          {projectItem.intro && (
+            <span className="text-[1.6rem] px-[2rem] lg:px-[8rem] text-center border-b border-gray-300 pb-[3rem]">
+              {projectItem.intro}
+            </span>
+          )}
+
+          <div className="flex flex-col w-full px-[2rem] lg:px-[8rem] gap-[1rem]">
+            <h1 className="text-[2.4rem] md:text-[3rem] font-bold">🛠️ STACK</h1>
+            {projectItem.stack.map((stack, index) => (
+              <div key={index} className="flex flex-col ">
+                <div className="bg-gray-100 text-[1.8rem] md:text-[2rem] font-semibold p-[0.5rem] flex items-center pl-[1rem]">
+                  {stack.name}
+                </div>
+                <div className="pl-[1rem] py-[0.6rem] text-[1.6rem]">
+                  {stack.detail}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col w-full px-[2rem] lg:px-[8rem] gap-[1rem]">
+            <h1 className="text-[2.4rem] md:text-[3rem] font-bold">
+              📊 CONTRIBUTION
+            </h1>
+            {projectItem.contribution.map((contribution, index) => (
+              <div key={index} className="flex flex-col ">
+                <div className="bg-gray-100 text-[1.8rem] md:text-[2rem] font-semibold p-[0.5rem] flex items-center pl-[1rem]">
+                  {contribution.head}
+                </div>
+                {contribution.detail
+                  .filter((detail) => detail.trim() !== "")
+                  .map((detail, index) => (
+                    <ul
+                      key={index}
+                      className="pl-[3rem] py-[0.6rem] text-[1.6rem] list-disc"
+                    >
+                      <li>{detail}</li>
+                    </ul>
+                  ))}
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-col w-full px-[2rem] lg:px-[8rem] gap-[1rem]">
+            <h1 className="text-[2.4rem] md:text-[3rem] font-bold">
+              🐞 TROUBLE SHOOTING
+            </h1>
+            {projectItem.solution.map((solution, index) => (
+              <div key={index} className="flex flex-col">
+                <div className="bg-gray-100 text-[1.8rem] md:text-[2rem] font-semibold p-[0.5rem] flex items-center pl-[1rem]">
+                  {solution.head}
+                </div>
+                <div className="pl-[1rem] py-[0.6rem] text-[1.6rem] flex flex-col gap-[1rem]">
+                  <span>
+                    <span className="font-bold text-red-400">[상황]</span>{" "}
+                    {solution.situation}
+                  </span>
+                  <span>
+                    <span className="font-bold text-green-500">[과제]</span>{" "}
+                    {solution.task}
+                  </span>
+                  <span>
+                    <span className="font-bold text-blue-500">[행동]</span>{" "}
+                    {solution.action}
+                  </span>
+                  <span>
+                    <span className="font-bold text-blue-900">[결과]</span>{" "}
+                    {solution.result}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {projectItem.videos && (
+            <div className="flex flex-col w-full px-[2rem] lg:px-[8rem] gap-[1rem]">
+              <h1 className="text-[2.4rem] md:text-[3rem] font-bold ">
+                📽️ DEMO VIDEO
+              </h1>
+              <div className="w-full ">
+                <iframe
+                  className="w-full aspect-video"
+                  src={projectItem.videos}
+                  title="Project Demo"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
