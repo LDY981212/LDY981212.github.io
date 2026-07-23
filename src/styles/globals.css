@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 @theme {
   /* 모바일이 기본값(접두사 없음)이고 md/lg에서만 덮어쓴다.
      375px짜리 sm 브레이크포인트는 375px 미만에서 모든 크기 지정이 사라지게 만들어 제거했다. */
@@ -6,31 +7,108 @@
   --breakpoint-lg: 1200px;
 }
 
+/* 라이트가 기본. 다크는 <html data-theme="dark">로 전환한다.
+   테마는 layout.tsx의 인라인 스크립트가 페인트 전에 주입하므로 깜빡임이 없다. */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* 폰트 파일을 더 받지 않고 라벨·수치용 유틸리티 서체를 확보한다. */
+  --font-mono-stack: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  --paper: #f7f8fa;
+  --surface: #ffffff;
+  --surface-2: #eef2f9;
+  --ink: #0b1020;
+  --muted: #5b6478;
+  --accent: #2f6bff;
+  --accent-ink: #ffffff;
+  --accent-soft: #e7eeff;
+  --amber: #f59e0b;
+  --marker: rgba(245, 158, 11, 0.4);
+  --line: #e2e6ee;
+  --shadow: 0 0.1rem 0.3rem rgba(11, 16, 32, 0.06),
+    0 1rem 2.4rem rgba(11, 16, 32, 0.08);
+  --grid-line: rgba(11, 16, 32, 0.06);
+  --glow-a: rgba(47, 107, 255, 0.28);
+  --glow-b: rgba(245, 158, 11, 0.2);
 }
 
+:root[data-theme="dark"] {
+  --paper: #0b1020;
+  --surface: #141c33;
+  --surface-2: #1b2542;
+  --ink: #e8edf7;
+  --muted: #94a0b8;
+  --accent: #5b8cff;
+  --accent-ink: #0b1020;
+  --accent-soft: #1e2c55;
+  --amber: #fbbf24;
+  --marker: rgba(251, 191, 36, 0.32);
+  --line: #232c47;
+  --shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.4),
+    0 1rem 2.4rem rgba(0, 0, 0, 0.45);
+  --grid-line: rgba(232, 237, 247, 0.06);
+  --glow-a: rgba(91, 140, 255, 0.35);
+  --glow-b: rgba(251, 191, 36, 0.22);
+}
+
+/* inline이라 유틸리티가 var(--paper)를 직접 참조한다 → data-theme 전환이 즉시 반영된다. */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-amber: var(--amber);
+  --color-line: var(--line);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Pretendard;
+  --font-sans: var(--font-pretendard), system-ui, sans-serif;
+  --font-mono: var(--font-mono-stack);
 }
 
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-pretendard), system-ui, sans-serif;
+  /* 테마 전환이 뚝 끊기지 않도록 */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 디스플레이 크기에서 Pretendard 자간이 벌어져 보이는 것을 잡는다. */
+.display {
+  letter-spacing: -0.03em;
+}
+
+.mono {
+  font-family: var(--font-mono-stack);
+  font-feature-settings: "tnum";
+}
+
+/* 키보드 포커스는 어느 테마에서든 보여야 한다. */
+:focus-visible {
+  outline: 0.2rem solid var(--accent);
+  outline-offset: 0.3rem;
+  border-radius: 0.2rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

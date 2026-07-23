@@ -40,7 +40,7 @@ export default function ProjectModal({
         aria-modal="true"
         aria-label={projectItem.title}
         onClick={(e) => e.stopPropagation()}
-        className="relative flex flex-col bg-white rounded-lg overflow-hidden w-full max-w-[110rem] max-h-[95vh]"
+        className="relative flex flex-col bg-surface rounded-[1.4rem] overflow-hidden w-full max-w-[110rem] max-h-[95vh]"
       >
         <div className="absolute top-[1.2rem] right-[1.2rem] z-10 flex items-center gap-[0.8rem]">
           <a
@@ -84,7 +84,7 @@ export default function ProjectModal({
           </div>
 
           {projectItem.intro && (
-            <span className="text-[1.6rem] px-[2rem] lg:px-[8rem] text-center border-b border-gray-300 pb-[3rem]">
+            <span className="text-[1.6rem] px-[2rem] lg:px-[8rem] text-center border-b border-line pb-[3rem]">
               {projectItem.intro}
             </span>
           )}
@@ -93,7 +93,7 @@ export default function ProjectModal({
             <h1 className="text-[2.4rem] md:text-[3rem] font-bold">🛠️ STACK</h1>
             {projectItem.stack.map((stack, index) => (
               <div key={index} className="flex flex-col ">
-                <div className="bg-gray-100 text-[1.8rem] md:text-[2rem] font-semibold p-[0.5rem] flex items-center pl-[1rem]">
+                <div className="bg-surface-2 text-ink text-[1.8rem] md:text-[2rem] font-semibold p-[0.8rem] rounded-[0.6rem] flex items-center pl-[1rem]">
                   {stack.name}
                 </div>
                 <div className="pl-[1rem] py-[0.6rem] text-[1.6rem]">
@@ -109,7 +109,7 @@ export default function ProjectModal({
             </h1>
             {projectItem.contribution.map((contribution, index) => (
               <div key={index} className="flex flex-col ">
-                <div className="bg-gray-100 text-[1.8rem] md:text-[2rem] font-semibold p-[0.5rem] flex items-center pl-[1rem]">
+                <div className="bg-surface-2 text-ink text-[1.8rem] md:text-[2rem] font-semibold p-[0.8rem] rounded-[0.6rem] flex items-center pl-[1rem]">
                   {contribution.head}
                 </div>
                 {contribution.detail
@@ -132,24 +132,24 @@ export default function ProjectModal({
             </h1>
             {projectItem.solution.map((solution, index) => (
               <div key={index} className="flex flex-col">
-                <div className="bg-gray-100 text-[1.8rem] md:text-[2rem] font-semibold p-[0.5rem] flex items-center pl-[1rem]">
+                <div className="bg-surface-2 text-ink text-[1.8rem] md:text-[2rem] font-semibold p-[0.8rem] rounded-[0.6rem] flex items-center pl-[1rem]">
                   {solution.head}
                 </div>
                 <div className="pl-[1rem] py-[0.6rem] text-[1.6rem] flex flex-col gap-[1rem]">
                   <span>
-                    <span className="font-bold text-red-400">[상황]</span>{" "}
+                    <span className="font-bold text-rose-500">[상황]</span>{" "}
                     {solution.situation}
                   </span>
                   <span>
-                    <span className="font-bold text-green-500">[과제]</span>{" "}
+                    <span className="font-bold text-emerald-500">[과제]</span>{" "}
                     {solution.task}
                   </span>
                   <span>
-                    <span className="font-bold text-blue-500">[행동]</span>{" "}
+                    <span className="font-bold text-accent">[행동]</span>{" "}
                     {solution.action}
                   </span>
                   <span>
-                    <span className="font-bold text-blue-900">[결과]</span>{" "}
+                    <span className="font-bold text-ink">[결과]</span>{" "}
                     {solution.result}
                   </span>
                 </div>

@@ -3,35 +3,36 @@
 import projectItems from "@/constants/projectItems";
 import projectColors from "@/constants/projectColors";
 import { motion } from "framer-motion";
-import { containerVariants, itemsVariants } from "@/utils/FramerVariants";
+import {
+  containerVariants,
+  itemsVariants,
+  viewportOnce,
+} from "@/utils/FramerVariants";
 import { ProjectProps } from "@/interfaces/ProjectInterface";
 import ConditionalLink from "./ConditionalLink";
+import SectionHeading from "./SectionHeading";
+import TiltCard from "./TiltCard";
 
-export default function Project({
-  projectRef,
-  setProjectName,
-  setIsOpen,
-}: ProjectProps) {
+export default function Project({ setProjectName, setIsOpen }: ProjectProps) {
   return (
-    <div
-      className="flex flex-col items-center py-[9rem] bg-gray-100 px-[1.5rem] md:px-[2rem]"
-      ref={projectRef}
+    <section
+      id="projects"
+      className="flex scroll-mt-[9rem] flex-col items-center bg-surface-2 py-[9rem] px-[1.5rem] md:px-[2rem]"
     >
-      <h1 className="font-black text-[3rem] md:text-[4rem] lg:text-[5rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-400">
-        PROJECTS
-      </h1>
+      <SectionHeading title="PROJECTS" eyebrow="4건 · 2024–2025" />
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="show"
+        viewport={viewportOnce}
         className="grid w-full grid-cols-1 gap-[2rem] md:grid-cols-2 md:gap-[4rem] max-w-[120rem]"
       >
         {projectItems &&
           projectItems.map((projectItem) => (
-            <motion.div
+            <TiltCard
               variants={itemsVariants}
               key={projectItem.id}
-              className="flex flex-col gap-[1rem] p-[2.5rem] rounded-[1rem] shadow-[0_0_0.5rem_0_rgba(68,68,68,0.4)]"
+              className="flex flex-col gap-[1rem] p-[2.5rem] rounded-[1.4rem] bg-surface border border-line shadow-[var(--shadow)]"
             >
               <div className="flex flex-col gap-[1rem]">
                 <div
@@ -41,15 +42,15 @@ export default function Project({
                 >
                   {projectItem.title}
                 </div>
-                <h2 className="text-[1.2rem] text-gray-600 font-medium border-b border-gray-400 pb-[1rem]">
+                <h2 className="mono text-[1.2rem] text-muted font-medium border-b border-line pb-[1rem]">
                   {projectItem.created}
                 </h2>
               </div>
               <div className="flex flex-col gap-[1rem]">
-                <h2 className="text-black text-[1.8rem] font-bold">
+                <h2 className="text-ink text-[1.8rem] font-bold">
                   {projectItem.subTitle}
                 </h2>
-                <ul className="list-disc pl-6 text-gray-700">
+                <ul className="list-disc pl-6 text-muted">
                   {projectItem.content.map((item, index) => (
                     <li className="text-[1.4rem]" key={index}>
                       {item}
@@ -65,7 +66,7 @@ export default function Project({
                   {projectItem.stack.map((teck, index) => (
                     <div
                       key={index}
-                      className="flex w-fit p-[1rem] rounded-[1rem] border border-blue-400 bg-blue-100 text-[1.4rem]"
+                      className="flex w-fit p-[1rem] rounded-[0.8rem] border border-transparent bg-accent-soft text-accent mono text-[1.3rem]"
                     >
                       {teck.name}
                     </div>
@@ -77,14 +78,14 @@ export default function Project({
                     setIsOpen(true);
                     setProjectName(projectItem.router);
                   }}
-                  className="hover:bg-black hover:text-white w-fit px-[1rem] py-[0.5rem] cursor-pointer rounded-[0.8rem] border border-gray-400 font-bold text-[1.2rem] text-black"
+                  className="w-fit px-[1.6rem] py-[0.9rem] cursor-pointer rounded-full bg-accent text-accent-ink font-bold text-[1.3rem] transition-transform hover:scale-[1.04]"
                 >
                   자세히 알아보기
                 </button>
               </div>
-            </motion.div>
+            </TiltCard>
           ))}
       </motion.div>
-    </div>
+    </section>
   );
 }

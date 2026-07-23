@@ -1,102 +1,52 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Nav from "../components/Nav";
+import { useEffect, useState } from "react";
+import { MotionConfig } from "framer-motion";
+import Nav from "@/components/Nav";
+import Hero from "@/components/Hero";
 import AboutMe from "@/components/AboutMe";
 import Skills from "@/components/Skills";
-import { motion } from "framer-motion";
 import Project from "@/components/Project";
 import Career from "@/components/Career";
+import Footer from "@/components/Footer";
+import BackToTop from "@/components/BackToTop";
 import ProjectModal from "@/components/ProjectModal";
 
 export default function Home() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const navRef = useRef<HTMLElement | null>(null);
-  const headerRef = useRef<HTMLDivElement | null>(null);
-  const aboutRef = useRef<HTMLDivElement | null>(null);
-  const skillsRef = useRef<HTMLDivElement | null>(null);
-  const projectRef = useRef<HTMLDivElement | null>(null);
-  const careerRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [projectName, setProjectName] = useState("");
 
-  const scrollToRefWidthOffset = (
-    ref: React.RefObject<HTMLElement | null>,
-    gap = 20
-  ) => {
-    if (ref.current) {
-      const offset = (navRef.current?.offsetHeight ?? 0) + gap;
-      const top = Math.max(ref.current.offsetTop - offset, 0);
-      window.scrollTo({ top, behavior: "smooth" });
-    }
-  };
-
   useEffect(() => {
-    const handScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 50);
 
-    window.addEventListener("scroll", handScroll);
-    return () => window.removeEventListener("scroll", handScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div>
-      <header ref={navRef} className="fixed w-full z-20">
-        <Nav
-          isScrolled={isScrolled}
-          onClickLogo={() => {
-            headerRef.current?.scrollIntoView({ behavior: "smooth" });
-          }}
-          onClickAbout={() => scrollToRefWidthOffset(aboutRef)}
-          onClickSkills={() => scrollToRefWidthOffset(skillsRef)}
-          onClickProjects={() => scrollToRefWidthOffset(projectRef)}
-          onClickCareer={() => scrollToRefWidthOffset(careerRef)}
-        />
+    // reducedMotion="user"면 OS에서 모션 줄이기를 켠 사용자에게 framer-motion이
+    // 이동·회전·스케일을 통째로 건너뛴다. CSS 미디어쿼리는 JS 애니메이션까지 막지 못한다.
+    <MotionConfig reducedMotion="user">
+      {/* 섹션 이동은 앵커 + scroll-margin-top으로 처리한다. 오프셋을 자바스크립트로
+          계산하지 않으니 헤더 높이가 바뀌어도 어긋날 일이 없다. */}
+      <header className="fixed inset-x-0 top-0 z-30">
+        <Nav isScrolled={isScrolled} />
       </header>
-      <div
-        ref={headerRef}
-        className="relative w-full h-[50em] overflow-hidden bg-cover bg-center bg-no-repeat bg-[url('/images/keyboard-933568_1280.jpg')]"
-      >
-        <div className="absolute inset-0 bg-black opacity-60"></div>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-            transition: { delay: 0.3, duration: 1 },
-          }}
-          className="relative z-10 flex flex-col items-center justify-center h-full px-[1.5rem] text-white"
-        >
-          <h2 className="font-black text-center break-keep text-white text-[2.2rem] md:text-[3rem] lg:text-[4rem]">
-            안녕하세요.
-            <br /> 더 나은 <span className="text-blue-300">사용자 경험</span>
-            을 고민하고,
-            <br /> 끊임없이 <span className="text-blue-300">성장</span>하는
-            <br />
-            프론트엔드 개발자 <span className="text-blue-300">이도엽</span>
-            입니다.
-          </h2>
-          <motion.button
-            initial={{ x: 200 }}
-            whileInView={{ x: 0 }}
-            transition={{ type: "spring", duration: 1.5 }}
-            onClick={() => scrollToRefWidthOffset(aboutRef)}
-            className="mt-[4rem] px-[1rem] py-[1rem] w-[10rem] h-[3.6rem] text-[1.2rem] md:w-[12rem] md:h-[4rem] md:text-[1.4rem] lg:w-[16rem] lg:h-[5rem] lg:text-[1.6rem] hover:bg-blue-800 transition-colors duration-300 bg-blue-500 text-white rounded-full cursor-pointer"
-          >
-            더 알아보기 ↓
-          </motion.button>
-        </motion.div>
-      </div>
-      <AboutMe aboutRef={aboutRef} />
-      <Skills skillRef={skillsRef} />
-      <Project
-        projectRef={projectRef}
-        setIsOpen={setIsOpen}
-        setProjectName={setProjectName}
-      />
-      <Career careerRef={careerRef} />
+
+      <main>
+        <Hero />
+        <AboutMe />
+        <Skills />
+        <Project setIsOpen={setIsOpen} setProjectName={setProjectName} />
+        <Career />
+      </main>
+
+      <Footer />
+      <BackToTop />
+
       {isOpen && <ProjectModal project={projectName} setIsOpen={setIsOpen} />}
-    </div>
+    </MotionConfig>
   );
 }

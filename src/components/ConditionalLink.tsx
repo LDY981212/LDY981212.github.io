@@ -11,7 +11,7 @@ export default function ConditionalLink({
 
   if (isKorean) {
     return (
-      <span className="text-[1.5rem] text-gray-500 border-l-[0.4rem] pl-[1rem] border-blue-800">
+      <span className="text-[1.5rem] text-muted border-l-[0.4rem] pl-[1rem] border-line">
         {children}
       </span>
     );
@@ -22,7 +22,7 @@ export default function ConditionalLink({
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-[1.5rem] text-blue-700 border-l-[0.4rem] pl-[1rem] border-blue-800 w-full break-words overflow-hidden"
+      className="text-[1.5rem] text-accent border-l-[0.4rem] pl-[1rem] border-accent w-full break-words overflow-hidden mono"
     >
       {children}
     </a>

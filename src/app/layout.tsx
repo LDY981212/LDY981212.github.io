@@ -17,13 +17,39 @@ const pretendard = localFont({
   variable: "--font-pretendard",
 });
 
+// 정적 export라 서버에서 테마를 알 수 없다. 첫 페인트 전에 동기로 실행해야
+// 라이트 화면이 번쩍인 뒤 다크로 바뀌는 현상이 없다.
+const themeScript = `
+(function () {
+  try {
+    var stored = localStorage.getItem("theme");
+    var theme =
+      stored === "light" || stored === "dark"
+        ? stored
+        : window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    document.documentElement.dataset.theme = theme;
+  } catch (e) {
+    document.documentElement.dataset.theme = "light";
+  }
+})();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="kr" className={`${pretendard.variable}`}>
+    <html
+      lang="ko"
+      className={`${pretendard.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className={pretendard.className}>{children}</body>
     </html>
   );

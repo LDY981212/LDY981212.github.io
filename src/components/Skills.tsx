@@ -1,24 +1,21 @@
-import { SkillsProps } from "@/interfaces/SkillsInterface";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { ease, viewportOnce } from "@/utils/FramerVariants";
+import SectionHeading from "./SectionHeading";
 
-export default function Skills({ skillRef }: SkillsProps) {
+export default function Skills() {
   return (
-    <div
-      ref={skillRef}
-      className="flex flex-col items-center overflow-x-hidden py-[9rem] px-[1.5rem] md:px-[2rem] lg:px-[4rem] bg-blue-300"
+    <section
+      id="skills"
+      className="flex scroll-mt-[9rem] flex-col items-center overflow-x-hidden py-[9rem] px-[1.5rem] md:px-[2rem] lg:px-[4rem] bg-surface-2"
     >
-      <h1 className="font-black text-[3rem] md:text-[4rem] lg:text-[5rem] pb-[2rem] mb-[6rem] border-b-[0.2rem] border-gray-300">
-        SKILLS
-      </h1>
+      <SectionHeading title="SKILLS" eyebrow="TypeScript · Next.js 중심" />
       <motion.div
-        initial={{ opacity: 0, x: 50 }}
-        whileInView={{
-          opacity: 1,
-          x: 0,
-          transition: { delay: 0.3, duration: 0.5 },
-        }}
-        className="flex flex-col w-full max-w-[120rem] bg-blue-100 rounded-[2rem] py-[2rem] px-[1.5rem] md:px-[3rem] gap-[3rem] shadow-2xl"
+        initial={{ opacity: 0, y: 32 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={viewportOnce}
+        transition={{ duration: 0.6, ease }}
+        className="flex flex-col w-full max-w-[120rem] bg-surface border border-line rounded-[2rem] py-[2rem] px-[1.5rem] md:px-[3rem] gap-[3rem] shadow-[var(--shadow)]"
       >
         <div className="flex flex-col md:flex-row items-center gap-[2rem] md:gap-[3rem]">
           <div className="flex gap-[1.2rem] items-center w-full md:w-[18rem] md:shrink-0">
@@ -29,7 +26,7 @@ export default function Skills({ skillRef }: SkillsProps) {
               height={60}
               className="shrink-0"
             />
-            <span className="font-bold text-[2rem]">Language</span>
+            <span className="font-bold text-[2rem] text-ink">Language</span>
           </div>
           <div className="flex flex-wrap gap-[1.5rem] w-full min-w-0">
             <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-blue-900 text-[1.6rem] text-white ">
@@ -49,7 +46,7 @@ export default function Skills({ skillRef }: SkillsProps) {
               height={60}
               className="shrink-0"
             />
-            <span className="font-bold text-[2rem]">Frontend</span>
+            <span className="font-bold text-[2rem] text-ink">Frontend</span>
           </div>
           <div className="flex flex-wrap gap-[1.5rem] w-full min-w-0">
             <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-black text-[1.6rem] text-white ">
@@ -81,7 +78,7 @@ export default function Skills({ skillRef }: SkillsProps) {
               height={60}
               className="shrink-0"
             />
-            <span className="font-bold text-[2rem]">DevOps</span>
+            <span className="font-bold text-[2rem] text-ink">DevOps</span>
           </div>
           <div className="flex flex-wrap gap-[1.5rem] w-full min-w-0">
             <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-orange-400 text-[1.6rem] text-white ">
@@ -93,6 +90,6 @@ export default function Skills({ skillRef }: SkillsProps) {
           </div>
         </div>
       </motion.div>
-    </div>
+    </section>
   );
 }

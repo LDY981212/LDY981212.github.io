@@ -35,7 +35,6 @@ interface Stack {
 }
 
 export interface ProjectProps {
-  projectRef: React.RefObject<HTMLDivElement | null>;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   setProjectName: Dispatch<SetStateAction<string>>;
 }
