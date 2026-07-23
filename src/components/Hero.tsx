@@ -145,10 +145,14 @@ function Line({ index, children }: { index: number; children: React.ReactNode })
  * 배경 그라디언트로 그으면 글자 높이에 붙고, 단어 길이가 바뀌어도 알아서 따라온다.
  */
 function Marker({ children }: { children: React.ReactNode }) {
+  // backgroundSize는 transform이 아니라 MotionConfig가 걸러주지 못한다.
+  // 모션 줄이기를 켠 사용자에게는 형광펜을 처음부터 그어진 상태로 둔다.
+  const reduceMotion = useReducedMotion();
+
   return (
     <motion.span
-      layout
-      initial={{ backgroundSize: "0% 100%" }}
+      layout={!reduceMotion}
+      initial={{ backgroundSize: reduceMotion ? "100% 100%" : "0% 100%" }}
       animate={{ backgroundSize: "100% 100%" }}
       transition={{
         backgroundSize: { duration: 0.7, delay: 0.9, ease },

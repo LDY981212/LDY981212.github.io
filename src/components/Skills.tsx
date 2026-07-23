@@ -29,7 +29,7 @@ export default function Skills() {
             <span className="font-bold text-[2rem] text-ink">Language</span>
           </div>
           <div className="flex flex-wrap gap-[1.5rem] w-full min-w-0">
-            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-blue-900 text-[1.6rem] text-white ">
+            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-blue-900 dark:bg-blue-500 text-[1.6rem] text-white ">
               TypeScript
             </div>
             <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-yellow-300 text-[1.6rem] text-black ">
@@ -49,16 +49,16 @@ export default function Skills() {
             <span className="font-bold text-[2rem] text-ink">Frontend</span>
           </div>
           <div className="flex flex-wrap gap-[1.5rem] w-full min-w-0">
-            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-black text-[1.6rem] text-white ">
+            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-black text-white dark:bg-white dark:text-black text-[1.6rem] ">
               Next.js (React)
             </div>
-            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-gray-600 text-[1.6rem] text-white ">
+            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-gray-600 text-white dark:bg-gray-300 dark:text-black text-[1.6rem] ">
               Zustand
             </div>
             <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-red-400 text-[1.6rem] text-white ">
               React-Query
             </div>
-            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-sky-300 text-[1.6rem] text-white ">
+            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-sky-500 text-[1.6rem] text-white ">
               Tailwind CSS
             </div>
             <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-purple-500 text-[1.6rem] text-white ">
@@ -84,7 +84,7 @@ export default function Skills() {
             <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-orange-400 text-[1.6rem] text-white ">
               AWS
             </div>
-            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-black text-[1.6rem] text-white ">
+            <div className="p-[1rem] font-bold text-center rounded-[1.2rem] whitespace-nowrap bg-black text-white dark:bg-white dark:text-black text-[1.6rem] ">
               Vercel
             </div>
           </div>

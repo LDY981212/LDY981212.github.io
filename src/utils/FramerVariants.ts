@@ -13,12 +13,13 @@ export const containerVariants: Variants = {
   },
 };
 
+// blur는 transform이 아니라서 MotionConfig reducedMotion="user"가 걸러주지 못한다.
+// 모션 줄이기를 켠 사용자에게도 화면이 흐려졌다 선명해지므로 쓰지 않는다.
 export const itemsVariants: Variants = {
-  hidden: { opacity: 0, y: 24, filter: "blur(0.6rem)" },
+  hidden: { opacity: 0, y: 24 },
   show: {
     opacity: 1,
     y: 0,
-    filter: "blur(0rem)",
     transition: {
       duration: 0.55,
       ease,
