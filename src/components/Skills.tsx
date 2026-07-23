@@ -58,47 +58,50 @@ const groups: SkillGroup[] = [
 
 export default function Skills() {
   return (
+    // 세 줄짜리 표다. 가장 조이는 섹션.
     <section
       id="skills"
-      className="flex scroll-mt-[9rem] flex-col items-center overflow-x-hidden bg-surface-2 px-[1.5rem] py-[9rem] md:px-[2rem] lg:px-[4rem]"
+      className="flex scroll-mt-[9rem] justify-center overflow-x-hidden bg-surface-2 px-[1.5rem] py-[6rem] md:px-[4rem] lg:px-[8rem]"
     >
-      <SectionHeading title="SKILLS" eyebrow="TypeScript · Next.js 중심" />
+      <div className="w-full max-w-[120rem]">
+        <SectionHeading title="SKILLS" eyebrow="TypeScript · Next.js 중심" />
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={viewportOnce}
-        className="flex w-full max-w-[120rem] flex-col gap-[1rem]"
-      >
-        {groups.map((group) => (
-          <motion.div
-            key={group.label}
-            variants={itemsVariants}
-            className="flex flex-col gap-[1.6rem] rounded-[1.4rem] border border-line bg-surface p-[2rem] md:flex-row md:items-center md:gap-[3rem] md:p-[2.4rem]"
-          >
-            <div className="flex shrink-0 items-center gap-[1.2rem] md:w-[18rem]">
-              <span className="flex h-[4rem] w-[4rem] items-center justify-center rounded-[1rem] bg-accent-soft text-[2rem] text-accent">
-                <Icon name={group.icon} />
-              </span>
-              <span className="text-[1.8rem] font-bold text-ink">
-                {group.label}
-              </span>
-            </div>
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+          className="border-t border-line"
+        >
+          {groups.map((group) => (
+            <motion.div
+              key={group.label}
+              variants={itemsVariants}
+              className="flex flex-col gap-[1.2rem] border-b border-line py-[1.8rem] md:flex-row md:items-center md:gap-[3rem]"
+            >
+              <div className="flex shrink-0 items-center gap-[1rem] md:w-[16rem]">
+                <span className="text-[1.8rem] text-accent">
+                  <Icon name={group.icon} />
+                </span>
+                <span className="mono text-[1.3rem] uppercase tracking-[0.12em] text-muted">
+                  {group.label}
+                </span>
+              </div>
 
-            <ul className="flex min-w-0 flex-wrap gap-[1rem]">
-              {group.items.map((item) => (
-                <li
-                  key={item.name}
-                  className={`rounded-[0.9rem] px-[1.2rem] py-[0.8rem] text-center text-[1.4rem] font-bold whitespace-nowrap ${item.chip}`}
-                >
-                  {item.name}
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        ))}
-      </motion.div>
+              <ul className="flex min-w-0 flex-wrap gap-[0.8rem]">
+                {group.items.map((item) => (
+                  <li
+                    key={item.name}
+                    className={`rounded-[0.6rem] px-[1.1rem] py-[0.7rem] text-[1.3rem] font-bold whitespace-nowrap ${item.chip}`}
+                  >
+                    {item.name}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
     </section>
   );
 }

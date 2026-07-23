@@ -48,34 +48,35 @@ const fields: ProfileField[] = [
 
 export default function AboutMe() {
   return (
+    // 여기는 사실 나열이라 조이고, 정작 봐야 할 PROJECTS에 여백을 몰아준다.
     <section
       id="about"
-      className="flex scroll-mt-[9rem] flex-col items-center bg-paper px-[1.5rem] py-[9rem] md:px-[2rem]"
+      className="flex scroll-mt-[9rem] justify-center bg-paper px-[1.5rem] py-[7rem] md:px-[4rem] lg:px-[8rem]"
     >
-      <SectionHeading title="PROFILES" eyebrow="이도엽 · 한양대 생체공학" />
+      <div className="w-full max-w-[120rem]">
+        <SectionHeading title="PROFILES" eyebrow="이도엽 · 한양대 생체공학" />
 
-      <motion.dl
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={viewportOnce}
-        className="grid w-full max-w-[120rem] grid-cols-1 gap-[1rem] md:grid-cols-2 lg:grid-cols-3"
-      >
-        {fields.map((field) => (
-          <motion.div
-            key={field.label}
-            variants={itemsVariants}
-            className="flex min-w-0 items-center gap-[1.4rem] rounded-[1.2rem] border border-line bg-surface px-[1.6rem] py-[1.4rem] transition-colors hover:border-accent"
-          >
-            <span className="flex h-[4rem] w-[4rem] shrink-0 items-center justify-center rounded-[1rem] bg-accent-soft text-[2rem] text-accent">
-              <Icon name={field.icon} />
-            </span>
-            <div className="flex min-w-0 flex-col gap-[0.2rem]">
-              <dt className="mono text-[1.1rem] uppercase tracking-[0.14em] text-muted">
+        <motion.dl
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+          className="grid grid-cols-1 border-t border-line md:grid-cols-2 md:gap-x-[4rem]"
+        >
+          {fields.map((field) => (
+            <motion.div
+              key={field.label}
+              variants={itemsVariants}
+              className="flex min-w-0 items-center gap-[1.4rem] border-b border-line py-[1.4rem]"
+            >
+              <span className="shrink-0 text-[1.8rem] text-accent">
+                <Icon name={field.icon} />
+              </span>
+              <dt className="mono w-[7rem] shrink-0 text-[1.1rem] uppercase tracking-[0.12em] text-muted">
                 {field.label}
               </dt>
               <dd
-                className={`min-w-0 break-all text-[1.4rem] font-semibold text-ink ${
+                className={`min-w-0 flex-1 break-all text-[1.4rem] font-medium text-ink md:text-[1.5rem] ${
                   field.mono ? "mono" : ""
                 }`}
               >
@@ -96,10 +97,10 @@ export default function AboutMe() {
                   field.value
                 )}
               </dd>
-            </div>
-          </motion.div>
-        ))}
-      </motion.dl>
+            </motion.div>
+          ))}
+        </motion.dl>
+      </div>
     </section>
   );
 }

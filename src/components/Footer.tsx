@@ -34,10 +34,10 @@ export default function Footer() {
           <span className="mono text-[1.1rem] uppercase tracking-[0.22em] text-muted md:text-[1.2rem]">
             Contact
           </span>
-          <h2 className="display max-w-[24ch] text-[2.4rem] font-black leading-[1.35] text-ink md:text-[3.6rem] lg:text-[4.4rem]">
+          <h2 className="display max-w-[24ch] text-[2.4rem] font-light leading-[1.35] text-ink md:text-[3.6rem] lg:text-[4.4rem]">
             같이 만들 게 있다면
             <br />
-            편하게 연락 주세요.
+            <span className="font-black">편하게 연락 주세요.</span>
           </h2>
 
           <div className="mt-[1rem] flex flex-wrap items-center gap-[1.2rem]">
