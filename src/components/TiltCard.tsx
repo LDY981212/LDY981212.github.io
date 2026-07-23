@@ -17,6 +17,7 @@ interface TiltCardProps {
   children: ReactNode;
   className?: string;
   variants?: Variants;
+  onClick?: () => void;
 }
 
 /**
@@ -29,6 +30,7 @@ export default function TiltCard({
   children,
   className = "",
   variants,
+  onClick,
 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const reduceMotion = useReducedMotion();
@@ -65,6 +67,7 @@ export default function TiltCard({
     <motion.div
       ref={ref}
       variants={variants}
+      onClick={onClick}
       onPointerMove={handlePointerMove}
       onPointerLeave={reset}
       style={
@@ -72,16 +75,19 @@ export default function TiltCard({
           ? undefined
           : { rotateX, rotateY, transformPerspective: 1200 }
       }
-      className={`group relative ${className}`}
+      // isolate가 스택 컨텍스트를 만들어 -z-10인 스포트라이트가 카드 배경 위,
+      // 내용 아래에 놓인다. 자식을 감싸는 div를 두면 호출부가 지정한
+      // flex·gap·mt-auto가 그 div에 걸려 정작 내용에는 적용되지 않는다.
+      className={`group relative isolate ${className}`}
     >
       {!reduceMotion && (
         <motion.span
           aria-hidden
           style={{ background: spotlight }}
-          className="pointer-events-none absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          className="pointer-events-none absolute inset-0 -z-10 rounded-[inherit] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         />
       )}
-      <div className="relative">{children}</div>
+      {children}
     </motion.div>
   );
 }
