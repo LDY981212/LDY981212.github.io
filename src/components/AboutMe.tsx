@@ -32,8 +32,8 @@ const fields: ProfileField[] = [
   {
     icon: "mail",
     label: "이메일",
-    value: "ldoyeop@gmail.com",
-    href: "mailto:ldoyeop@gmail.com",
+    value: "ldoyeop12@gmail.com",
+    href: "mailto:ldoyeop12@gmail.com",
     mono: true,
   },
   { icon: "school", label: "학력", value: "한양대학교 생체공학과" },

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ease } from "@/utils/FramerVariants";
 
-const EMAIL = "ldoyeop@gmail.com";
+const EMAIL = "ldoyeop12@gmail.com";
 const GITHUB = "https://github.com/LDY981212";
 
 export default function Footer() {
