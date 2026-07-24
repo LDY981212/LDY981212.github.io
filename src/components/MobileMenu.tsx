@@ -118,10 +118,10 @@ export default function MobileMenu({ open, active, onClose }: MobileMenuProps) {
 
             <div className="mt-auto flex flex-col gap-[0.6rem]">
               <a
-                href="mailto:wjflrkwlak@gmail.com"
+                href="mailto:ldoyeop@gmail.com"
                 className="mono text-[1.4rem] text-accent"
               >
-                wjflrkwlak@gmail.com
+                ldoyeop@gmail.com
               </a>
               <a
                 href="https://github.com/LDY981212"
