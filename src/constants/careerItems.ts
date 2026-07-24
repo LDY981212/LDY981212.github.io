@@ -5,7 +5,8 @@ const careerItems: CareerItems[] = [
     id: "2",
     title: "웨이온 (WaiOn)",
     created: "2025.12 - 현재 (재직 중)",
-    logoText: "WO",
+    imageUrl: "/images/waion.png",
+    logoFull: true,
     content: [
       {
         id: "1",

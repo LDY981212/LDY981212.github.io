@@ -30,13 +30,22 @@ export default function Career() {
                 key={careerItem.id}
                 className="flex gap-[2rem] md:gap-[4rem] lg:gap-[5rem]"
               >
-                <div className="flex shrink-0 justify-center items-center w-[8rem] h-[8rem] md:w-[12rem] md:h-[12rem] bg-ink rounded-full">
-                  {careerItem.imageUrl ? (
+                <div className="relative flex shrink-0 justify-center items-center overflow-hidden w-[8rem] h-[8rem] md:w-[12rem] md:h-[12rem] bg-ink rounded-full">
+                  {careerItem.imageUrl && careerItem.logoFull ? (
+                    // 자체 배경이 있는 정사각형 아이콘은 원 전체를 채운다.
+                    <Image
+                      src={careerItem.imageUrl}
+                      alt={`${careerItem.title} 로고`}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : careerItem.imageUrl ? (
                     <div className="relative w-[4.4rem] h-[4.4rem] md:w-[7rem] md:h-[7rem]">
                       <Image
                         src={careerItem.imageUrl}
                         alt={`${careerItem.title} 로고`}
                         fill
+                        className="object-contain"
                       />
                     </div>
                   ) : (
