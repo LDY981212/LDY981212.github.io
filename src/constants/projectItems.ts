@@ -4,7 +4,7 @@ const projectItems: ProjectItems[] = [
   {
     id: "1",
     title: "개인 포트폴리오 웹",
-    created: "2025.05 (1人 개인 프로젝트)",
+    created: "2025.05 ~ 진행중 (1人 개인 프로젝트)",
     subTitle: "직접 기획·디자인·개발한, 다크 모드와 모션 시스템을 갖춘 반응형 포트폴리오 웹",
     content: [
       "라이트/다크 테마 토글 (정적 배포에서 화면 깜빡임 없음)",
@@ -578,13 +578,19 @@ const projectItems: ProjectItems[] = [
   },
 ];
 
-// created 문자열의 첫 "YYYY.MM"을 시작 시점으로 보고 최신 프로젝트가 앞에 오도록 정렬한다.
-// 새 프로젝트를 배열 어디에 넣어도 자동으로 최신순이 유지된다.
+// 진행 중인 프로젝트를 맨 앞에 두고, 나머지는 created의 첫 "YYYY.MM"(시작월)
+// 기준 내림차순으로 정렬한다. 새 프로젝트를 배열 어디에 넣어도 순서가 유지된다.
 const startMonth = (created: string): number => {
   const match = created.match(/(\d{4})\.(\d{2})/);
   return match ? Number(match[1]) * 100 + Number(match[2]) : 0;
 };
 
-projectItems.sort((a, b) => startMonth(b.created) - startMonth(a.created));
+const isOngoing = (created: string): boolean => created.includes("진행중");
+
+projectItems.sort((a, b) => {
+  const ongoingDiff = Number(isOngoing(b.created)) - Number(isOngoing(a.created));
+  if (ongoingDiff !== 0) return ongoingDiff;
+  return startMonth(b.created) - startMonth(a.created);
+});
 
 export default projectItems;
