@@ -25,7 +25,7 @@ const sections: SectionMeta[] = [
     id: "projects",
     nav: "Projects",
     title: "PROJECTS",
-    eyebrow: "4건 · 2024–2025",
+    eyebrow: "5건 · 2024–2025",
   },
   {
     id: "career",
