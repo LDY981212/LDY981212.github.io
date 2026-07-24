@@ -605,9 +605,9 @@ const projectItems: ProjectItems[] = [
           "리포트·서포트 등 서버 데이터를 캐싱하고 로직을 커스텀 훅으로 감싸 서버 상태와 클라이언트 상태를 분리했습니다.",
       },
       {
-        name: "Radix UI + Tailwind",
+        name: "Recharts",
         detail:
-          "Dialog·Dropdown·Select 등 접근성이 확보된 Radix 프리미티브 위에 class-variance-authority로 variant를 관리해 일관된 디자인 시스템을 구성했습니다.",
+          "참여 현황 리포트의 퍼널·라인·파이·바 차트를 Recharts로 구현하고, 차트 데이터를 텍스트로도 보여주는 커스텀 컴포넌트를 함께 만들었습니다.",
       },
       {
         name: "react-pdf",
@@ -681,7 +681,7 @@ const projectItems: ProjectItems[] = [
   {
     id: "7",
     title: "Player",
-    created: "2026.01 ~ 2026.07 (웨이온 · 3人 팀 프로젝트)",
+    created: "2026.01 ~ 2026.07 (웨이온 · 2人 팀 프로젝트)",
     subTitle: "웨비나 라이브와 다시보기를 시청하는 영상 플레이어",
     content: [
       "Vimeo · HLS 기반 플레이어 제작",
@@ -770,13 +770,13 @@ const projectItems: ProjectItems[] = [
   {
     id: "8",
     title: "ClipNow",
-    created: "2026.04 ~ 2026.07 (웨이온 · 4人 팀 프로젝트)",
+    created: "2026.04 ~ 2026.07 (웨이온 · 3人 팀 프로젝트)",
     subTitle:
       "영상을 올리면 AI가 자막을 생성하고 숏폼 클립으로 편집·렌더링해 SNS에 배포하는 서비스",
     content: [
       "단어 단위 자막 타이밍·카라오케 렌더링",
       "AI 음성 인식(ASR) 연동 및 정확도 개선",
-      "영상 렌더링 파이프라인 (Shotstack·Remotion·웹훅)",
+      "영상 렌더링 파이프라인 (Shotstack·웹훅)",
       "SNS(인스타그램·틱톡) 연동 및 백엔드 인프라",
     ],
     stack: [
@@ -796,19 +796,19 @@ const projectItems: ProjectItems[] = [
           "타입 안전한 Drizzle ORM으로 프로젝트·작업 데이터를 관리하고, DB 커넥션 예산을 명시해 동시 작업 시 커넥션 고갈을 방지했습니다.",
       },
       {
-        name: "Deepgram · Gemini (ASR)",
+        name: "Deepgram · Gemini",
         detail:
-          "영상 음성을 텍스트로 변환하는 음성 인식에 Deepgram과 Gemini를 사용하고, 도메인 키워드 부스트로 인식 정확도를 높였습니다.",
+          "Deepgram으로 음성을 텍스트로 전사하고, Gemini로 영상을 이해해 하이라이트 구간을 뽑았습니다. 도메인 키워드 부스트로 인식 정확도를 높였습니다.",
       },
       {
-        name: "Shotstack · Remotion",
+        name: "Shotstack",
         detail:
-          "자막이 입혀진 숏폼 영상을 서버에서 렌더링하기 위해 Shotstack과 Remotion을 사용하고, 웹훅으로 렌더링 완료를 비동기 처리했습니다.",
+          "자막이 입혀진 숏폼 영상을 서버에서 렌더링하기 위해 Shotstack을 사용하고, 웹훅으로 렌더링 완료를 비동기로 처리했습니다.",
       },
       {
-        name: "pg-boss · AWS S3",
+        name: "AWS S3",
         detail:
-          "PostgreSQL 기반 pg-boss 큐와 워커로 인코딩·렌더링 작업을 처리하고, 결과물은 S3에 저장했습니다.",
+          "업로드한 원본 영상과 렌더링 결과물을 S3에 저장하고, presigned URL로 안전하게 주고받았습니다.",
       },
     ],
     link: "웨이온 재직 중 진행한 프로젝트입니다.",
@@ -821,13 +821,13 @@ const projectItems: ProjectItems[] = [
         detail: [
           "단어 단위 자막 타이밍 데이터 인프라 구축 및 카라오케(단어 단위 강조) 렌더링 구현",
           "자막 편집 패널을 영상 옆 플로팅 카드로 분리해 편집 경험 개선",
-          "Shotstack·Remotion 렌더링 파이프라인과 웹훅 인프라를 여러 단계에 걸쳐 재설계",
+          "Shotstack 렌더링 파이프라인과 웹훅 인프라를 여러 단계에 걸쳐 재설계",
         ],
       },
       {
         head: "AI 음성 인식",
         detail: [
-          "Deepgram·Gemini 기반 음성 인식 연동",
+          "Deepgram으로 음성 전사, Gemini로 영상 이해·하이라이트 추출 연동",
           "영상 제목·프롬프트의 도메인 단어를 키워드로 부스트해 인식 정확도 향상",
         ],
       },
@@ -841,9 +841,8 @@ const projectItems: ProjectItems[] = [
       {
         head: "백엔드 인프라",
         detail: [
-          "pg-boss 큐·워커와 토큰 암호화 구현",
           "API 레이트 리밋과 사용자별 동시 작업 가드 구현",
-          "pino 구조화 로깅 및 Sentry 에러 추적 도입",
+          "SNS 연동 토큰 암호화 및 pino 구조화 로깅 적용",
         ],
       },
     ],
