@@ -38,12 +38,13 @@ export default function Project({ setProjectName, setIsOpen }: ProjectProps) {
           {projectItems.map((projectItem) => (
             <TiltCard
               key={projectItem.id}
+              id={`project-${projectItem.id}`}
               variants={itemsVariants}
               // 카드 전체가 클릭 대상이다. 호버 이펙트가 이미 "누를 수 있다"고
               // 말하고 있는데 버튼만 반응하면 어긋난다. 키보드 사용자는 아래
               // 버튼으로 같은 곳에 도달하므로 여기에 role을 더 붙이지 않는다.
               onClick={() => openModal(projectItem.router)}
-              className="flex h-full cursor-pointer flex-col gap-[1.8rem] rounded-[0.8rem] border border-line bg-surface p-[2.4rem] transition-colors hover:border-accent"
+              className="flex h-full scroll-mt-[10rem] cursor-pointer flex-col gap-[1.8rem] rounded-[0.8rem] border border-line bg-surface p-[2.4rem] transition-colors hover:border-accent"
             >
               <header className="flex flex-col gap-[1rem]">
                 <span

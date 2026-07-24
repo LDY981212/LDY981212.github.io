@@ -16,6 +16,7 @@ const MAX_TILT_DEG = 4;
 
 interface TiltCardProps {
   children: ReactNode;
+  id?: string;
   className?: string;
   variants?: Variants;
   onClick?: () => void;
@@ -28,6 +29,7 @@ interface TiltCardProps {
  */
 export default function TiltCard({
   children,
+  id,
   className = "",
   variants,
   onClick,
@@ -62,6 +64,7 @@ export default function TiltCard({
   return (
     <motion.div
       ref={ref}
+      id={id}
       variants={variants}
       onClick={onClick}
       onPointerMove={handlePointerMove}
