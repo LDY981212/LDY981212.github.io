@@ -4,7 +4,9 @@ export interface CareerItems {
   created: string;
   content: CareerContent[];
   stack: string[];
-  imageUrl: string;
+  /** 로고 이미지 경로. 없으면 logoText(또는 제목 앞 2글자)를 텍스트로 표시한다. */
+  imageUrl?: string;
+  logoText?: string;
 }
 
 export interface CareerContent {

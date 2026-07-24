@@ -26,7 +26,7 @@ export default function Project({ setProjectName, setIsOpen }: ProjectProps) {
       className="flex scroll-mt-[9rem] justify-center bg-surface-2 px-[1.5rem] py-[11rem] md:px-[4rem] lg:px-[8rem]"
     >
       <div className="w-full max-w-[120rem]">
-        <SectionHeading title="PROJECTS" eyebrow="5건 · 2024–2025" />
+        <SectionHeading title="PROJECTS" eyebrow="8건 · 2024–2026" />
 
         <motion.div
           variants={containerVariants}

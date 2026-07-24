@@ -31,9 +31,20 @@ export default function Career() {
                 className="flex gap-[2rem] md:gap-[4rem] lg:gap-[5rem]"
               >
                 <div className="flex shrink-0 justify-center items-center w-[8rem] h-[8rem] md:w-[12rem] md:h-[12rem] bg-ink rounded-full">
-                  <div className="relative w-[4.4rem] h-[4.4rem] md:w-[7rem] md:h-[7rem]">
-                    <Image src={careerItem.imageUrl} alt="cna 로고" fill />
-                  </div>
+                  {careerItem.imageUrl ? (
+                    <div className="relative w-[4.4rem] h-[4.4rem] md:w-[7rem] md:h-[7rem]">
+                      <Image
+                        src={careerItem.imageUrl}
+                        alt={`${careerItem.title} 로고`}
+                        fill
+                      />
+                    </div>
+                  ) : (
+                    // 로고 이미지가 없으면 약어를 텍스트로 대신 보여준다.
+                    <span className="mono text-[1.4rem] md:text-[2rem] font-black tracking-[0.1em] text-paper">
+                      {careerItem.logoText ?? careerItem.title.slice(0, 2)}
+                    </span>
+                  )}
                 </div>
                 <div className="bg-line w-[0.1rem] shrink-0"></div>
                 <div className="flex flex-col min-w-0 gap-[1.5rem] md:gap-[2.5rem] break-words overflow-hidden w-full">
