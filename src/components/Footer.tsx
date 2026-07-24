@@ -35,10 +35,13 @@ export default function Footer() {
             Contact
           </span>
           <h2 className="display max-w-[24ch] text-[2.4rem] font-light leading-[1.35] text-ink md:text-[3.6rem] lg:text-[4.4rem]">
-            같이 만들 게 있다면
+            <span className="font-black">새로운 기회</span>를
             <br />
-            <span className="font-black">편하게 연락 주세요.</span>
+            찾고 있습니다.
           </h2>
+          <p className="max-w-[36ch] text-[1.5rem] leading-[1.7] text-muted">
+            제안이나 궁금한 점이 있다면 편하게 연락 주세요.
+          </p>
 
           <div className="mt-[1rem] flex flex-wrap items-center gap-[1.2rem]">
             <button
