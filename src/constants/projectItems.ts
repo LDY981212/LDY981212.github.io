@@ -620,7 +620,7 @@ const projectItems: ProjectItems[] = [
           "유료 웨비나 결제를 위해 토스페이먼츠 SDK를 연동하고 결제 상태를 세분화해 처리했습니다.",
       },
     ],
-    link: "웨이온 재직 중 진행한 프로젝트입니다.",
+    link: "https://www.webinow.co.kr/",
     router: "webinow",
     intro:
       "Webinow는 온라인 세미나를 개설·운영하고, 참여자 데이터를 분석해 리포트로 제공하는 SaaS 플랫폼입니다. 관리자용 스튜디오, 참여자용 로비, 마케팅용 웹사이트를 하나의 Nx 모노레포에서 운영하며, 웨비나 개설부터 참여·수료·성과 분석까지의 흐름을 다룹니다.",
@@ -716,7 +716,7 @@ const projectItems: ProjectItems[] = [
           "라이브·채팅 채널 등 서버 데이터를 조회·캐싱하고, 시청 모드에 따라 불필요한 요청은 생략하도록 관리했습니다.",
       },
     ],
-    link: "웨이온 재직 중 진행한 프로젝트입니다.",
+    link: "Webinow를 통해 접속할 수 있습니다.",
     router: "player",
     intro:
       "Webinow에서 개설한 웨비나를 시청하는 영상 플레이어입니다. 라이브 스트림과 다시보기(VOD)를 하나의 플레이어로 지원하고, 채팅·Q&A 패널을 영상과 함께 배치해 실시간 참여 경험을 제공합니다.",
@@ -770,7 +770,7 @@ const projectItems: ProjectItems[] = [
   {
     id: "8",
     title: "ClipNow",
-    created: "2026.04 ~ 진행중 (웨이온 · 3人 팀 프로젝트)",
+    created: "2026.04 ~ 진행중 (웨이온 · 2人 팀 프로젝트)",
     subTitle:
       "영상을 올리면 AI가 자막을 생성하고 숏폼 클립으로 편집·렌더링해 SNS에 배포하는 서비스",
     content: [
@@ -811,7 +811,7 @@ const projectItems: ProjectItems[] = [
           "업로드한 원본 영상과 렌더링 결과물을 S3에 저장하고, presigned URL로 안전하게 주고받았습니다.",
       },
     ],
-    link: "웨이온 재직 중 진행한 프로젝트입니다.",
+    link: "https://clip.webinow.co.kr/",
     router: "clipnow",
     intro:
       "ClipNow는 긴 영상을 업로드하면 AI가 음성을 인식해 자막을 만들고, 숏폼 클립으로 편집·렌더링한 뒤 SNS에 바로 배포할 수 있게 돕는 서비스입니다. 자막 생성부터 편집·렌더링·업로드까지의 파이프라인을 프론트엔드와 백엔드 양쪽에서 담당했습니다.",
