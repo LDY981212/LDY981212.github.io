@@ -404,7 +404,7 @@ const projectItems: ProjectItems[] = [
   {
     id: "5",
     title: "FlowIt",
-    created: "2025.07 ~ 진행중 (4人 팀 프로젝트)",
+    created: "2025.07 ~ 2025.12 (4人 팀 프로젝트)",
     subTitle:
       "큰 목표를 할 일과 시간으로 연결해, 목표 중심으로 생산성을 관리하는 웹 서비스",
     content: [
@@ -530,5 +530,14 @@ const projectItems: ProjectItems[] = [
     github: "https://github.com/FESI-FlowIt/Frontend",
   },
 ];
+
+// created 문자열의 첫 "YYYY.MM"을 시작 시점으로 보고 최신 프로젝트가 앞에 오도록 정렬한다.
+// 새 프로젝트를 배열 어디에 넣어도 자동으로 최신순이 유지된다.
+const startMonth = (created: string): number => {
+  const match = created.match(/(\d{4})\.(\d{2})/);
+  return match ? Number(match[1]) * 100 + Number(match[2]) : 0;
+};
+
+projectItems.sort((a, b) => startMonth(b.created) - startMonth(a.created));
 
 export default projectItems;
