@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import projectItems from "@/constants/projectItems";
 import projectColors from "@/constants/projectColors";
 import { motion } from "framer-motion";
@@ -14,11 +15,35 @@ import SectionHeading from "./SectionHeading";
 import TiltCard from "./TiltCard";
 import Icon from "./Icon";
 
+// 웨이온 재직 중 진행한 프로젝트. 나머지는 개인/부트캠프 프로젝트로 본다.
+const COMPANY_ROUTERS = new Set(["webinow", "player", "clipnow"]);
+const isCompany = (router: string) => COMPANY_ROUTERS.has(router);
+
+type Filter = "all" | "company" | "personal";
+
+const FILTERS: { key: Filter; label: string }[] = [
+  { key: "all", label: "전체" },
+  { key: "company", label: "회사" },
+  { key: "personal", label: "개인" },
+];
+
 export default function Project({ setProjectName, setIsOpen }: ProjectProps) {
+  const [filter, setFilter] = useState<Filter>("all");
+
   const openModal = (router: string) => {
     setProjectName(router);
     setIsOpen(true);
   };
+
+  const counts = useMemo(() => {
+    const company = projectItems.filter((p) => isCompany(p.router)).length;
+    return { all: projectItems.length, company, personal: projectItems.length - company };
+  }, []);
+
+  const visibleItems = projectItems.filter((p) => {
+    if (filter === "all") return true;
+    return filter === "company" ? isCompany(p.router) : !isCompany(p.router);
+  });
 
   return (
     <section
@@ -28,14 +53,49 @@ export default function Project({ setProjectName, setIsOpen }: ProjectProps) {
       <div className="w-full max-w-[120rem]">
         <SectionHeading title="PROJECTS" eyebrow="8건 · 2024–2026" />
 
+        <div
+          role="tablist"
+          aria-label="프로젝트 분류"
+          className="mb-[2.4rem] flex flex-wrap gap-[0.6rem] md:mb-[3rem]"
+        >
+          {FILTERS.map((tab) => {
+            const active = filter === tab.key;
+            return (
+              <button
+                key={tab.key}
+                type="button"
+                role="tab"
+                aria-selected={active}
+                onClick={() => setFilter(tab.key)}
+                className={`mono flex cursor-pointer items-center gap-[0.6rem] rounded-full border px-[1.4rem] py-[0.7rem] text-[1.3rem] font-bold transition-colors ${
+                  active
+                    ? "border-accent bg-accent text-accent-ink"
+                    : "border-line text-muted hover:border-accent hover:text-accent"
+                }`}
+              >
+                {tab.label}
+                <span
+                  className={`text-[1.1rem] ${
+                    active ? "text-accent-ink/70" : "text-muted"
+                  }`}
+                >
+                  {counts[tab.key]}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
         <motion.div
+          // filter가 바뀌면 key도 바뀌어 카드가 다시 stagger 리빌된다.
+          key={filter}
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
           className="grid grid-cols-1 gap-[1.6rem] md:grid-cols-2 md:gap-[2.4rem]"
         >
-          {projectItems.map((projectItem) => (
+          {visibleItems.map((projectItem) => (
             <TiltCard
               key={projectItem.id}
               id={`project-${projectItem.id}`}

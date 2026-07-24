@@ -21,7 +21,7 @@ export default function Career() {
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          className="flex w-full flex-col"
+          className="flex w-full flex-col gap-[6rem] md:gap-[8rem]"
         >
           {careerItems &&
             careerItems.map((careerItem) => (
