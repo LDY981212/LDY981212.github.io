@@ -2,11 +2,45 @@ import type { Metadata } from "next";
 import "../styles/globals.css";
 import localFont from "next/font/local";
 
+const SITE_URL = "https://ldy981212.github.io";
+const TITLE = "LDY's Portfolio";
+const DESCRIPTION = "프론트엔드 개발자 이도엽 포트폴리오입니다.";
+
 export const metadata: Metadata = {
-  title: "LDY's Portfolio",
-  description: "프론트엔드 개발자 이도엽 포트폴리오입니다.",
+  // 정적 export라 이 값이 없으면 og:image가 localhost 절대경로로 박힌다.
+  // 카카오톡 스크래퍼는 상대경로를 못 읽으므로 필수.
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon-32.png", type: "image/png", sizes: "32x32" },
+      { url: "/icon-192.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    url: SITE_URL,
+    siteName: TITLE,
+    title: TITLE,
+    description: DESCRIPTION,
+    images: [
+      {
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "LDY 로고",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+    images: ["/images/og-image.png"],
   },
 };
 
