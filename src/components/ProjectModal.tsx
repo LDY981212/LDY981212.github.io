@@ -250,6 +250,13 @@ function Star({
   tone: string;
   children: ReactNode;
 }) {
+  // 행동 설명이 길어지면 한 덩어리는 읽히지 않는다. 데이터에서 빈 줄로 끊은
+  // 만큼만 문단을 나누고, 끊김이 없으면 기존처럼 통째로 렌더한다.
+  const paragraphs =
+    typeof children === "string"
+      ? children.split("\n\n").filter((part) => part.trim().length > 0)
+      : null;
+
   return (
     <div className="flex flex-col gap-[0.3rem] md:flex-row md:gap-[1.4rem]">
       <dt
@@ -257,7 +264,11 @@ function Star({
       >
         {label}
       </dt>
-      <dd className="text-[1.5rem] leading-[1.7] text-muted">{children}</dd>
+      <dd className="flex flex-col gap-[0.9rem] text-[1.5rem] leading-[1.7] text-muted">
+        {paragraphs && paragraphs.length > 1
+          ? paragraphs.map((part) => <p key={part}>{part}</p>)
+          : children}
+      </dd>
     </div>
   );
 }
