@@ -126,7 +126,7 @@ export default function ProjectModal({
             </p>
           )}
 
-          <Block icon="wrench" title="STACK" caption="쓴 이유">
+          <Block icon="wrench" title="STACK">
             <dl className="flex flex-col gap-[1.2rem]">
               {projectItem.stack.map((stack) => (
                 <div
@@ -144,7 +144,7 @@ export default function ProjectModal({
             </dl>
           </Block>
 
-          <Block icon="chart" title="CONTRIBUTION" caption="맡은 일">
+          <Block icon="chart" title="CONTRIBUTION">
             <div className="flex flex-col gap-[1.6rem]">
               {projectItem.contribution.map((contribution) => (
                 <div key={contribution.head} className="flex flex-col gap-[0.8rem]">
@@ -163,7 +163,7 @@ export default function ProjectModal({
             </div>
           </Block>
 
-          <Block icon="bug" title="TROUBLE SHOOTING" caption="상황 → 결과">
+          <Block icon="bug" title="TROUBLE SHOOTING">
             <div className="flex flex-col gap-[1.6rem]">
               {projectItem.solution.map((solution) => (
                 <article
@@ -194,7 +194,7 @@ export default function ProjectModal({
           </Block>
 
           {projectItem.videos && (
-            <Block icon="play" title="DEMO VIDEO" caption="시연">
+            <Block icon="play" title="DEMO VIDEO">
               <div className="overflow-hidden rounded-[1.2rem] border border-line">
                 <iframe
                   className="aspect-video w-full"
@@ -215,12 +215,10 @@ export default function ProjectModal({
 function Block({
   icon,
   title,
-  caption,
   children,
 }: {
   icon: IconName;
   title: string;
-  caption: string;
   children: ReactNode;
 }) {
   return (
@@ -232,9 +230,6 @@ function Block({
         <h3 className="display text-[1.8rem] font-black text-ink md:text-[2.2rem]">
           {title}
         </h3>
-        <span className="mono text-[1.1rem] uppercase tracking-[0.16em] text-muted">
-          {caption}
-        </span>
       </header>
       {children}
     </section>
