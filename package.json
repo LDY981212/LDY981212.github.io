@@ -5,6 +5,8 @@
   "homepage": "https://ldy981212.github.io/",
   "scripts": {
     "dev": "next dev --turbopack",
+    "font": "node scripts/build-font-subset.mjs",
+    "prebuild": "npm run font",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -30,6 +32,7 @@
     "eslint-config-next": "15.3.0",
     "gh-pages": "^6.3.0",
     "playwright-core": "^1.49.1",
+    "subset-font": "^2.5.0",
     "tailwindcss": "^4.1.5",
     "typescript": "^5"
   }

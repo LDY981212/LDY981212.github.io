@@ -44,9 +44,17 @@ export const metadata: Metadata = {
   },
 };
 
+// 서브셋은 npm run font 가 만든다(prebuild 로 자동 실행). 원본 2MB 를 그대로 쓰면
+// 폰트가 늦게 도착해 폴백에서 교체되는 순간 히어로와 내비게이션이 함께 밀린다.
+// 라이브 실측으로 첫 방문 CLS 0.034 가 여기서 나왔다.
+//
+// display 가 "optional" 인 이유: swap 은 늦게 도착한 폰트로 반드시 교체하므로
+// 시프트가 남는다. optional 은 짧은 차단 구간 안에 도착하지 않으면 그 방문에는
+// 교체하지 않아 시프트가 생길 경로 자체가 없다. 서브셋이 177KB 라 대부분의
+// 방문에서는 제때 도착하고, 못 받은 방문에도 폰트는 캐시돼 다음부터 적용된다.
 const pretendard = localFont({
-  src: "../../public/fonts/PretendardVariable.woff2",
-  display: "swap",
+  src: "../../public/fonts/PretendardVariable.subset.woff2",
+  display: "optional",
   weight: "45 920",
   variable: "--font-pretendard",
 });
