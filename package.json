@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "pdf": "node scripts/build-pdf.mjs",
+    "resume": "node scripts/build-resume-pdf.mjs",
     "cls": "node scripts/measure-cls.mjs",
     "deploy": "npm run build && touch out/.nojekyll && gh-pages -d out"
   },
