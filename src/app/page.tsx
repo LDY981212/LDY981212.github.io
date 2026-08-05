@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { MotionConfig } from "framer-motion";
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
+import Impact from "@/components/Impact";
 import AboutMe from "@/components/AboutMe";
 import Skills from "@/components/Skills";
 import Project from "@/components/Project";
@@ -37,10 +38,12 @@ export default function Home() {
 
       <main>
         <Hero />
-        <AboutMe />
-        <Skills />
+        {/* 히어로 다음이 바로 성과다. 프로필과 스킬은 그 뒤로 미룬다. */}
+        <Impact setIsOpen={setIsOpen} setProjectName={setProjectName} />
         <Project setIsOpen={setIsOpen} setProjectName={setProjectName} />
         <Career />
+        <Skills />
+        <AboutMe />
       </main>
 
       <Footer />

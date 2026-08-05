@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import projectItems from "@/constants/projectItems";
+import { featuredItems } from "@/constants/projectItems";
 import { ease } from "@/utils/FramerVariants";
 import Icon from "./Icon";
 
@@ -9,9 +9,11 @@ import Icon from "./Icon";
  * 히어로 하단의 프로젝트 목차.
  *
  * 문장 네 줄로는 100dvh를 채울 수 없어 상단이 통째로 비어 있었다. 장식으로
- * 메우는 대신 첫 화면이 목차 역할을 하게 했다. 지금 구조에서는 PROFILES와
- * SKILLS를 다 지나야 작업물이 나오는데, 보러 온 사람이 가장 먼저 찾는 것이
- * 그 작업물이다. 새 정보를 지어내지 않고 이미 있는 데이터만 쓴다.
+ * 메우는 대신 첫 화면이 목차 역할을 하게 했다. 보러 온 사람이 가장 먼저 찾는
+ * 것이 작업물이다. 새 정보를 지어내지 않고 이미 있는 데이터만 쓴다.
+ *
+ * 아카이브로 내린 프로젝트는 여기 싣지 않는다. 첫 화면 목차에 여덟 줄이
+ * 깔리면 어느 것을 보라는 것인지가 다시 사라진다.
  */
 export default function HeroProjectIndex() {
   return (
@@ -22,7 +24,7 @@ export default function HeroProjectIndex() {
       transition={{ duration: 0.7, delay: 1, ease }}
       className="mt-[3.2rem] w-full max-w-[76rem] border-t border-line md:mt-[4rem]"
     >
-      {projectItems.map((project) => (
+      {featuredItems.map((project) => (
         <a
           key={project.id}
           href={`#project-${project.id}`}

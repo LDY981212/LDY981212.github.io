@@ -64,7 +64,7 @@ export default function Skills() {
       className="flex scroll-mt-[9rem] justify-center overflow-x-hidden bg-surface-2 px-[1.5rem] py-[6rem] md:px-[4rem] lg:px-[8rem]"
     >
       <div className="w-full max-w-[120rem]">
-        <SectionHeading title="SKILLS" eyebrow="주력 TypeScript · Next.js" />
+        <SectionHeading id="skills" />
 
         <motion.div
           variants={containerVariants}

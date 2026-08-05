@@ -1,7 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import projectItems from "@/constants/projectItems";
+import { featuredItems, archivedItems } from "@/constants/projectItems";
 import projectColors from "@/constants/projectColors";
 import { motion } from "framer-motion";
 import {
@@ -15,35 +14,11 @@ import SectionHeading from "./SectionHeading";
 import TiltCard from "./TiltCard";
 import Icon from "./Icon";
 
-// 웨이온 재직 중 진행한 프로젝트. 나머지는 개인/부트캠프 프로젝트로 본다.
-const COMPANY_ROUTERS = new Set(["webinow", "player", "clipnow"]);
-const isCompany = (router: string) => COMPANY_ROUTERS.has(router);
-
-type Filter = "all" | "company" | "personal";
-
-const FILTERS: { key: Filter; label: string }[] = [
-  { key: "all", label: "전체" },
-  { key: "company", label: "회사" },
-  { key: "personal", label: "개인" },
-];
-
 export default function Project({ setProjectName, setIsOpen }: ProjectProps) {
-  const [filter, setFilter] = useState<Filter>("all");
-
   const openModal = (router: string) => {
     setProjectName(router);
     setIsOpen(true);
   };
-
-  const counts = useMemo(() => {
-    const company = projectItems.filter((p) => isCompany(p.router)).length;
-    return { all: projectItems.length, company, personal: projectItems.length - company };
-  }, []);
-
-  const visibleItems = projectItems.filter((p) => {
-    if (filter === "all") return true;
-    return filter === "company" ? isCompany(p.router) : !isCompany(p.router);
-  });
 
   return (
     <section
@@ -51,51 +26,16 @@ export default function Project({ setProjectName, setIsOpen }: ProjectProps) {
       className="flex scroll-mt-[9rem] justify-center bg-surface-2 px-[1.5rem] py-[11rem] md:px-[4rem] lg:px-[8rem]"
     >
       <div className="w-full max-w-[120rem]">
-        <SectionHeading title="PROJECTS" eyebrow="8건 · 2024–2026" />
-
-        <div
-          role="tablist"
-          aria-label="프로젝트 분류"
-          className="mb-[2.4rem] flex flex-wrap gap-[0.6rem] md:mb-[3rem]"
-        >
-          {FILTERS.map((tab) => {
-            const active = filter === tab.key;
-            return (
-              <button
-                key={tab.key}
-                type="button"
-                role="tab"
-                aria-selected={active}
-                onClick={() => setFilter(tab.key)}
-                className={`mono flex cursor-pointer items-center gap-[0.6rem] rounded-full border px-[1.4rem] py-[0.7rem] text-[1.3rem] font-bold transition-colors ${
-                  active
-                    ? "border-accent bg-accent text-accent-ink"
-                    : "border-line text-muted hover:border-accent hover:text-accent"
-                }`}
-              >
-                {tab.label}
-                <span
-                  className={`text-[1.1rem] ${
-                    active ? "text-accent-ink/70" : "text-muted"
-                  }`}
-                >
-                  {counts[tab.key]}
-                </span>
-              </button>
-            );
-          })}
-        </div>
+        <SectionHeading id="projects" />
 
         <motion.div
-          // filter가 바뀌면 key도 바뀌어 카드가 다시 stagger 리빌된다.
-          key={filter}
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
           className="grid grid-cols-1 gap-[1.6rem] md:grid-cols-2 md:gap-[2.4rem]"
         >
-          {visibleItems.map((projectItem) => (
+          {featuredItems.map((projectItem) => (
             <TiltCard
               key={projectItem.id}
               id={`project-${projectItem.id}`}
@@ -166,7 +106,69 @@ export default function Project({ setProjectName, setIsOpen }: ProjectProps) {
             </TiltCard>
           ))}
         </motion.div>
+
+        <ArchiveList />
       </div>
     </section>
+  );
+}
+
+/**
+ * 부트캠프 시절 팀 프로젝트 목록.
+ *
+ * 카드로 두면 지금 하는 일과 같은 무게로 읽힌다. 2024년 팀 프로젝트 넷이
+ * 회사 프로젝트와 나란히 놓여 있으면 어느 쪽을 보라는 것인지 알 수 없다.
+ * 그렇다고 지우면 이 시기가 통째로 비어 보이므로, 무엇을 했는지 확인할 수
+ * 있는 최소한만 한 줄로 남기고 나머지는 저장소에서 보게 한다.
+ */
+function ArchiveList() {
+  if (archivedItems.length === 0) return null;
+
+  return (
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={viewportOnce}
+      className="mt-[6rem] md:mt-[8rem]"
+    >
+      <motion.h3
+        variants={itemsVariants}
+        className="mono mb-[1.6rem] text-[1.2rem] uppercase tracking-[0.14em] text-muted"
+      >
+        Archive · 부트캠프 팀 프로젝트 {archivedItems.length}건
+      </motion.h3>
+
+      <motion.ul variants={itemsVariants} className="border-t border-line">
+        {archivedItems.map((item) => (
+          <li
+            key={item.id}
+            className="flex flex-col gap-[0.4rem] border-b border-line py-[1.4rem] md:flex-row md:items-baseline md:gap-[1.6rem]"
+          >
+            <span className="shrink-0 text-[1.4rem] font-bold text-ink md:w-[14rem] md:text-[1.5rem]">
+              {item.title}
+            </span>
+            <span className="min-w-0 flex-1 text-[1.3rem] leading-[1.6] text-muted md:text-[1.4rem]">
+              {item.archiveNote ?? item.subTitle}
+            </span>
+            <span className="mono shrink-0 text-[1.1rem] text-muted md:text-[1.2rem]">
+              {item.created.split(" (")[0]}
+            </span>
+            {item.github && (
+              <a
+                href={item.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${item.title} GitHub 저장소 열기`}
+                className="mono flex shrink-0 items-center gap-[0.5rem] text-[1.2rem] font-bold text-muted transition-colors hover:text-accent"
+              >
+                <Icon name="github" size="1.4rem" />
+                GitHub
+              </a>
+            )}
+          </li>
+        ))}
+      </motion.ul>
+    </motion.div>
   );
 }

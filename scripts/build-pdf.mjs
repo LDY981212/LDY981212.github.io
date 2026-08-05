@@ -49,6 +49,12 @@ projectItems.sort((a, b) => {
   return o !== 0 ? o : startMonth(b.created) - startMonth(a.created);
 });
 
+// 사이트에서 카드로 세우는 것만 PDF에서도 펼친다. archived 로 내린 항목은
+// 사이트와 똑같이 한 줄 목록으로 남긴다. 둘이 어긋나면 면접 자리에서
+// 화면과 인쇄물이 다른 이야기를 하게 된다.
+const featuredItems = projectItems.filter((p) => !p.archived);
+const archivedItems = projectItems.filter((p) => p.archived);
+
 const profile = [
   ["이름", "이도엽"],
   ["생년월일", "1998.12.12"],
@@ -127,6 +133,25 @@ function projectHTML(p, i) {
   </section>`;
 }
 
+function archiveHTML() {
+  if (archivedItems.length === 0) return "";
+  const rows = archivedItems
+    .map(
+      (p) => `
+      <div class="arch-row">
+        <div class="arch-t">${esc(p.title)}</div>
+        <div class="arch-n">${esc(p.archiveNote ?? p.subTitle)}</div>
+        <div class="arch-d mono">${esc(p.created.split(" (")[0])}</div>
+      </div>`
+    )
+    .join("");
+  return `
+  <div class="arch">
+    <div class="arch-h mono">ARCHIVE · 부트캠프 팀 프로젝트 ${archivedItems.length}건</div>
+    ${rows}
+  </div>`;
+}
+
 function careerHTML(c) {
   const items = c.content
     .map(
@@ -197,6 +222,14 @@ const html = `<!doctype html>
   .c-date { font-size: 9.5px; color: var(--muted); margin-top: 2px; }
   .c-year { color: var(--muted); font-weight: 400; font-size: 9px; }
 
+  /* Archive */
+  .arch { margin-top: 16px; }
+  .arch-h { font-size: 9px; letter-spacing: .14em; color: var(--muted); margin-bottom: 6px; }
+  .arch-row { display:flex; gap:12px; align-items:baseline; padding:5px 0; border-bottom:1px solid var(--line); }
+  .arch-t { width: 110px; flex:none; font-weight: 700; font-size: 10.5px; }
+  .arch-n { flex:1; color: var(--muted); font-size: 10px; }
+  .arch-d { flex:none; color: var(--muted); font-size: 9px; }
+
   /* Project */
   .project { padding-top: 4px; }
   .break { break-before: page; }
@@ -247,8 +280,9 @@ const html = `<!doctype html>
   <div class="sec-h"><h2>CAREER</h2><div class="rule"></div></div>
   ${careerItems.map(careerHTML).join("")}
 
-  <div class="sec-h break"><h2>PROJECTS</h2><div class="rule"></div><div class="note">${projectItems.length}건 · 2024–2026</div></div>
-  ${projectItems.map((p, i) => projectHTML(p, i)).join("")}
+  <div class="sec-h break"><h2>PROJECTS</h2><div class="rule"></div><div class="note">${featuredItems.length}건 · 2024–2026</div></div>
+  ${featuredItems.map((p, i) => projectHTML(p, i)).join("")}
+  ${archiveHTML()}
 
   <div class="foot">© 2026 이도엽 · ldoyeop12@gmail.com · github.com/LDY981212 · https://ldy981212.github.io</div>
 </body></html>`;
@@ -256,7 +290,7 @@ const html = `<!doctype html>
 const htmlPath = path.join(OUT_DIR, "portfolio.html");
 fs.writeFileSync(htmlPath, html);
 console.log(
-  `projects=${projectItems.length} careers=${careerItems.length} order=${projectItems.map((p) => p.title).join(", ")}`
+  `featured=${featuredItems.length} archived=${archivedItems.length} careers=${careerItems.length} order=${featuredItems.map((p) => p.title).join(", ")}`
 );
 console.log(`html → ${htmlPath}`);
 

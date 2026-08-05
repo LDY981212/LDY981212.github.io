@@ -54,7 +54,7 @@ export default function AboutMe() {
       className="flex scroll-mt-[9rem] justify-center bg-paper px-[1.5rem] py-[7rem] md:px-[4rem] lg:px-[8rem]"
     >
       <div className="w-full max-w-[120rem]">
-        <SectionHeading title="PROFILES" />
+        <SectionHeading id="about" />
 
         <motion.dl
           variants={containerVariants}

@@ -7,9 +7,9 @@ const projectItems: ProjectItems[] = [
     created: "2025.05 ~ 진행중 (1人 개인 프로젝트)",
     subTitle: "직접 기획·디자인·개발한, 다크 모드와 모션 시스템을 갖춘 반응형 포트폴리오 웹",
     content: [
+      "히어로 CLS 실측 후 제거 (4분 체류 0.113 → 0)",
       "라이트/다크 테마 토글 (정적 배포에서 화면 깜빡임 없음)",
       "320px부터 데스크톱까지 모바일 우선 반응형",
-      "히어로·섹션 모션 시스템 (framer-motion)",
       "접근성 대응 (모션 줄이기·포커스 트랩·키보드 조작)",
     ],
     stack: [
@@ -31,7 +31,7 @@ const projectItems: ProjectItems[] = [
       {
         name: "Framer Motion",
         detail:
-          "히어로 강조어 순환·형광펜, 라인 단위 리빌, 스크롤 진행바, 현재 섹션 표시, 카드 포인터 tilt 등 모션을 하나의 이징으로 통일하고, 모션 줄이기 설정을 존중하도록 구성했습니다.",
+          "형광펜, 라인 단위 리빌, 스크롤 진행바, 현재 섹션 표시, 카드 포인터 tilt 등 모션을 하나의 이징으로 통일하고, 모션 줄이기 설정을 존중하도록 구성했습니다. 레이아웃을 밀어내는 애니메이션은 쓰지 않고, transform·opacity·backgroundSize처럼 리플로우가 없는 속성만 움직입니다.",
       },
     ],
     link: "https://ldy981212.github.io",
@@ -48,11 +48,12 @@ const projectItems: ProjectItems[] = [
         ],
       },
       {
-        head: "모션 시스템",
+        head: "모션 시스템 & 레이아웃 안정성",
         detail: [
-          "히어로 강조어 순환과 형광펜, 문장 라인 단위 마스크 리빌 구현",
+          "문장 라인 단위 마스크 리빌과 형광펜, 섹션 진입 리빌을 하나의 이징으로 통일",
           "스크롤 진행바와 IntersectionObserver 기반 현재 섹션 활성 표시 구현",
-          "프로젝트 카드 포인터 추종 tilt와 섹션 진입 리빌을 하나의 이징으로 통일",
+          "Playwright + PerformanceObserver로 layout-shift를 실측하는 스크립트 작성",
+          "히어로 강조어 회전이 만들던 누적 시프트를 측정으로 특정하고 제거 (CLS 0.113 → 0)",
         ],
       },
       {
@@ -72,6 +73,16 @@ const projectItems: ProjectItems[] = [
       },
     ],
     solution: [
+      {
+        head: "첫 화면의 강조어 회전이 레이아웃을 계속 밀어내던 문제점",
+        situation:
+          "첫 화면 문장의 강조어 자리에서 단어 다섯 개가 2.6초마다 돌아가고 있었습니다. 단어마다 폭이 달라 뒤따르는 \"깊이 고민하고,\"가 좌우로 밀렸는데, 한 번의 움직임이 작아서 문제로 인지하지 못하고 있었습니다. 포트폴리오 피드백에서 \"사용자 경험을 말하는 문구가 정작 그 자리의 CLS를 고려하지 않았다\"는 지적을 받고 실제로 측정해봤습니다.",
+        task: "시프트가 얼마나 발생하는지 추정이 아니라 수치로 확인하고, 원인을 제거하는 것입니다.",
+        action:
+          "정적 빌드를 로컬 서버로 띄우고 Playwright로 실제 Chrome을 연 뒤, 페이지 스크립트보다 먼저 실행되도록 PerformanceObserver를 주입해 layout-shift 엔트리를 누적했습니다. 26초 관찰에서 CLS 0.011에 시프트 9건이 나왔고, 간격이 정확히 2.6초라 회전 주기와 일치했습니다.\n\n여기서 0.011을 작은 값으로 보고 넘어갈 뻔했지만, 순환이 무기한 반복되므로 누적이 멈추지 않는다는 점이 문제였습니다. 체류 시간을 4분으로 늘려 재측정하니 CLS 0.113 · 시프트 92건으로, Core Web Vitals의 \"good\" 기준인 0.1을 넘겼습니다. 면접관이 포트폴리오를 읽는 시간이면 충분히 도달하는 값입니다.\n\n원인은 두 가지였습니다. AnimatePresence를 mode=\"wait\"로 둬서 이전 단어가 사라진 뒤에야 새 단어가 들어왔고, 그 사이 슬롯이 조사만 남는 폭으로 붕괴했습니다. 여기에 형광펜 span의 layout prop이 폭 변화를 애니메이션으로 처리해, 그동안 매 프레임 뒷 문장이 밀렸습니다.\n\n가장 긴 단어 기준으로 폭을 미리 잡아두는 방법도 검토했지만, 짧은 단어가 뜰 때 빈 여백이 남는 데다 회전이 문장에 더해주는 정보가 없다고 판단해 문구를 고정했습니다. 레이아웃에 영향을 주지 않는 backgroundSize 애니메이션인 형광펜만 남겼습니다.",
+        result:
+          "같은 조건으로 재측정해 4분 체류 CLS 0.113 → 0, 시프트 92건 → 0건이 되었습니다. 모바일 폭(390px)에서도 0입니다. 측정 스크립트를 남겨둬서 이후 변경에서도 같은 방식으로 확인할 수 있습니다.",
+      },
       {
         head: "정적 배포 환경에서 다크 모드 화면이 깜빡이는 문제점",
         situation:
@@ -109,6 +120,8 @@ const projectItems: ProjectItems[] = [
     id: "2",
     title: "Moving",
     created: "2025.01 ~ 2025.02 (6人 팀 프로젝트)",
+    archived: true,
+    archiveNote: "이사 견적 비교 플랫폼 · 실시간 채팅, 프로필·견적·리뷰 페이지",
     subTitle:
       "사용자들이 다양한 이사 서비스를 편리하게 요청하고, 이사 업체로부터 견적을 받을 수 있게 돕는 온라인 웹 서비스",
     content: [
@@ -138,7 +151,6 @@ const projectItems: ProjectItems[] = [
         detail:
           " 각 컴포넌트를 독립적으로 개발할 수 있으며, 컴포넌트의 변경사항 및 UI를 실시간으로 확인할 수 있기 때문에 팀 내 빠른 피드백을 위해 기용했습니다.",
       },
-      { name: "Jest", detail: "" },
       {
         name: "Redux Toolkit",
         detail:
@@ -218,16 +230,6 @@ const projectItems: ProjectItems[] = [
           "CSR에서는 세션 스토리지를 사용하도록 설정했고 ssr에서는 아무 동작도 하지 않는 가짜 스토리지를 만들어서 사용해 에러를 방지했습니다.",
       },
       {
-        head: "Jest 테스트 코드 작성 시 svg 이미지 파일 여러 개 모킹할 때 생긴 문제점",
-        situation:
-          "Jest test 코드를 작성할 때 svg 이미지를 여러 개 모킹해서 사용하면 가장 최신에 모킹된 svg 이미지로 모두 바뀌어 버리는 에러가 발생했습니다.",
-        task: "SVG 이미지를 여러 개 모킹했을 때 제대로 모킹이 되는지 확인하는 부분과 원하는 테스트를 진행하는 것입니다.",
-        result:
-          "그 결과 svg 모킹은 실패했지만 원하는 테스팅 결과를 얻을 수 있었습니다.",
-        action:
-          "우선 관련 이슈를 겪고 있는 여러 케이스를 찾아봤지만 이슈만 있을 뿐 해결책은 없었습니다. 그래서 svg 모킹하는 방식 대신 이미지에 data-startype이라고 속성을 줘서 테스트를 진행할 때 그 속성이 담긴 값으로 예측을 진행했습니다.",
-      },
-      {
         head: "실시간 채팅 페이지에서 이미지를 보여주는 과정에서 문제점",
         situation:
           "실시간 채팅 페이지에서 이미지를 선택 후 서버에 소켓으로 전송하고 http 요청으로 채팅 내역의 이미지를 받아오는 과정에서 에러가 발생했습니다. ",
@@ -245,6 +247,8 @@ const projectItems: ProjectItems[] = [
     id: "3",
     title: "HanCook",
     created: "2024.11 ~ 2024.12 (6人 팀 프로젝트)",
+    archived: true,
+    archiveNote: "외국인 대상 한국 요리 커뮤니티 · 작업물·레시피·챌린지 페이지",
     subTitle: "전 세계 외국인들을 대상으로 한 한국 요리 커뮤니티 웹 서비스",
     content: [
       "작업물 페이지 제작",
@@ -340,16 +344,6 @@ const projectItems: ProjectItems[] = [
           "Next app router의 공식 문서를 확인해 본 결과 getServerSideProp 등 prefetching 해주는 함수는 app router에서는 지원이 안된다는 것을 알고 tanstack query의 prefetchQuery를 이용해 사전로딩 한 후 dehydrate로 서버에서 쿼리 데이터를 직렬화하여 HydrationBoundary로 클라이언트로 전달할 수 있게 해줬습니다.",
       },
       {
-        head: "refreshToken을 이용해 accessToken을 재발급 하는 과정에서의 어려움",
-        situation:
-          "RefreshToken을 쿠키로 받아서 로그인을 하면 자동으로 refreshToken이 application의 cookie 목록에 있어야 하는데 계속 발급이 되지 않아서 accessToken을 갱신하는데 문제가 생겼습니다.",
-        task: "오류코드가 401 unatuhorizaed나 accessToken이 만료되었을 때 refreshToken을 이용하여 accessToken의 만료 시간을 갱신하는 것 입니다.",
-        result:
-          "로그인 시 refreshToken을 token으로 받아서 클라이언트에서 accessToken 갱신 요청 시 body에 refreshToken을 담아서 api 요청을 보낸 결과 갱신이 잘 이루어졌습니다.",
-        action:
-          "정확한 원인은 파악하지 못했으나, 일정상 쿠키로 refreshToken을 받아 갱신하는 작업에 너무 시간이 들었기 때문에 쿠키가 아닌 token으로 받아서 갱신하기로 수정했습니다.",
-      },
-      {
         head: "작업물 페이지에서 피드백 수정 삭제 기능을 만들 때 어려움",
         situation:
           "useMutaion을 사용해 수정 & 삭제 api를 구현 후  onClick prop으로 handle함수를 내려줬는데 수정 & 삭제 기능을 실행하면 data의 id가 들어가지 않는 에러가 나왔습니다.",
@@ -367,6 +361,8 @@ const projectItems: ProjectItems[] = [
     id: "4",
     title: "View My Startup",
     created: "2024.09 ~ 2024.10 (5人 팀 프로젝트)",
+    archived: true,
+    archiveNote: "스타트업 모의 투자 서비스 · 기업 비교 UI 및 조회 API 설계",
     subTitle:
       "개인 투자자들이 스타트업 정보를 제공받고, 누적 투자금액, 매출액, 고용 인원 등을 기준으로 스타트업을 비교하여 투자 결과를 확인할 수 있는 모의 투자 웹 서비스",
     content: [
@@ -435,15 +431,6 @@ const projectItems: ProjectItems[] = [
         action:
           "결과 페이지가 아닌 전에 나의 sessionId가 할당된 선택한 기업 UI가 남아있는 비교할 기업 선택 페이지를 render하는 것으로 바꾸어서 해결하기 위해서 백엔드에서 sessionId를 where로 받아서 선택한 기업을 조회해주는 api를 설계하고, 프론트에서 useEffect 훅으로 sessionId를 디펜던시로 줘서 만약 sessionId가 있으면 선택한 기업을 조회해주는 기능을 설계했습니다. ",
       },
-      {
-        head: "드롭다운 컴포넌트에서 데이터 오류의 문제점",
-        situation:
-          "비교결과 페이지에 드롭다운 컴포넌트를 적용할 때 UI는 잘 나왔지만, 데이터가 드롭다운 카테고리에 따라 데이터의 정렬이 되지 않았습니다.",
-        task: "비교 결과 페이지에서 드롭다운 기능이 잘 구현되도록 하는 것 입니다.",
-        result: "비교 결과 페이지에서 드롭다운 기능이 잘 작동되었습니다.",
-        action:
-          "드롭다운으로 정렬하는 데이터의 api 파일의 정렬에 대한 상태함수를 만들어 prop으로 넘겨주고, CompareDropdown 컴포넌트의 prop인 setSortOption을 사용하는 MySelection 컴포넌트에서 api파일의 prop을 드롭다운 컴포넌트의 prop으로 넘겨주었습니다.  ",
-      },
     ],
     videos: "https://www.youtube.com/embed/wKgFSlF35l4",
     github: "https://github.com/season2-3team/season2-View-My-Startup-3team-FE",
@@ -452,6 +439,8 @@ const projectItems: ProjectItems[] = [
     id: "5",
     title: "FlowIt",
     created: "2025.07 ~ 2025.12 (4人 팀 프로젝트)",
+    archived: true,
+    archiveNote: "목표 중심 생산성 관리 서비스 · 인증 흐름, 공용 UI·API 래퍼",
     subTitle:
       "큰 목표를 할 일과 시간으로 연결해, 목표 중심으로 생산성을 관리하는 웹 서비스",
     content: [
@@ -928,5 +917,11 @@ projectItems.sort((a, b) => {
   if (ongoingDiff !== 0) return ongoingDiff;
   return startMonth(b.created) - startMonth(a.created);
 });
+
+/** 카드와 모달로 자세히 보여주는 프로젝트. */
+export const featuredItems = projectItems.filter((item) => !item.archived);
+
+/** 한 줄 목록으로만 남기는 프로젝트. archived 플래그의 설명은 인터페이스에 있다. */
+export const archivedItems = projectItems.filter((item) => item.archived);
 
 export default projectItems;

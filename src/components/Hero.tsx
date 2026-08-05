@@ -1,14 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import heroWords, { objectParticle } from "@/constants/heroWords";
+import { motion, useReducedMotion } from "framer-motion";
 import { ease } from "@/utils/FramerVariants";
 import HeroBackground from "./HeroBackground";
 import HeroProjectIndex from "./HeroProjectIndex";
 import Icon from "./Icon";
-
-const WORD_INTERVAL_MS = 2600;
 
 // 라인 단위 마스크 리빌. 부모가 overflow-hidden이라 글자가 아래에서 밀려 올라온다.
 const lineVariants = {
@@ -20,21 +16,6 @@ const lineVariants = {
 };
 
 export default function Hero() {
-  const reduceMotion = useReducedMotion();
-  const [wordIndex, setWordIndex] = useState(0);
-
-  useEffect(() => {
-    if (reduceMotion) return;
-
-    const timer = window.setInterval(() => {
-      setWordIndex((i) => (i + 1) % heroWords.length);
-    }, WORD_INTERVAL_MS);
-
-    return () => window.clearInterval(timer);
-  }, [reduceMotion]);
-
-  const word = heroWords[wordIndex];
-
   return (
     <section
       id="top"
@@ -52,19 +33,7 @@ export default function Hero() {
             <Line index={0}>안녕하세요.</Line>
             <Line index={1}>
               <Marker>
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.span
-                    key={word}
-                    initial={{ opacity: 0, y: "0.3em" }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: "-0.3em" }}
-                    transition={{ duration: 0.35, ease }}
-                    className="inline-block font-black"
-                  >
-                    {word}
-                  </motion.span>
-                </AnimatePresence>
-                <span className="font-black">{objectParticle(word)}</span>
+                <span className="font-black">사용자 경험을</span>
               </Marker>{" "}
               깊이 고민하고,
             </Line>
@@ -85,7 +54,7 @@ export default function Hero() {
           >
             <div className="flex flex-wrap items-center gap-[1.2rem]">
               <a
-                href="#about"
+                href="#impact"
                 className="flex h-[4.8rem] items-center gap-[0.8rem] rounded-full bg-accent px-[2.4rem] text-[1.4rem] font-bold text-accent-ink transition-transform hover:scale-[1.03] md:h-[5.2rem] md:px-[2.8rem] md:text-[1.5rem]"
               >
                 더 알아보기
@@ -133,10 +102,17 @@ function Line({
 }
 
 /**
- * 회전하는 단어 위를 지나가는 형광펜. 사이트에서 앰버를 쓰는 유일한 자리다.
+ * 강조 문구 위를 지나가는 형광펜. 사이트에서 앰버를 쓰는 유일한 자리다.
  *
  * 절대배치 막대는 line-height가 큰 문단에서 글자 아래로 떨어져 밑줄처럼 보인다.
- * 배경 그라디언트로 그으면 글자 높이에 붙고, 단어 길이가 바뀌어도 알아서 따라온다.
+ * 배경 그라디언트로 그으면 글자 높이에 붙고, 글자가 바뀌어도 알아서 따라온다.
+ *
+ * 원래 이 자리에서 단어 다섯 개가 2.6초마다 돌아갔다. 그 회전이 시프트를
+ * 만들었다. AnimatePresence mode="wait"가 이전 단어를 먼저 지우는 바람에 그
+ * 사이 슬롯이 조사만 남는 폭으로 붕괴했고, layout prop이 폭 변화를 애니메이션해
+ * 그동안 뒷 문장이 계속 밀렸다. 4분 체류 기준 CLS 0.113 · 시프트 92건으로,
+ * 하필 그 자리에 "사용자 경험"이 떠 있었다. 문구를 고정해 0으로 만들었다.
+ * 형광펜은 backgroundSize만 움직여 레이아웃에 영향을 주지 않으므로 남긴다.
  */
 function Marker({ children }: { children: React.ReactNode }) {
   // backgroundSize는 transform이 아니라 MotionConfig가 걸러주지 못한다.
@@ -145,13 +121,9 @@ function Marker({ children }: { children: React.ReactNode }) {
 
   return (
     <motion.span
-      layout={!reduceMotion}
       initial={{ backgroundSize: reduceMotion ? "100% 100%" : "0% 100%" }}
       animate={{ backgroundSize: "100% 100%" }}
-      transition={{
-        backgroundSize: { duration: 0.7, delay: 0.9, ease },
-        layout: { duration: 0.35, ease },
-      }}
+      transition={{ duration: 0.7, delay: 0.9, ease }}
       style={{
         backgroundImage:
           "linear-gradient(transparent 52%, var(--marker) 52%, var(--marker) 92%, transparent 92%)",
