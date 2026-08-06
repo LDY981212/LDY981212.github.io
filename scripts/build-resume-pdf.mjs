@@ -116,7 +116,8 @@ const careerHighlights = {
         "Hono · Drizzle ORM 기반 API 서버, 주요 SNS 연동 토큰 암호화, pino 구조화 로깅 담당",
       ],
       picks: [
-        { head: "RPS 리미터·백오프 재시도로 대량 렌더링 안정화", from: 0 },
+        { head: "병목을 실측으로 뒤집어 동시 처리 한계를 25건까지 확대", from: 0 },
+        { head: "렌더 단계 병목을 특정해 전체 처리 p95 2.5배 단축", from: 1 },
       ],
     },
     {
@@ -127,7 +128,9 @@ const careerHighlights = {
         "컨트롤 바를 유튜브 표준 스타일로 통일하고 키보드 단축키·전체화면 구현",
         "라이브·다시보기·미리보기 시청 모드와 채팅·Q&A 패널 동기화, 게스트 모드 구현",
       ],
-      picks: [{ head: "시청 모드와 사용자 역할에 따른 채팅·Q&A 분기 처리", from: 0 }],
+      picks: [
+        { head: "재생 엔진 셋의 차이를 어댑터로 감춰 공용 기능을 한 벌로 유지", from: 0 },
+      ],
     },
     {
       project: "WAION Vision",
@@ -138,8 +141,16 @@ const careerHighlights = {
   ],
 };
 
-// 입사 전 팀·개인 프로젝트.
+// 개인 프로젝트와 입사 전 팀 프로젝트.
 const sideProjects = [
+  {
+    title: "개인 포트폴리오 웹",
+    team: "1인 개인 프로젝트 · 기획 · 디자인 · 개발",
+    picks: [
+      { head: "첫 화면의 누적 레이아웃 시프트를 실측해 제거 (4분 체류 CLS 0.113 → 0)", from: 0 },
+      { head: "배포된 주소에서 재측정해 폰트 교체로 남던 시프트까지 제거", from: 1 },
+    ],
+  },
   {
     title: "FlowIt",
     team: "팀 프로젝트 (FE) · FE 4명",
@@ -154,10 +165,6 @@ const sideProjects = [
     team: "팀 프로젝트 (FE) · FE 3명, BE 3명",
     picks: [
       {
-        head: "TanStack Query prefetching과 서버 컴포넌트로 초기 로딩 속도 개선",
-        body: "데이터가 많은 페이지에서 최초 로딩 속도가 느린 문제를 겪었습니다. fetch의 정적·동적 캐싱을 먼저 검토했지만 최신 데이터 유지와 서버 부하를 고려해, 서버 컴포넌트로 초기 데이터를 미리 가져오고 인터랙티브한 UI에는 TanStack Query의 prefetching·캐싱을 적용하는 방향으로 개선했습니다. 빠른 초기 로딩을 유지하면서도 최신 데이터를 제공할 수 있었습니다.",
-      },
-      {
         head: "Socket.io 양방향 통신으로 실시간 채팅 구현 및 서버 부하 감소",
         body: "폴링 방식으로 실시간 채팅을 구현하면 요청 횟수가 늘어나며 성능이 저하되는 문제가 있었습니다. Socket.io로 서버와 클라이언트의 연결을 유지해 필요할 때만 메시지를 전송하도록 바꾸고, 상대방의 온라인 상태·입력 중 표시·무한 스크롤 채팅 내역까지 함께 구현해 폴링 대비 서버 부하를 크게 줄였습니다.",
       },
@@ -171,10 +178,6 @@ const sideProjects = [
       {
         head: "Axios Interceptor를 활용한 인증 관리 최적화",
         body: "accessToken이 만료될 때마다 사용자가 다시 로그인해야 했고, 토큰 관리 로직이 여러 곳에 흩어져 일관성 있게 처리하기 어려웠습니다. Axios Interceptor로 모든 API 요청에 accessToken을 자동으로 삽입하고 401 응답 시 refreshToken으로 재발급하도록 중앙화했습니다. 불필요한 인증 절차가 줄어 사용자 경험이 개선되었고, 인증 로직의 재사용성이 높아져 유지보수가 쉬워졌습니다.",
-      },
-      {
-        head: "Optimistic Update로 좋아요 반응 속도 개선",
-        body: "‘좋아요’를 눌렀을 때 서버 응답을 기다리는 동안 UI가 갱신되지 않아 즉각적인 피드백을 주지 못했습니다. 서버 응답 전에 UI를 먼저 업데이트하는 Optimistic Update를 적용해, 요청이 느린 상황에서도 사용자가 바로 반응을 확인할 수 있도록 했습니다.",
       },
       { head: "App Router에서 prefetchQuery · dehydrate로 SSR 구현", from: 0 },
     ],
