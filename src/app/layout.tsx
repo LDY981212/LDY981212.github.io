@@ -55,6 +55,11 @@ export const metadata: Metadata = {
 const pretendard = localFont({
   src: "../../public/fonts/PretendardVariable.subset.woff2",
   display: "optional",
+  // 끄는 이유: 켜두면 폴백을 local("Arial")에 Arial 기준 지표 보정으로 만든다.
+  // Arial에는 한글 글리프가 없어 실제로는 시스템 한글 폰트가 쓰이는데, 보정값은
+  // 그 폰트와 맞지 않아 교체되는 순간 오히려 더 크게 밀린다. 느린 회선 + CPU
+  // 4배 스로틀 조건에서 이 값을 끄자 CLS 0.034 → 0.0005 였다.
+  adjustFontFallback: false,
   weight: "45 920",
   variable: "--font-pretendard",
 });
