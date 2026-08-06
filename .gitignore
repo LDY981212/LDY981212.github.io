@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 /public/videos/
+# 이력서에 넣는 개인 사진. 이 저장소는 공개라 얼굴 사진이 올라가면 안 된다.
+# scripts/build-resume-pdf.mjs 가 여기서 읽어 PDF 안에 base64 로 심는다.
+# 다른 기기에서는 사진을 이 경로에 두거나 RESUME_PHOTO=경로 로 지정하면 된다.
+/scripts/assets/
