@@ -18,7 +18,6 @@ const sections: SectionMeta[] = [
     id: "impact",
     nav: "Highlights",
     title: "HIGHLIGHTS",
-    eyebrow: "측정해서 확인한 것들",
   },
   {
     id: "projects",
