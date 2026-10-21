@@ -36,6 +36,20 @@ const careerItems: CareerItems[] = [
         infor:
           "edge·master 콘솔 등 비전 팩토리 시스템의 프론트엔드를 새로 구성 중입니다.",
       },
+      {
+        id: "5",
+        header: "Edge Vision AI 랜딩 — 다국어 제품 소개 사이트",
+        year: "2026.08 - 현재",
+        infor:
+          "next-intl 기반 한국어·영어·인도네시아어 라우팅과 메시지 정합성 검사 CLI를 도입하고, 11개 상세 페이지의 정보구조·내비게이션·모션을 재설계했으며 폰트 서브셋(2,009KB → 94KB)·영상 인코딩·이미지 변환 폭 조정으로 전송량을 줄였습니다.",
+      },
+      {
+        id: "6",
+        header: "WAION 코퍼레이트 랜딩 — 회사 소개 사이트",
+        year: "2026.09 - 현재",
+        infor:
+          "빌더 기반 기존 사이트를 대체하는 코퍼레이트 랜딩을 기획 문서부터 혼자 맡아, 10개 섹션과 헤더·푸터·문의 폼을 구현하고 레퍼런스의 GSAP 모션을 motion 라이브러리로 재현했습니다.",
+      },
     ],
     stack: ["Next.js", "TypeScript", "Nx", "Hono", "Drizzle ORM"],
   },
