@@ -331,6 +331,7 @@ function buildProject(p) {
 }
 
 function buildProjects() {
+  if (!DATA.projects.length) return;
   place(sectionTitle("프로젝트"));
   DATA.projects.forEach((p, i) => place(buildProject(p), { keepWithPrev: i === 0 }));
 }

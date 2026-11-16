@@ -52,41 +52,40 @@ const profile = [
 const intro = {
   headline: "추정이 아니라 측정으로 판단하는 프론트엔드 개발자",
   paragraphs: [
-    "웨이온(WaiOn)에서 웨비나 SaaS <b>Webinow</b>의 리포트 대시보드와 영상 <b>Player</b>, AI 영상 클리핑 서비스 <b>ClipNow</b>를 만들고 있습니다. ClipNow에서는 Hono·Drizzle ORM 기반 API 서버와 렌더링 파이프라인까지 맡아, 화면 뒤에서 서비스가 실제로 견뎌야 하는 지점을 함께 다룹니다. 최근에는 가톨릭대학교 기술이전 플랫폼 <b>CUK TLO</b>와 자막 제작 스튜디오 <b>LingoNow Studio</b>를 풀스택으로 맡고 있습니다.",
-    "문제를 추정으로 풀지 않으려 합니다. ClipNow 서버가 동시 작업 열몇 건에서 멈췄을 때 모니터링은 디스크 병목을 가리켰지만, 부하 스크립트와 자원 측정기를 직접 만들어 재보니 원인은 메모리 압박이었습니다. 증설안을 접고 단계별 세마포어로 바꿔 <b>동시 처리 한계를 25건</b>으로 올리고 <b>전체 처리 p95를 2.5배</b> 줄였습니다. 포트폴리오 첫 화면에서는 눈에 띄지 않던 CLS 0.113을 실측으로 찾아 0으로 만들었습니다.",
-    "화면 코드를 두 벌 두지 않고 리포트를 화면 그대로 PDF로 내보내고, 재생 엔진 셋의 차이를 어댑터 하나로 감춘 것처럼, 기능을 더할 때 고칠 곳이 늘지 않는 구조를 고릅니다. 앞으로도 화면이 <b>얼마나 빨리, 얼마나 안정적으로</b> 사용자에게 닿는지를 수치로 확인하며 판단하는 개발자로 성장하려 합니다.",
+    "웨이온(WaiOn)에서 웨비나 SaaS <b>Webinow</b>의 리포트 대시보드와 영상 <b>Player</b>로 시작해, 지금은 AI 영상 클리핑 <b>ClipNow</b>, 대학 기술이전 플랫폼 <b>CUK TLO</b>, 자막 제작 스튜디오 <b>LingoNow Studio</b>와 실시간 통역 자막 <b>LingoNow</b>를 맡고 있습니다. 화면에서 끝나지 않고 API 서버·DB·백그라운드 작업까지 함께 다루며, 회사·제품 랜딩 사이트 세 개는 기획부터 런칭·운영까지 담당했습니다.",
+    "문제를 추정으로 풀지 않으려 합니다. ClipNow 서버가 동시 작업 열몇 건에서 멈췄을 때 모니터링은 디스크 병목을 가리켰지만, 부하 스크립트와 자원 측정기를 직접 만들어 재보니 원인은 메모리 압박이었습니다. 증설안을 접고 단계별 세마포어로 바꿔 <b>동시 처리 한계를 25건</b>으로 올렸습니다. 자막 정확도는 방송사 자막과 프레임 오차를 재는 평가 도구부터 만든 뒤 개선해 <b>3프레임 이내 아웃 포인트를 0.47에서 0.69로</b> 올렸고, 관리자 화면은 쿼리 계획과 인증 왕복을 걷어내 <b>397ms를 89ms로</b> 줄였습니다.",
+    "리포트를 화면 그대로 PDF로 내보내고, 재생 엔진 셋의 차이를 어댑터 하나로 감추고, 실시간 번역의 상류 연결을 교체 가능한 링크로 감싸 브라우저를 건드리지 않고 세션을 바꿔 끼우는 것처럼, 기능을 더할 때 고칠 곳이 늘지 않는 구조를 고릅니다. 앞으로도 서비스가 <b>얼마나 빨리, 얼마나 안정적으로</b> 사용자에게 닿는지를 수치로 확인하며 판단하는 개발자로 성장하려 합니다.",
   ],
 };
 
 const skills = [
-  ["Language", ["TypeScript", "JavaScript"]],
+  ["Language", ["TypeScript", "JavaScript", "Python"]],
   [
     "Frontend",
     [
       "Next.js (React)",
+      "Svelte 5",
       "Tailwind CSS",
       "TanStack Query",
       "Zustand",
-      "Redux Toolkit",
-      "React Hook Form + Zod",
+      "motion",
+      "next-intl",
       "Storybook",
-      "Recharts",
-      "Jest",
-      "MSW",
+      "Chart.js",
     ],
   ],
-  ["Backend", ["Hono", "Drizzle ORM", "PostgreSQL", "Express.js"]],
-  ["DevOps · Tooling", ["Nx", "AWS (S3)", "Vercel", "GitHub Actions", "Chromatic"]],
+  ["Backend", ["Hono", "FastAPI", "Drizzle ORM", "PostgreSQL", "Supabase", "SQLite"]],
+  ["DevOps · Tooling", ["Nx", "Vercel", "AWS (S3)", "GitHub Actions", "Vitest", "Playwright", "ffmpeg"]],
 ];
 
-// 도구를 "써봤다"가 아니라 "어디까지 이해하고 있다"를 적는 자리.
+// 도구를 "써봤다"가 아니라 "실무에서 어디까지 다뤘다"를 적는 자리.
 const skillNotes = [
-  "HTML / CSS · 시맨틱 태그를 쓰는 이유와 Position, Display, Box Model 등 레이아웃 속성을 이해하고 있습니다.",
-  "JavaScript · 호이스팅, 스코프, 클로저와 배열 메서드(forEach, map, filter 등), 비동기 처리 흐름을 이해하고 있습니다.",
-  "TypeScript · 타입 추론과 명시적 타입 지정, 인터페이스, 제네릭을 사용해 컴포넌트 props와 API 응답 타입을 설계합니다.",
-  "React · Hook의 동작 원리와 단방향 데이터 흐름을 이해하고, 상태를 어디에 두어야 하는지 기준을 갖고 판단합니다.",
-  "Next.js · 서버 컴포넌트와 클라이언트 컴포넌트의 경계, SSR·SSG를 활용한 로딩 속도와 SEO 최적화 방법을 이해하고 있습니다.",
-  "협업 · Storybook으로 컴포넌트를 문서화하고, Jest 테스트와 GitHub Actions CI, 코드 컨벤션 기반의 코드 리뷰에 익숙합니다.",
+  "Next.js · 서버/클라이언트 컴포넌트 경계와 정적 프리렌더링·요청 시 렌더링을 페이지 성격에 맞게 고르고, DB를 읽는 페이지를 요청 시 렌더링으로 선언해 CI 빌드가 DB 없이 돌게 했습니다.",
+  "성능 · Lighthouse 3회 중앙값, 화면 응답 반복 측정처럼 같은 조건으로 재고, 폰트 서브셋·영상 재인코딩·모바일 전용 전환 분기·쿼리 재구성 중 원인에 맞는 처방을 고릅니다.",
+  "백엔드 · Hono·FastAPI API 서버, Drizzle 트랜잭션과 lock_version 동시 수정 방지, 예약 작업·별도 워커 프로세스로 무거운 작업을 요청 경로에서 분리해 봤습니다.",
+  "실시간 · 음성 번역 WebSocket 프록시와 세션 교체, 디코더 비용을 고려한 스크롤 연동 영상 탐색처럼 끊김이 바로 보이는 화면을 다뤘습니다.",
+  "다국어 · next-intl과 자체 i18n 런타임으로 한국어·영어·일본어·인도네시아어 화면을 운영하고, 로케일 간 메시지 불일치를 CLI와 테스트로 잡습니다.",
+  "협업 · 설계 문서와 결정 기록을 남기고, Storybook으로 컴포넌트를 문서화하며 Vitest·GitHub Actions로 린트·타입 검사·테스트를 CI에서 돌립니다.",
 ];
 
 // 성과 문단(picks)은 두 가지로 적는다.
@@ -96,15 +95,44 @@ const skillNotes = [
 const careerHighlights = {
   "웨이온 (WaiOn)": [
     {
-      project: "Webinow",
-      role: "웨비나 SaaS · 프론트엔드",
+      project: "LingoNow Studio 자막 제작",
+      role: "자막 제작 스튜디오 · 풀스택",
       bullets: [
-        "참여 현황 리포트 대시보드의 퍼널·라인·파이·가로 바 차트 컴포넌트 제작",
-        "차트 데이터를 문장으로 변환해 보여주는 커스텀 컴포넌트·플러그인 제작",
-        "랜딩·커스텀 신청·수료증·서포트 관리 페이지 제작 및 API 연동",
-        "Nx 모노레포에 Storybook 구조를 적용하고 공통 컴포넌트 스토리 작성",
+        "일본어 대본을 음성과 강제 정렬하는 인·아웃 경로와 방송 자막 대비 프레임 오차 평가 도구 구축",
+        "자막 번역 기능을 설계 문서부터 배치 워커·API·화면·SRT/CSV 내보내기까지 구현 (취소·부분 결과 보존·중복 실행 방지)",
+        "바닐라 JS 스튜디오를 Svelte 5 + strict TS로 6단계 이관, 이관 전후 엔진 출력이 바이트 단위로 같은지 대조",
+        "한국어·일본어·영어 UI와 오류 코드화, 방송 자막 파일 가져오기·내보내기와 결과 비교 엑셀",
       ],
-      picks: [{ head: "화면과 동일한 레이아웃으로 리포트를 PDF 출력", from: 0 }],
+      picks: [
+        { head: "평가 도구부터 만들어 방송 자막 기준 3프레임 이내 아웃 포인트 0.47 → 0.69", from: 0 },
+        { head: "23.976fps에서 10분에 14프레임 밀리던 타임코드 계산 수정과 서버·브라우저 반올림 통일", from: 1 },
+      ],
+    },
+    {
+      project: "LingoNow 실시간 통역 자막",
+      role: "실시간 통역 자막 웹앱 · 풀스택",
+      bullets: [
+        "운영 중인 서비스를 이어받아, 모델 오류 시 브라우저 재연결 없이 예비 세션으로 교체하는 서버 측 핫스왑과 45분 선제 교체 구현",
+        "막힌 항목 건너뛰기·6초 지연 예산·FLIP 줄 전환으로 자막 흐름을 고치고 서버·브라우저 구간별 p50/p95 지연 계측",
+        "운영 콘솔을 시맨틱 토큰 기반으로 재설계, 새로고침·배포 후 자동 복구와 한국어·일본어·영어 UI",
+      ],
+      picks: [
+        { head: "통역 중 F5·배포에도 끊기지 않도록 새로고침 방지와 같은 설정 복구 흐름 설계", from: 2 },
+      ],
+    },
+    {
+      project: "CUK TLO 기술이전 플랫폼",
+      role: "대학 기술이전 플랫폼 · 풀스택",
+      bullets: [
+        "KIPRIS Plus 특허 수집과 공개 특허 검색·IPC 선버스트, 전임교원 243명과 발명자를 대조해 등록 특허 1,309건 중 318건으로 수집 범위 확정",
+        "회원·관리자 인증(이메일 OTP·개인정보 AES-256-GCM 암호화·계정별 시도 제한)과 문의·상담 접수부터 관리자 처리·메일 회신까지의 흐름",
+        "콘텐츠·운영 설정·특허 검토·통계 관리자 콘솔을 60개 테이블 Drizzle 스키마 위에 구현, 백그라운드 작업을 Vercel Cron으로 이전",
+        "Vitest 972개 테스트와 GitHub Actions 검사, 개발 서버 멈춤을 Turbopack 캐시 18GB와 DB 풀 중복 생성으로 특정해 해결",
+      ],
+      picks: [
+        { head: "쿼리 계획과 인증 왕복을 걷어내 관리자 응답 단축 (감사 기록 397ms → 89ms)", from: 2 },
+        { head: "계정 존재 여부를 드러내지 않는 로그인·인증 메일 시도 제한", from: 1 },
+      ],
     },
     {
       project: "ClipNow",
@@ -121,6 +149,17 @@ const careerHighlights = {
       ],
     },
     {
+      project: "Webinow",
+      role: "웨비나 SaaS · 프론트엔드",
+      bullets: [
+        "참여 현황 리포트 대시보드의 퍼널·라인·파이·가로 바 차트 컴포넌트 제작",
+        "차트 데이터를 문장으로 변환해 보여주는 커스텀 컴포넌트·플러그인 제작",
+        "랜딩·커스텀 신청·수료증·서포트 관리 페이지 제작 및 API 연동",
+        "Nx 모노레포에 Storybook 구조를 적용하고 공통 컴포넌트 스토리 작성",
+      ],
+      picks: [{ head: "화면과 동일한 레이아웃으로 리포트를 PDF 출력", from: 0 }],
+    },
+    {
       project: "Player",
       role: "웨비나 영상 플레이어 · 프론트엔드",
       bullets: [
@@ -133,81 +172,43 @@ const careerHighlights = {
       ],
     },
     {
-      project: "CUK TLO 기술이전 플랫폼",
-      role: "대학 기술이전 플랫폼 · 풀스택",
+      project: "회사·제품 랜딩 사이트 3종",
+      role: "Edge Vision AI · WAION · Webinow · 기획~운영",
+      period: "2026.08 ~ 진행중",
+      stack: ["Next.js", "TypeScript", "Tailwind CSS", "next-intl", "motion", "Lenis", "ffmpeg"],
       bullets: [
-        "KIPRIS Plus 특허 수집과 공개 특허 검색·IPC 분류 선버스트, 성심교정 전임교원 243명 대조로 수집 대상 318건 확정",
-        "회원·관리자 인증(이메일 OTP·개인정보 암호화·계정별 시도 제한)과 문의·상담 접수·관리자 처리 플로우",
-        "콘텐츠·운영 설정·특허 검토·통계 관리자 콘솔을 60개 테이블 Drizzle 스키마 위에 구현, Vitest 972개",
+        "Edge Vision AI (2인): 한국어·영어·인도네시아어 3개 로케일과 메시지 정합성 검사 CLI, 10개 상세 페이지 정보구조 재설계, 폰트 2,009KB → 94KB",
+        "WAION 코퍼레이트 (1인): 기존 빌더 사이트 진단·기획 문서부터 waion.ai 런칭까지, 페이지별 SEO·구조화 데이터·RSS·GA4, 모바일 Lighthouse 71 → 88",
+        "Webinow 제품 소개 (1인): 스크롤 연동 히어로 영상과 4단계 제품 투어, 웨비나 API 기반 목록·백오피스 문의 접수로 webinow.co.kr 런칭",
       ],
       picks: [
-        { head: "쿼리 계획과 인증 왕복을 걷어내 관리자 응답 단축 (감사 기록 397ms → 89ms)", from: 2 },
-      ],
-    },
-    {
-      project: "LingoNow Studio 자막 제작",
-      role: "자막 제작 스튜디오 · 풀스택",
-      bullets: [
-        "일본어 대본 기반 인·아웃 정렬과 방송 자막 대비 프레임 오차 평가 도구",
-        "자막 번역 기능을 설계부터 워커·API·화면·내보내기까지 구현 (취소·부분 결과·중복 실행 방지)",
-        "스튜디오 프론트엔드를 Svelte 5 + strict TS로 6단계 이관, 한국어·일본어·영어 UI",
-        "23.976fps에서 10분에 14프레임 밀리던 타임코드 수정과 서버·브라우저 반올림 통일",
-      ],
-      picks: [
-        { head: "측정 도구부터 만들어 방송 자막 기준 3프레임 이내 아웃 포인트 0.47 → 0.69로", from: 0 },
+        { project: "Edge Vision AI 랜딩", head: "폰에서만 끊기던 페이지 이동을 GPU 비용으로 특정해 전환 435ms → 54ms", from: 3 },
+        { project: "WAION 코퍼레이트 랜딩", head: "연출을 줄이지 않고 모바일 첫 화면 바이트를 덜어 LCP 6.56초 → 3.90초", from: 0 },
       ],
     },
     {
       project: "WAION Vision",
-      role: "공장 비전 시스템 UI · 프론트엔드",
-      bullets: ["edge · master 콘솔 등 비전 팩토리 시스템의 프론트엔드를 새로 구성 중입니다."],
-      picks: [],
+      role: "공장 비전 검사 시스템 UI · 프론트엔드",
+      period: "2026.07",
+      stack: ["Next.js", "TypeScript", "Nx", "Drizzle ORM (SQLite)", "WebSocket"],
+      bullets: [
+        "엣지 PC에서 도는 운영자 검사 콘솔 재설계, 카메라 모니터 전용 창과 3열 카메라 레이아웃",
+        "품질 검사 대시보드에 판정 카드·NG/NR 사유 표시와 교대 목표·근무 시간 확정, 필요 속도(pcs/h) 실시간 계산",
+        "공장·라인 식별을 빌드가 아닌 기동 시 환경 값으로 노출하고, agent 없이 실제 엔진 스트림을 띄우는 개발 모드 추가",
+      ],
+      picks: [
+        {
+          head: "레이어 밖 CSS 한 줄 때문에 앱 전체 아이콘 크기 지정이 무시되던 문제 해결",
+          body: "앱 전체 아이콘 101개 중 크기를 지정한 100개가 지정과 무관하게 24px로 그려지고 있었습니다. 아이콘 폰트 규칙이 어떤 @layer에도 속하지 않았는데, 레이어 밖 CSS는 모든 레이어를 이긴다는 캐스케이드 규칙 때문에 그 font-size가 Tailwind의 text-* 유틸리티를 누르고 있었습니다. 규칙을 @layer base로 옮겨 유틸리티가 정상 동작하게 하고, 크기를 지정하지 않은 아이콘은 기존 24px 기본값을 유지했습니다.",
+        },
+      ],
     },
   ],
 };
 
-// 개인 프로젝트와 입사 전 팀 프로젝트.
-const sideProjects = [
-  {
-    title: "개인 포트폴리오 웹",
-    team: "1인 개인 프로젝트 · 기획 · 디자인 · 개발",
-    picks: [
-      { head: "첫 화면의 누적 레이아웃 시프트를 실측해 제거 (4분 체류 CLS 0.113 → 0)", from: 0 },
-      { head: "배포된 주소에서 재측정해 폰트 교체로 남던 시프트까지 제거", from: 1 },
-    ],
-  },
-  {
-    title: "FlowIt",
-    team: "팀 프로젝트 (FE) · FE 4명",
-    picks: [
-      { head: "서버·클라이언트 공용 fetch 래퍼로 인증 흐름 일원화", from: 0 },
-      { head: "미들웨어 라우팅 가드로 인증 상태에 따른 접근 제어", from: 1 },
-      { head: "MSW 목 서버로 백엔드 완성 전 화면 개발 진행", from: 2 },
-    ],
-  },
-  {
-    title: "Moving",
-    team: "팀 프로젝트 (FE) · FE 3명, BE 3명",
-    picks: [
-      {
-        head: "Socket.io 양방향 통신으로 실시간 채팅 구현 및 서버 부하 감소",
-        body: "폴링 방식으로 실시간 채팅을 구현하면 요청 횟수가 늘어나며 성능이 저하되는 문제가 있었습니다. Socket.io로 서버와 클라이언트의 연결을 유지해 필요할 때만 메시지를 전송하도록 바꾸고, 상대방의 온라인 상태·입력 중 표시·무한 스크롤 채팅 내역까지 함께 구현해 폴링 대비 서버 부하를 크게 줄였습니다.",
-      },
-      { head: "Redux Persist로 새로고침 이후에도 전역 상태 유지", from: 0 },
-    ],
-  },
-  {
-    title: "HanCook",
-    team: "팀 프로젝트 (FE) · FE 3명, BE 3명",
-    picks: [
-      {
-        head: "Axios Interceptor를 활용한 인증 관리 최적화",
-        body: "accessToken이 만료될 때마다 사용자가 다시 로그인해야 했고, 토큰 관리 로직이 여러 곳에 흩어져 일관성 있게 처리하기 어려웠습니다. Axios Interceptor로 모든 API 요청에 accessToken을 자동으로 삽입하고 401 응답 시 refreshToken으로 재발급하도록 중앙화했습니다. 불필요한 인증 절차가 줄어 사용자 경험이 개선되었고, 인증 로직의 재사용성이 높아져 유지보수가 쉬워졌습니다.",
-      },
-      { head: "App Router에서 prefetchQuery · dehydrate로 SSR 구현", from: 0 },
-    ],
-  },
-];
+
+// 이력서에는 실무 프로젝트만 싣는다. 개인·부트캠프 프로젝트는 포트폴리오 웹에만 남긴다.
+const sideProjects = [];
 
 const education = [
   {
@@ -216,7 +217,6 @@ const education = [
     date: "2024.07 ~ 2025.02",
     body: [
       "state와 hook의 사용법에 그치지 않고 개념과 원리까지 배운 덕분에 React의 동작 방식을 깊이 이해할 수 있었습니다. 상태 관리와 컴포넌트 간 데이터 흐름, 각 hook이 왜 그 상황에 필요한지를 기준을 갖고 판단하게 되었습니다.",
-      "팀 프로젝트에서 변수·상수 네이밍 등 코드 컨벤션을 정해 사용했습니다. 일관된 스타일 덕분에 코드 리뷰에서 스타일 논의가 줄고 더 중요한 논의에 집중할 수 있었고, 컨벤션이 개발 효율과 팀워크에 실제로 기여한다는 것을 경험했습니다.",
     ],
   },
 ];
@@ -262,8 +262,8 @@ const narrative = (s) =>
 
 /** picks 를 {head, body} 로 풀어낸다. HTML·Figma 양쪽이 같은 문장을 쓴다. */
 function resolvePicks(project, picks = []) {
-  const p = byTitle[project];
   return picks.map((pick) => {
+    const p = byTitle[pick.project ?? project];
     const body =
       pick.body ?? (p && p.solution && p.solution[pick.from] && narrative(p.solution[pick.from]));
     if (!body) throw new Error(`성과 문단을 찾지 못했습니다: ${project} / ${pick.head}`);
@@ -285,8 +285,8 @@ function careerHTML(c) {
   const items = highlights
     .map((h) => {
       const p = byTitle[h.project];
-      const meta = p ? period(p.created) : "";
-      const stack = p ? p.stack.map((s) => s.name) : [];
+      const meta = h.period ?? (p ? period(p.created) : "");
+      const stack = h.stack ?? (p ? p.stack.map((s) => s.name) : []);
       return `
       <div class="job">
         <div class="job-head">
@@ -416,7 +416,10 @@ const html = `<!doctype html>
   .c-title { font-size: 14.5px; font-weight: 800; }
   .c-date { font-size: 9.5px; color: var(--muted); white-space:nowrap; }
 
-  .job { border-left: 2px solid var(--line); padding-left: 13px; margin-bottom: 12px; break-inside: avoid; }
+  .job { border-left: 2px solid var(--line); padding-left: 13px; margin-bottom: 12px; }
+  /* 프로젝트가 길어 통째로 넘기면 앞 페이지 절반이 빈다. 머리·목록·성과 문단 단위로만 묶는다. */
+  .job-head, .job .chips { break-after: avoid; }
+  .job ul { break-inside: avoid; }
   .job-head { display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
   .job-head h4 { font-size: 11.5px; font-weight: 800; }
   .job-role { font-size: 9.5px; color: var(--muted); font-weight: 500; }
@@ -489,8 +492,12 @@ const html = `<!doctype html>
   <div class="sec-h"><h2>CAREER</h2><div class="rule"></div></div>
   ${careerHTML(careerByTitle["웨이온 (WaiOn)"])}
 
-  <div class="sec-h"><h2>PROJECTS</h2><div class="rule"></div></div>
-  ${sideProjects.map(sideProjectHTML).join("")}
+  ${
+    sideProjects.length
+      ? `<div class="sec-h"><h2>PROJECTS</h2><div class="rule"></div></div>
+  ${sideProjects.map(sideProjectHTML).join("")}`
+      : ""
+  }
 
   <div class="sec-h"><h2>EDUCATION</h2><div class="rule"></div></div>
   ${education.map(eduHTML).join("")}
@@ -571,8 +578,8 @@ const figmaData = {
         return {
           project: h.project,
           role: h.role,
-          period: p ? period(p.created) : "",
-          stack: p ? p.stack.map((s) => s.name) : [],
+          period: h.period ?? (p ? period(p.created) : ""),
+          stack: h.stack ?? (p ? p.stack.map((s) => s.name) : []),
           bullets: h.bullets,
           highlights: resolvePicks(h.project, h.picks),
         };
